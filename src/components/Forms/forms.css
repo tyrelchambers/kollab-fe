@@ -17,4 +17,5 @@
 .form-label {
   font-weight: 500;
   margin-bottom: 0.3em;
+  color: var(--black-60);
 }

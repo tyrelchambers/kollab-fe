@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import 'normalize.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import Signup from './pages/Signup/Signup';
+import Basic from './pages/ProfileSetup/Basic/Basic';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/setup/basics" component={Basic}/>
         </Switch>
       </Router>
     </Provider>

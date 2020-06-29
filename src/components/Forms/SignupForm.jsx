@@ -1,9 +1,16 @@
 import React from 'react'
 import './forms.css'
 import { MainButton } from '../Buttons/Buttons'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function SignupForm() {
+  const history = useHistory();
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    history.push('/setup/basics')
+  }
+
   return (
     <form className="form shadow-lg">
       <div className="field-group">
@@ -23,6 +30,7 @@ function SignupForm() {
 
       <MainButton
         text="Create account"
+        onClick={e => submitHandler(e)}
       /> 
 
       <div className="flex mt-4 mb-4">
