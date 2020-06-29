@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import './assets/main.css'
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'mobx-react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Home from './pages/Home/Home';
+import 'normalize.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider>
+      <Router>
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
