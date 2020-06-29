@@ -10,6 +10,13 @@
   --border-radius-8: 8px;
   --border-radius-10: 10px;
   --white: rgb(100%,100%,100%);
+  --blueGradient: linear-gradient(214deg, rgba(63,146,240,1) 0%, rgba(10,104,210,1) 100%);
+  --greenGradient: linear-gradient(31deg, rgba(62,189,147,1) 0%, rgba(31,214,154,1) 100%);
+  --redGradient: linear-gradient(to right top, #de3a11, #e6491c, #ef5727, #f76431, #ff703b);
+  --darkGradient: linear-gradient(to right, #051937, #0c2b56, #143d77, #1d519a, #2666bf);
+  --blue: rgb(1, 51, 125);
+  --blue-20: rgb(5, 82, 181);
+  --blue-40: rgb(71, 163, 243);
 }
 
 h1,
@@ -29,4 +36,9 @@ body {
 p {
   line-height: 1.8em;
   color: var(--paragraph);
+}
+
+.link {
+  color: var(--blue-20);
+  text-decoration: underline;
 }

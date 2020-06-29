@@ -33,7 +33,7 @@ function Navbar() {
 
         {!isAuthenticated &&
           <li>
-            <Link to="#" className="nav-item">Sign Up / Sign In</Link>
+            <Link to="/signup" className="nav-item">Sign Up</Link>
           </li>
         }
       </ul>

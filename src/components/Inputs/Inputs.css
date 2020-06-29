@@ -2,6 +2,7 @@
   padding: 0.5em;
   background-color: var(--input-light);
   border:none;
+  border-radius: var(--border-radius-5);
 }
 
 .input-wrapper.with-icon {

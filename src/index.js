@@ -8,13 +8,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home/Home';
 import 'normalize.css'
 import '@fortawesome/fontawesome-free/css/all.css'
+import Signup from './pages/Signup/Signup';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider>
       <Router>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signup" component={Signup} />
         </Switch>
       </Router>
     </Provider>
