@@ -1,13 +1,13 @@
 .form-input {
   padding: 0.5em;
-  background-color: var(--inputLight);
+  background-color: var(--input-light);
   border:none;
 }
 
 .input-wrapper.with-icon {
   padding-left: 1em;
-  border: 1px solid var(--borderLight);
-  background-color: var(--inputLight);
+  border: 1px solid var(--border-light);
+  background-color: var(--input-light);
   border-radius: 5px;
 
 }

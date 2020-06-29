@@ -1,6 +1,9 @@
 import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
+import UserWidget from '../UserWidget/UserWidget';
+
+const isAuthenticated = false;
 
 function Navbar() {
   return (
@@ -21,6 +24,18 @@ function Navbar() {
         <li>
           <Link to="#" className="nav-item" >Launch</Link> 
         </li>
+
+        {isAuthenticated &&
+          <li className="ml-4">
+            <UserWidget />
+          </li>
+        }
+
+        {!isAuthenticated &&
+          <li>
+            <Link to="#" className="nav-item">Sign Up / Sign In</Link>
+          </li>
+        }
       </ul>
     </nav>
   )

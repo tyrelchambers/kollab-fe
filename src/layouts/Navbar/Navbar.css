@@ -2,3 +2,7 @@
   margin: 0.4em 0.8em;
   color: var(--text);
 }
+
+.nav-item:hover {
+  text-decoration: underline;
+}

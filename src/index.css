@@ -1,9 +1,15 @@
 
 
 :root {
+  --bg-0: rgb(95%, 95%, 96%);
   --text: rgb(9.7%, 9.7%, 9.7%);
-  --inputLight: rgb(93.3%, 93.3%, 93.3%);
-  --borderLight: rgb(88%, 88%, 88%);
+  --paragraph: rgb(35%, 35%, 35%);
+  --input-light: rgb(93.3%, 93.3%, 93.3%);
+  --border-light: rgb(88%, 88%, 88%);
+  --border-radius-5: 5px;
+  --border-radius-8: 8px;
+  --border-radius-10: 10px;
+  --white: rgb(100%,100%,100%);
 }
 
 h1,
@@ -11,11 +17,16 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
   color: var(--text);
 }
 
 body {
   font-family: 'Muli', sans-serif;
+  background: var(--bg-0);
+}
+
+p {
+  line-height: 1.8em;
+  color: var(--paragraph);
 }
