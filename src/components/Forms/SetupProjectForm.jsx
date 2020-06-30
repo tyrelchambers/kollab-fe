@@ -118,6 +118,7 @@ function SetupProjectForm() {
       <div className="mt-6 mb-6">
         <MainButton
           text="Save & Continue"
+          onClick={e => submitHandler(e)}
         />
       </div>
 

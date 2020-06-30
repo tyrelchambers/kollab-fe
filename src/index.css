@@ -25,6 +25,7 @@
   --white-40: rgb(228, 231, 235);
   --white-60: rgb(203, 210, 217);
   --purple-0: #4348C2;
+  --hr: rgb(85%, 85%, 85%);
 }
 
 h1,
@@ -50,4 +51,18 @@ p {
 .link {
   color: var(--blue-20);
   text-decoration: underline;
+}
+
+.bg {
+  background-color: var(--white);
+  padding: 0.5em;
+  border-radius: var(--border-radius-sm);
+}
+
+hr {
+  height: 1px !important;
+  border: none !important;
+  width: 100%;
+  margin: 1em 0 !important;
+  background-color: var(--hr) !important;
 }
