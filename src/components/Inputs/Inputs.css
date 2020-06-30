@@ -1,4 +1,7 @@
-
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
 
 .input-wrapper.with-icon {
   padding-left: 1em;
