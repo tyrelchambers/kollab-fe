@@ -1,8 +1,15 @@
 import React from 'react'
 import { MainButton } from '../Buttons/Buttons'
 import { H2, H2Subtitle } from '../Headings/Headings'
+import { useHistory } from 'react-router'
 
 function SetupBasicForm() {
+  const history = useHistory()
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    history.push('/setup/socials')
+  }
   return (
     <form className="form shadow-lg">
       <H2>The Basics</H2>
@@ -24,6 +31,7 @@ function SetupBasicForm() {
 
       <MainButton
         text="Save & Continue"
+        onClick={e => submitHandler(e)}
       />
     </form>
   )
