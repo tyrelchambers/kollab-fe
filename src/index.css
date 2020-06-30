@@ -6,9 +6,9 @@
   --paragraph: rgb(35%, 35%, 35%);
   --input-light: rgb(93.3%, 93.3%, 93.3%);
   --border-light: rgb(88%, 88%, 88%);
-  --border-radius-5: 5px;
-  --border-radius-8: 8px;
-  --border-radius-10: 10px;
+  --border-radius-sm: 5px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 10px;
   --white: rgb(100%,100%,100%);
   --blueGradient: linear-gradient(214deg, rgba(63,146,240,1) 0%, rgba(10,104,210,1) 100%);
   --greenGradient: linear-gradient(31deg, rgba(62,189,147,1) 0%, rgba(31,214,154,1) 100%);
@@ -24,6 +24,7 @@
   --white-20: rgb(245, 247, 250);
   --white-40: rgb(228, 231, 235);
   --white-60: rgb(203, 210, 217);
+  --purple-0: #4348C2;
 }
 
 h1,
@@ -41,8 +42,9 @@ body {
 }
 
 p {
-  line-height: 1.8em;
+  line-height: 1.3em;
   color: var(--paragraph);
+  font-weight: 300;
 }
 
 .link {

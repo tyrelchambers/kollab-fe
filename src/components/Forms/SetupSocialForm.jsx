@@ -1,5 +1,5 @@
 import React from 'react'
-import { H2, H2Subtitle } from '../Headings/Headings'
+import { H2 } from '../Headings/Headings'
 import { useHistory } from 'react-router'
 import { MainButton } from '../Buttons/Buttons'
 
@@ -8,14 +8,16 @@ function SetupSocialForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    history.push('/setup/socials')
+    history.push('/setup/projects')
   }
   return (
-    <form className="form">
+    <form className="form shadow-lg">
       <H2>The Socials</H2>
-      <H2Subtitle>Here we will setup your social accounts. Just add the links!</H2Subtitle>
 
-      <div className="field-group">
+      <p className="mt-6">You can import your Github repositories to populate your profile with some of your projects.</p>
+      <a href="#" className="link font-thin mt-2 mb-6">import Github repositories</a>
+
+      <div className="field-group ">
         <label htmlFor="Twitter" className="form-label">Twitter</label>
 
         <div className="flex items-center w-full">

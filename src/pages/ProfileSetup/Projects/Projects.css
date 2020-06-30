@@ -1,0 +1,7 @@
+.thumbnail-preview {
+  width: 125px;
+  height: 125px;
+  background-color: var(--bg-0);
+  border-radius: var(--border-radius-sm);
+  margin-right: 1em;
+}

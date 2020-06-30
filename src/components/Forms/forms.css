@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   padding: 0.7em;
-  border-radius: var(--border-radius-8);
+  border-radius: var(--border-radius-md);
 }
 
 .field-group {
@@ -14,11 +14,16 @@
   margin: 1em 0;
 }
 
+.field-group.no-margin {
+  margin: 0;
+}
+
 .form-label {
   font-weight: 500;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.6em;
   color: var(--black-60);
   width: 100%;
+  font-size: 1rem;
 }
 
 .field-group i {
@@ -31,7 +36,26 @@
   padding: 0.5em;
   background-color: var(--input-light);
   border:none;
-  border-radius: var(--border-radius-5);
-  margin-top: 0.3em;
+  border-radius: var(--border-radius-sm);
   width: 100%;
+  font-weight: 300;
+}
+
+.form-input::placeholder {
+  font-style: italic;
+}
+
+.form-textarea {
+  width: 100%;
+  background-color: var(--input-light);
+  padding: 0.5em;
+  border: none;
+  resize: vertical;
+  min-height: 200px;
+  font-weight: 300;
+  display: block;
+  align-items: flex-start;
+  border-radius: var(--border-radius-sm);
+  color: var(--text);
+  
 }

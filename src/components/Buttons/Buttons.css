@@ -8,5 +8,16 @@
 .btn.primary {
   background: var(--greenGradient);
   color: var(--white);
-  border-radius: var(--border-radius-5);
+  border-radius: var(--border-radius-sm);
+}
+
+.btn.secondary {
+  border-radius: var(--border-radius-sm);
+  border: 2px solid var(--purple-0);
+  color: var(--purple-0);
+}
+
+.btn.secondary:hover {
+  background-color: var(--purple-0);
+  color: var(--white);
 }

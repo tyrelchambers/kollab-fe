@@ -1,6 +1,5 @@
 import React from 'react'
 import './SetupProgress.css'
-import { useRouteMatch } from 'react-router'
 
 function SetupProgress({progress}) {
   return (

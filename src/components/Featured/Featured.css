@@ -1,6 +1,6 @@
 .featured-wrapper {
   width: 100%;
-  border-radius: var(--border-radius-10);
+  border-radius: var(--border-radius-lg);
   display: flex;
   background: var(--white);
 }
@@ -8,7 +8,7 @@
 .featured-thumbnail {
   width: 100%;
   max-width: 500px;
-  border-radius: var(--border-radius-5);
+  border-radius: var(--border-radius-sm);
 }
 
 .featured-title {
