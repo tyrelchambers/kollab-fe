@@ -5,7 +5,6 @@ function UserWidget() {
   const [ isOpen, setIsOpen ] = useState(false)
 
   useEffect(() => {
-    const menu = document.querySelector(".dropdown-menu");
     document.addEventListener('click', handleOffClick)
 
     return () => {
