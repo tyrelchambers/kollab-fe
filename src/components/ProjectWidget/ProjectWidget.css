@@ -1,0 +1,32 @@
+.widget-thumbnail-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 107px;
+  height: 107px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  margin-right: 1em;
+}
+
+.widget-thumbnail {
+  width: 93%;
+  height: 93%;
+  border-radius: var(--border-radius-md);
+  
+}
+
+.widget-body {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: 0.6em 1.2em;
+}
+
+.widget-wrapper {
+  width: 100%;
+  max-width: 870px;
+  height: 107px;
+  margin-bottom: 1em;
+}
+

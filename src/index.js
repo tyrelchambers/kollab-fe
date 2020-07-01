@@ -26,7 +26,7 @@ ReactDOM.render(
           <Route exact path="/setup/socials" component={Social} />
           <Route exact path="/setup/projects" component={Projects} />
           <Route exact path="/setup/complete" component={Complete} />
-          <Route exact path="/me" component={DashHome} />
+          <Route exact path="/dashboard" component={DashHome} />
         </Switch>
       </Router>
     </Provider>

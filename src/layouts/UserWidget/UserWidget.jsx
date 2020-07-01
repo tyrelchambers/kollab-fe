@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './UserWidget.css'
+import { Link } from 'react-router-dom'
 
 function UserWidget() {  
   const [ isOpen, setIsOpen ] = useState(false)
@@ -25,11 +26,11 @@ function UserWidget() {
       </div>
 
       <div className={`dropdown-menu shadow-lg ${isOpen ? "visible" : ""}`}>
-        <a href="#" className="dropdown-item">Dashboard</a>
-        <a href="#" className="dropdown-item">Projects</a>
-        <a href="#" className="dropdown-item">Some 1</a>
-        <a href="#" className="dropdown-item">Some 2</a>
-        <a href="#" className="dropdown-item">Some 3</a>
+        <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
+        <Link to="#" className="dropdown-item">Projects</Link>
+        <Link to="#" className="dropdown-item">Some 1</Link>
+        <Link to="#" className="dropdown-item">Some 2</Link>
+        <Link to="#" className="dropdown-item">Some 3</Link>
       </div>
     </div>
   )

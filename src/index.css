@@ -2,7 +2,7 @@
 
 :root {
   --bg-0: rgb(95%, 95%, 96%);
-  --text: rgb(9.7%, 9.7%, 9.7%);
+  --text: rgb(25%, 25%, 25%);
   --paragraph: rgb(35%, 35%, 35%);
   --input-light: rgb(93.3%, 93.3%, 93.3%);
   --border-light: rgb(88%, 88%, 88%);
@@ -35,6 +35,8 @@ h4,
 h5,
 h6 {
   color: var(--text);
+  font-family: 'Roboto', sans-serif;
+
 }
 
 body {
