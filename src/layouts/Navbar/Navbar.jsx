@@ -3,7 +3,7 @@ import './Navbar.css'
 import { Link } from 'react-router-dom'
 import UserWidget from '../UserWidget/UserWidget';
 
-const isAuthenticated = false;
+const isAuthenticated = true;
 
 function Navbar() {
   return (

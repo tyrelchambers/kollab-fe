@@ -4,3 +4,36 @@
   height: 40px;
   border-radius: 50%;
 }
+
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: var(--white);
+  right: 0;
+  width: 150px;
+  border-radius: var(--border-radius-sm);
+  border:1px solid var(--white-60);
+  overflow: hidden;
+  top: 3em;
+}
+
+
+.dropdown-item {
+  padding: 0.5em;
+  display: block;
+  font-weight: 300;
+  color: var(--text);
+}
+
+.dropdown-item:hover {
+  background-color: var(--white-20);
+}
+
+.dropdown-menu.visible {
+  display: flex !important;
+}
