@@ -4,6 +4,8 @@ import { H1, H3 } from '../../../components/Headings/Headings'
 import ProjectWidget from '../../../components/ProjectWidget/ProjectWidget'
 import './DashHome.css'
 import DashProfileInfo from '../../../layouts/DashProfileInfo/DashProfileInfo'
+import MainCol from '../../../layouts/MainCol/MainCol'
+import Sidebar from '../../../layouts/Sidebar/Sidebar'
 
 const sample = {
   title: "Super coool awesome idea",
@@ -45,7 +47,7 @@ function DashHome() {
         <H1>Dashboard</H1>
 
         <div className="flex">
-          <main className="flex flex-col w-full mr-4">
+          <MainCol>
             <H3 className="mb-4">Your Projects</H3>
             <ProjectWidget
               project={sample}
@@ -65,15 +67,15 @@ function DashHome() {
             <ProjectWidget
               project={sample}
             />
-          </main>
+          </MainCol>
 
-          <aside className="flex flex-col dash-right-col">
+          <Sidebar>
             <div className="profile">
               <DashProfileInfo
                 profile={profileSample}
               />
             </div>
-          </aside>
+          </Sidebar>
         </div>
       </section>
     </div>

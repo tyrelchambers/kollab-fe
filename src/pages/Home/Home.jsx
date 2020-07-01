@@ -77,28 +77,41 @@ function Home() {
               </div>
             </MainCol>
             <Sidebar>
-              <H2>Looking to help...</H2>
+              <H2>Available To Help</H2>
               
               <InfoBlock>
                 <div className="flex flex-col">
                   <Link to="#">
-                    <div className="flex items-center mb-4 hover:bg-gray-100 p-1 rounded">
+                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
                       <img src={profileSample.avatar} alt="" className="profile-avatar"/>
                       <p className="font-bold">{profileSample.fullName}</p>
                     </div>
                   </Link>
 
                   <Link to="#">
-                    <div className="flex items-center mb-4 hover:bg-gray-100 p-1 rounded">
+                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
                       <img src={profileSample.avatar} alt="" className="profile-avatar"/>
                       <p className="font-bold">{profileSample.fullName}</p>
                     </div>
                   </Link>
 
                   <Link to="#">
-                    <div className="flex items-center hover:bg-gray-100 p-1 rounded">
+                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
                       <img src={profileSample.avatar} alt="" className="profile-avatar"/>
                       <p className="font-bold">{profileSample.fullName}</p>
+                    </div>
+                  </Link>
+                </div>
+              </InfoBlock>
+
+              <H2 className="mt-6">Top Open Source</H2>
+
+              <InfoBlock>
+                <div className="flex flex-col">
+                  <Link to="#">
+                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
+                      <img src={project.thumbnail} alt="" className="profile-avatar"/>
+                      <p className="font-bold">{project.title}</p>
                     </div>
                   </Link>
                 </div>
