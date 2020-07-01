@@ -28,9 +28,9 @@ function UserWidget() {
       <div className={`dropdown-menu shadow-lg ${isOpen ? "visible" : ""}`}>
         <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
         <Link to="#" className="dropdown-item">Projects</Link>
-        <Link to="#" className="dropdown-item">Some 1</Link>
-        <Link to="#" className="dropdown-item">Some 2</Link>
-        <Link to="#" className="dropdown-item">Some 3</Link>
+        <Link to="#" className="dropdown-item">Profile</Link>
+        <Link to="#" className="dropdown-item">Account</Link>
+        <Link to="#" className="dropdown-item">Sign Out</Link>
       </div>
     </div>
   )

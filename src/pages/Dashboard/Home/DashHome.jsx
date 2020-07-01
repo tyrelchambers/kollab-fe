@@ -31,7 +31,9 @@ const profileSample = {
   instagram: "@handle",
   stackOverflow: "@handle",
   github: "@handle",
-  gitlab: "@handle"
+  gitlab: "@handle",
+  avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+
 }
 
 function DashHome() {
@@ -45,6 +47,17 @@ function DashHome() {
         <div className="flex">
           <main className="flex flex-col w-full mr-4">
             <H3 className="mb-4">Your Projects</H3>
+            <ProjectWidget
+              project={sample}
+            />
+
+            <ProjectWidget
+              project={sample}
+            />
+
+            <hr/>
+
+            <H3 className="mb-4">Collaborations</H3>
             <ProjectWidget
               project={sample}
             />

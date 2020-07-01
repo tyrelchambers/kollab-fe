@@ -10,7 +10,7 @@ function Navbar() {
     <nav>
       <ul className="flex items-center">
         <li>
-          <Link to="#" className="nav-item" >Home</Link> 
+          <Link to="/" className="nav-item" >Home</Link> 
         </li>
 
         <li>
