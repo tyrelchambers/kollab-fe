@@ -82,23 +82,23 @@ function Home() {
               <InfoBlock>
                 <div className="flex flex-col">
                   <Link to="#">
-                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
+                    <div className="flex items-center m-2 p-1">
                       <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                      <p className="font-bold">{profileSample.fullName}</p>
+                      <Link href="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
                     </div>
                   </Link>
 
                   <Link to="#">
-                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
+                    <div className="flex items-center m-2 p-1">
                       <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                      <p className="font-bold">{profileSample.fullName}</p>
+                      <Link href="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
                     </div>
                   </Link>
 
                   <Link to="#">
-                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
+                    <div className="flex items-center m-2 p-1">
                       <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                      <p className="font-bold">{profileSample.fullName}</p>
+                      <Link href="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
                     </div>
                   </Link>
                 </div>
@@ -109,9 +109,9 @@ function Home() {
               <InfoBlock>
                 <div className="flex flex-col">
                   <Link to="#">
-                    <div className="flex items-center m-2 hover:bg-gray-100 p-1 rounded">
+                    <div className="flex items-center m-2 p-1">
                       <img src={project.thumbnail} alt="" className="profile-avatar"/>
-                      <p className="font-bold">{project.title}</p>
+                      <Link className="font-bold hover:underline">{project.title}</Link>
                     </div>
                   </Link>
                 </div>

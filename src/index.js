@@ -14,23 +14,36 @@ import Social from './pages/ProfileSetup/Social/Social';
 import Projects from './pages/ProfileSetup/Projects/Projects';
 import Complete from './pages/ProfileSetup/Complete/Complete';
 import DashHome from './pages/Dashboard/Home/DashHome'
+import Cookies from 'js-cookie';
+import AuthProvider from './Providers/AuthProvider';
+
+const App = () => {
+  const sessionCookie = Cookies.get("sid");
+
+  return (
+    <React.StrictMode>
+      <AuthProvider>
+        <Provider>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/setup/basics" component={Basic}/>
+              <Route exact path="/setup/socials" component={Social} />
+              <Route exact path="/setup/projects" component={Projects} />
+              <Route exact path="/setup/complete" component={Complete} />
+              <Route exact path="/dashboard" component={DashHome} />
+            </Switch>
+          </Router>
+        </Provider>
+      </AuthProvider>
+    </React.StrictMode>
+  )
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/setup/basics" component={Basic}/>
-          <Route exact path="/setup/socials" component={Social} />
-          <Route exact path="/setup/projects" component={Projects} />
-          <Route exact path="/setup/complete" component={Complete} />
-          <Route exact path="/dashboard" component={DashHome} />
-        </Switch>
-      </Router>
-    </Provider>
-  </React.StrictMode>,
+  <App/>
+  ,
   document.getElementById('root')
 );
 
