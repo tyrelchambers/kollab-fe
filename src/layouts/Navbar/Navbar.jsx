@@ -2,10 +2,12 @@ import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import UserWidget from '../UserWidget/UserWidget';
+import { useAuthState } from '../../Providers/AuthProvider';
 
-const isAuthenticated = true;
 
 function Navbar() {
+  const {isAuthenticated} = useAuthState();
+
   return (
     <nav>
       <ul className="flex items-center">
@@ -24,7 +26,7 @@ function Navbar() {
         <li>
           <Link to="#" className="nav-item" >Launch</Link> 
         </li>
-
+{console.log(isAuthenticated)}
         {isAuthenticated &&
           <li className="ml-4">
             <UserWidget />
@@ -33,7 +35,7 @@ function Navbar() {
 
         {!isAuthenticated &&
           <li>
-            <Link to="/signup" className="nav-item">Sign Up</Link>
+            <Link to="/signup" className="nav-item">Sign Up / Login</Link>
           </li>
         }
       </ul>

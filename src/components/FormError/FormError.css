@@ -1,0 +1,16 @@
+.form-error-wrapper {
+  background: var(--redGradient);
+  border-radius: var(--border-radius-sm);
+  height: 40px;
+  padding: 1em;
+  margin: 0.5em 0;
+}
+
+.form-error-wrapper i {
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.form-error-wrapper p {
+  color: var(--white);
+}

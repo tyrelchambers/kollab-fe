@@ -11,7 +11,7 @@
 .field-group {
   display: flex;
   flex-direction: column;
-  margin: 1em 0;
+  margin: 0.5em 0;
 }
 
 .field-group.no-margin {
@@ -33,12 +33,13 @@
 }
 
 .form-input {
-  padding: 0.5em;
+  padding: 1em;
   background-color: var(--input-light);
   border:none;
   border-radius: var(--border-radius-sm);
   width: 100%;
   font-weight: 300;
+  font-size: 0.9rem;
 }
 
 .form-input::placeholder {

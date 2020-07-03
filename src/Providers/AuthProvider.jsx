@@ -23,17 +23,24 @@ function AuthProvider({children}) {
 
   return (
     <AuthContext.Provider value={state}>
-      {state.status === "pending" &&
-        <p>Loading...</p>
-      }
-
-      {state.status === "error" &&
-        <p>{state.error.message}</p>
-      }
-
       {children}
     </AuthContext.Provider>
   )
+}
+
+export function useAuthState() {
+  const state = React.useContext(AuthContext)
+  const isPending = state.status === 'pending'
+  const isError = state.status === 'error'
+  const isSuccess = state.status === 'success'
+  const isAuthenticated = state.user && isSuccess
+  return {
+    ...state,
+    isPending,
+    isError,
+    isSuccess,
+    isAuthenticated,
+  }
 }
 
 export default AuthProvider

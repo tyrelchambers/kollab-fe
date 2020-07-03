@@ -81,26 +81,20 @@ function Home() {
               
               <InfoBlock>
                 <div className="flex flex-col">
-                  <Link to="#">
-                    <div className="flex items-center m-2 p-1">
-                      <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                      <Link href="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                    </div>
-                  </Link>
+                  <div className="flex items-center m-2 p-1">
+                    <img src={profileSample.avatar} alt="" className="profile-avatar"/>
+                    <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
+                  </div>
 
-                  <Link to="#">
-                    <div className="flex items-center m-2 p-1">
-                      <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                      <Link href="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                    </div>
-                  </Link>
+                  <div className="flex items-center m-2 p-1">
+                    <img src={profileSample.avatar} alt="" className="profile-avatar"/>
+                    <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
+                  </div>
 
-                  <Link to="#">
-                    <div className="flex items-center m-2 p-1">
-                      <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                      <Link href="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                    </div>
-                  </Link>
+                  <div className="flex items-center m-2 p-1">
+                    <img src={profileSample.avatar} alt="" className="profile-avatar"/>
+                    <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
+                  </div>
                 </div>
               </InfoBlock>
 
@@ -108,12 +102,10 @@ function Home() {
 
               <InfoBlock>
                 <div className="flex flex-col">
-                  <Link to="#">
-                    <div className="flex items-center m-2 p-1">
-                      <img src={project.thumbnail} alt="" className="profile-avatar"/>
-                      <Link className="font-bold hover:underline">{project.title}</Link>
-                    </div>
-                  </Link>
+                  <div className="flex items-center m-2 p-1">
+                    <img src={project.thumbnail} alt="" className="profile-avatar"/>
+                    <Link to="#" className="font-bold hover:underline">{project.title}</Link>
+                  </div>
                 </div>
               </InfoBlock>
             </Sidebar>
