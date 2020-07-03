@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
-import './forms.css'
-import { MainButton } from '../Buttons/Buttons'
-import { Link } from 'react-router-dom'
-import getApi from '../../api/getApi'
-import { useForm } from 'react-hook-form'
-import FormError from '../FormError/FormError'
-import isEmpty from '../../helpers/objIsEmpty'
+import { useForm } from 'react-hook-form';
+import getApi from '../../api/getApi';
+import FormError from '../FormError/FormError';
+import { Link, useHistory } from 'react-router-dom';
+import { MainButton } from '../Buttons/Buttons';
+import isEmpty from '../../helpers/objIsEmpty';
+import { inject, observer } from 'mobx-react';
+import Cookies from 'js-cookie'
+import { toast } from 'react-toastify';
 
-function SignupForm() {
+function LoginForm({UserStore}) {
   const [ state, setState ] = useState({
     email: "",
     password: "",
-    confirmPassword: ""
+    rememberMe: false
   })
+
+  const history = useHistory();
 
   const { handleSubmit, register, errors } = useForm({
     reValidateMode: "onSubmit"
@@ -20,12 +24,25 @@ function SignupForm() {
 
   const submitHandler = async (e) => {
     if (!isEmpty(errors)) return;
-    
+
     await getApi({
-      url: "/auth/register",
+      url: "/auth/login",
       data: state,
       method: "post"
-    }).then(console.log)
+    }).then(res => {
+      if (res) {
+        UserStore.setUser(res.user)
+        if(res.cookie) {
+          Cookies.set('sid', res.cookie.sid, {
+            expires: res.cookie.originalMaxAge
+          })
+        }
+        
+        toast.success("Sign in successfully")
+        history.push('/')
+      }
+    })
+
   }
 
   const inputHandler = (e) => {
@@ -76,37 +93,28 @@ function SignupForm() {
         {(errors.password && errors.password.type === 'max') && <FormError error="Password should be less than 99 characters" />}
 
       </div>
-      <div className="field-group">
-        <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-        <input 
-          type="password" 
-          className="form-input"
-          ref={
-            register({
-              required: true
-            })
-          }
-          placeholder="Must match your password"
-          name="confirmPassword"
-          value={state.confirmPassword}
-          onChange={e => inputHandler(e)}
-        />
 
-        {(errors.confirmPassword && errors.confirmPassword.required) && <FormError error="Confirm Password is required" />}
-        {state.confirmPassword !== state.password && <FormError error="Passwords must match"/>}
+      <div className="mt-2 mb-2 flex flex-col ">
+        <p className="text-xs text-gray-600 italic mt-2 mb-2">Clicking the "Remember me" checkbox will save a cookie in your browser in order for our server to know who you are  so we can keep you logged in. Thus, you agree to saving cookies by clicking the aforementioned checkbox. </p>
+        <div className="flex items-center">
+          <input type="checkbox" name="rememberMe" id="rememberMe" className="mr-2" value={state.rememberMe} onChange={e => setState({...state, rememberMe: e.target.checked})}/>
+          <p>Remember me</p>
+        </div>
       </div>
-
-      <MainButton
-        text="Create account"
-        type="submit"
-      /> 
+      
+      <div className="mt-4">
+        <MainButton
+          text="Create account"
+          type="submit"
+        /> 
+      </div>
 
       <div className="flex mt-4 mb-4">
         <Link to="#" className="mr-2 link">Forget your password?</Link>
-        <Link to="/login" className="link">Already have an account? Sign in.</Link>
+        <Link to="#" className="link">Already have an account? Sign in.</Link>
       </div>
     </form>
   )
 }
 
-export default SignupForm
+export default inject("UserStore")(observer(LoginForm))

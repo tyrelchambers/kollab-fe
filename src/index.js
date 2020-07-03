@@ -16,6 +16,10 @@ import Complete from './pages/ProfileSetup/Complete/Complete';
 import DashHome from './pages/Dashboard/Home/DashHome'
 import Cookies from 'js-cookie';
 import AuthProvider from './Providers/AuthProvider';
+import Login from './pages/Login/Login';
+import stores from './stores/index'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const sessionCookie = Cookies.get("sid");
@@ -23,11 +27,13 @@ const App = () => {
   return (
     <React.StrictMode>
       <AuthProvider>
-        <Provider>
+        <Provider {...stores}>
           <Router>
+            <ToastContainer/>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/setup/basics" component={Basic}/>
               <Route exact path="/setup/socials" component={Social} />
               <Route exact path="/setup/projects" component={Projects} />
