@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../../layouts/Header/Header'
 import { H1, H3 } from '../../../components/Headings/Headings'
 import ProjectWidget from '../../../components/ProjectWidget/ProjectWidget'
@@ -6,6 +6,7 @@ import './DashHome.css'
 import DashProfileInfo from '../../../layouts/DashProfileInfo/DashProfileInfo'
 import MainCol from '../../../layouts/MainCol/MainCol'
 import Sidebar from '../../../layouts/Sidebar/Sidebar'
+import getApi from '../../../api/getApi'
 
 const sample = {
   title: "Super coool awesome idea",
@@ -39,6 +40,18 @@ const profileSample = {
 }
 
 function DashHome() {
+  useEffect(() => {
+    const fn = async () => {
+      await getApi({
+        url:'/user/me'
+      }).then(res => {
+        console.log(res)
+      })
+    }
+
+    fn()
+  }, [])
+  
   return (
     <div className="w-full">
       <Header/>

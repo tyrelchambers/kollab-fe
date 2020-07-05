@@ -9,14 +9,17 @@ const getApi = async ({
   url = ""
 } = {}) => {
    return await Axios({
-     method,
-     data,
-     url: `${BACKEND_URL}/api${url}`,
-     params,
-     
+    method,
+    data,
+    url: `${BACKEND_URL}/api${url}`,
+    params,
+   
+   }, {
+     withCredentials: true
    })
    .then(res => {
      if (res) {
+       console.log(res.headers)
        return res.data
      } else {
        return Promise.reject(res.data)

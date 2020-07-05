@@ -22,12 +22,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const sessionCookie = Cookies.get("sid");
-
   return (
     <React.StrictMode>
-      <AuthProvider>
-        <Provider {...stores}>
+      <Provider {...stores}>
+        <AuthProvider>
           <Router>
             <ToastContainer/>
             <Switch>
@@ -41,8 +39,8 @@ const App = () => {
               <Route exact path="/dashboard" component={DashHome} />
             </Switch>
           </Router>
-        </Provider>
-      </AuthProvider>
+        </AuthProvider>
+      </Provider>
     </React.StrictMode>
   )
 }

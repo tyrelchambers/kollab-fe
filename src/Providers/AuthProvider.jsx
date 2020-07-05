@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import getApi from '../api/getApi';
+import { inject, observer } from 'mobx-react';
 
 const AuthContext = React.createContext();
-const getUser = () => {
-  // execute GET
+const getUserOnLoad = async () => {
+  await getApi({
+    url:'/user/me'
+  }).then(res => {
+    console.log(res)
+  })
 }
 
 const logout = () => {
 
 }
 
-function AuthProvider({children}) {
+function AuthProvider({children, UserStore}) {
   const [state, setState] = useState({
     status: 'pending',
     error: null,
@@ -18,7 +23,18 @@ function AuthProvider({children}) {
   })
 
   useEffect(() => {
-    setState({status: "success"})
+    if (UserStore.user) {
+      setState({
+        ...state, 
+        user: UserStore.user,
+        status: "success"
+      })
+
+    }
+  }, [UserStore.user])
+
+  useEffect(() => {
+    getUserOnLoad()
   }, [])
 
   return (
@@ -43,4 +59,4 @@ export function useAuthState() {
   }
 }
 
-export default AuthProvider
+export default inject("UserStore")(observer(AuthProvider))

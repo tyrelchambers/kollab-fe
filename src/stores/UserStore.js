@@ -1,7 +1,7 @@
 import { decorate, observable, action } from "mobx"
 
 class UserStore {
-  user = {}
+  user = null
 
   setUser(user) {
     this.user = user;

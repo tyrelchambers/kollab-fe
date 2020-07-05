@@ -32,13 +32,16 @@ function LoginForm({UserStore}) {
     }).then(res => {
       if (res) {
         UserStore.setUser(res.user)
-        if(res.cookie) {
-          Cookies.set('sid', res.cookie.sid, {
-            expires: res.cookie.originalMaxAge
+        console.log(res.cookie)
+        if(state.rememberMe) {
+          Cookies.set('sid', res.cookie.passport.user, {
+            expires: 1
           })
+        } else {
+          window.sessionStorage.setItem("user", JSON.stringify(res.cookie.passport.user))
         }
         
-        toast.success("Sign in successfully")
+        toast.success(res.message)
         history.push('/')
       }
     })
@@ -104,7 +107,7 @@ function LoginForm({UserStore}) {
       
       <div className="mt-4">
         <MainButton
-          text="Create account"
+          text="Login"
           type="submit"
         /> 
       </div>
