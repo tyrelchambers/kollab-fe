@@ -20,7 +20,7 @@
   flex-direction: column;
   background-color: var(--white);
   right: 0;
-  width: 150px;
+  width: 190px;
   border-radius: var(--border-radius-sm);
   border:1px solid var(--white-60);
   overflow: hidden;
@@ -28,8 +28,9 @@
 }
 
 
-.dropdown-item {
-  padding: 0.5em;
+.dropdown-item,
+.sub-list {
+  padding: 0.7em 1em;
   display: block;
   font-weight: 300;
   color: var(--text);
@@ -41,4 +42,37 @@
 
 .dropdown-menu.visible {
   display: flex !important;
+}
+
+.dropdown-menu details[open] {
+  background: var(--white-20);
+}
+
+.dropdown-menu details[open] summary {
+  color: var(--black-60);
+}
+
+.details-list {
+  margin-top: 0.6em;
+}
+
+.details-list a:not(:last-child) {
+  border-bottom: 1px solid var(--white-40);
+}
+
+.details-list .dropdown-item:hover {
+  background: var(--white);
+  border-radius: var(--border-radius-sm);
+}
+
+.sub-list summary i {
+  transition: all 0.2s ease;
+}
+
+details summary::-webkit-details-marker {
+  display:none;
+}
+
+.sub-list[open] summary i {
+  transform: rotateZ(90deg);
 }

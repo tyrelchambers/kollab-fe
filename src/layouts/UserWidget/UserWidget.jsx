@@ -14,9 +14,9 @@ function UserWidget() {
   }, [isOpen])
 
   const handleOffClick = () => {
-    if (isOpen) {      
-      setIsOpen(false)        
-    }
+    // if (isOpen) {      
+    //   setIsOpen(false)        
+    // }
   }
 
 
@@ -27,7 +27,13 @@ function UserWidget() {
 
       <div className={`dropdown-menu shadow-lg ${isOpen ? "visible" : ""}`}>
         <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
-        <Link to="#" className="dropdown-item">Projects</Link>
+        <details className="sub-list">
+          <summary><i className="fas fa-long-arrow-alt-right mr-2"></i> Projects</summary>
+          <div className="details-list">
+            <Link to="#" className="dropdown-item">All Projects</Link>
+            <Link to="#" className="dropdown-item">Create New</Link>
+          </div>
+        </details>
         <Link to="#" className="dropdown-item">Profile</Link>
         <Link to="#" className="dropdown-item">Account</Link>
         <Link to="#" className="dropdown-item">Sign Out</Link>
