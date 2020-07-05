@@ -26,7 +26,7 @@ function Navbar() {
         <li>
           <Link to="#" className="nav-item" >Launch</Link> 
         </li>
-{console.log(isAuthenticated)}
+
         {isAuthenticated &&
           <li className="ml-4">
             <UserWidget />

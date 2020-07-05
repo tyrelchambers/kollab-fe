@@ -13,13 +13,12 @@ const getApi = async ({
     data,
     url: `${BACKEND_URL}/api${url}`,
     params,
-   
-   }, {
-     withCredentials: true
+    headers: {
+      "token": window.localStorage.getItem("token") || window.sessionStorage.getItem("token") || ""
+    }
    })
    .then(res => {
      if (res) {
-       console.log(res.headers)
        return res.data
      } else {
        return Promise.reject(res.data)

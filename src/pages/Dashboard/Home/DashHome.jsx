@@ -7,6 +7,7 @@ import DashProfileInfo from '../../../layouts/DashProfileInfo/DashProfileInfo'
 import MainCol from '../../../layouts/MainCol/MainCol'
 import Sidebar from '../../../layouts/Sidebar/Sidebar'
 import getApi from '../../../api/getApi'
+import { useAuthState } from '../../../Providers/AuthProvider'
 
 const sample = {
   title: "Super coool awesome idea",
@@ -39,19 +40,7 @@ const profileSample = {
 
 }
 
-function DashHome() {
-  useEffect(() => {
-    const fn = async () => {
-      await getApi({
-        url:'/user/me'
-      }).then(res => {
-        console.log(res)
-      })
-    }
-
-    fn()
-  }, [])
-  
+function DashHome() {  
   return (
     <div className="w-full">
       <Header/>

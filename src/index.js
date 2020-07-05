@@ -14,7 +14,6 @@ import Social from './pages/ProfileSetup/Social/Social';
 import Projects from './pages/ProfileSetup/Projects/Projects';
 import Complete from './pages/ProfileSetup/Complete/Complete';
 import DashHome from './pages/Dashboard/Home/DashHome'
-import Cookies from 'js-cookie';
 import AuthProvider from './Providers/AuthProvider';
 import Login from './pages/Login/Login';
 import stores from './stores/index'

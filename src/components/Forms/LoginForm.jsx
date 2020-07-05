@@ -6,7 +6,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { MainButton } from '../Buttons/Buttons';
 import isEmpty from '../../helpers/objIsEmpty';
 import { inject, observer } from 'mobx-react';
-import Cookies from 'js-cookie'
 import { toast } from 'react-toastify';
 
 function LoginForm({UserStore}) {
@@ -32,13 +31,11 @@ function LoginForm({UserStore}) {
     }).then(res => {
       if (res) {
         UserStore.setUser(res.user)
-        console.log(res.cookie)
+
         if(state.rememberMe) {
-          Cookies.set('sid', res.cookie.passport.user, {
-            expires: 1
-          })
+          window.localStorage.setItem('token', res.token)
         } else {
-          window.sessionStorage.setItem("user", JSON.stringify(res.cookie.passport.user))
+          window.sessionStorage.setItem("token", res.token)
         }
         
         toast.success(res.message)

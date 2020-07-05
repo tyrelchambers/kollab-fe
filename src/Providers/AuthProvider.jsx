@@ -3,11 +3,14 @@ import getApi from '../api/getApi';
 import { inject, observer } from 'mobx-react';
 
 const AuthContext = React.createContext();
+
 const getUserOnLoad = async () => {
-  await getApi({
+  return await getApi({
     url:'/user/me'
   }).then(res => {
-    console.log(res)
+   if (res) {
+     return res
+   }
   })
 }
 
@@ -21,6 +24,7 @@ function AuthProvider({children, UserStore}) {
     error: null,
     user: null
   })
+  const token = window.localStorage.getItem("token") || window.sessionStorage.getItem('token')
 
   useEffect(() => {
     if (UserStore.user) {
@@ -34,7 +38,15 @@ function AuthProvider({children, UserStore}) {
   }, [UserStore.user])
 
   useEffect(() => {
-    getUserOnLoad()
+    const fn = async () => {
+      if (token) {
+        const user = await getUserOnLoad()
+        
+        UserStore.setUser(user)
+      }
+    }
+
+    fn()
   }, [])
 
   return (
