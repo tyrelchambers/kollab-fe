@@ -8,6 +8,7 @@ import MainCol from '../../../layouts/MainCol/MainCol'
 import Sidebar from '../../../layouts/Sidebar/Sidebar'
 import getApi from '../../../api/getApi'
 import { useAuthState } from '../../../Providers/AuthProvider'
+import DisplayWrapper from '../../../layouts/DisplayWrapper/DisplayWrapper'
 
 const sample = {
   title: "Super coool awesome idea",
@@ -42,45 +43,41 @@ const profileSample = {
 
 function DashHome() {  
   return (
-    <div className="w-full">
-      <Header/>
+    <DisplayWrapper>
+      <H1>Dashboard</H1>
 
-      <section className="container mx-auto">
-        <H1>Dashboard</H1>
+      <div className="flex">
+        <MainCol>
+          <H3 className="mb-4">Your Projects</H3>
+          <ProjectWidget
+            project={sample}
+          />
 
-        <div className="flex">
-          <MainCol>
-            <H3 className="mb-4">Your Projects</H3>
-            <ProjectWidget
-              project={sample}
+          <ProjectWidget
+            project={sample}
+          />
+
+          <hr/>
+
+          <H3 className="mb-4">Collaborations</H3>
+          <ProjectWidget
+            project={sample}
+          />
+
+          <ProjectWidget
+            project={sample}
+          />
+        </MainCol>
+
+        <Sidebar>
+          <div className="profile">
+            <DashProfileInfo
+              profile={profileSample}
             />
-
-            <ProjectWidget
-              project={sample}
-            />
-
-            <hr/>
-
-            <H3 className="mb-4">Collaborations</H3>
-            <ProjectWidget
-              project={sample}
-            />
-
-            <ProjectWidget
-              project={sample}
-            />
-          </MainCol>
-
-          <Sidebar>
-            <div className="profile">
-              <DashProfileInfo
-                profile={profileSample}
-              />
-            </div>
-          </Sidebar>
-        </div>
-      </section>
-    </div>
+          </div>
+        </Sidebar>
+      </div>
+    </DisplayWrapper>
   )
 }
 

@@ -31,7 +31,7 @@ function UserWidget() {
           <summary><i className="fas fa-long-arrow-alt-right mr-2"></i> Projects</summary>
           <div className="details-list">
             <Link to="#" className="dropdown-item">All Projects</Link>
-            <Link to="#" className="dropdown-item">Create New</Link>
+            <Link to="/dashboard/project/new" className="dropdown-item">Create New</Link>
           </div>
         </details>
         <Link to="#" className="dropdown-item">Profile</Link>

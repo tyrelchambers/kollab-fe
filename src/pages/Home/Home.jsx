@@ -9,6 +9,7 @@ import Sidebar from '../../layouts/Sidebar/Sidebar'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
 import { Link } from 'react-router-dom'
 import getApi from '../../api/getApi'
+import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
 
 const project = {
   thumbnail: 'https://images.unsplash.com/photo-1593291619462-e4240344ea21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80',
@@ -59,63 +60,59 @@ function Home() {
   }, [])
 
   return (
-    <div className="w-full">
-      <Header/>
+    <DisplayWrapper>
+      <section>
+        <H2>Project of the Week</H2>
+        <Featured
+          project={project}
+        />
+      </section>
 
-      <div className="container mx-auto mt-16">
-        <section>
-          <H2>Project of the Week</H2>
-          <Featured
-            project={project}
-          />
-        </section>
+      <main className="mt-16">
 
-        <main className="mt-16">
+        <div className="flex">
+          <MainCol>
+            <H2 className="mb-4">Today</H2>
+            <div className="flex flex-col w-full">
+              {projects.map((project, id) => <ProjectWidget key={id} project={project}/>)}
+            </div>
+          </MainCol>
+          <Sidebar>
+            <H2>Available To Help</H2>
+            
+            <InfoBlock>
+              <div className="flex flex-col">
+                <div className="flex items-center m-2 p-1">
+                  <img src={profileSample.avatar} alt="" className="profile-avatar"/>
+                  <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
+                </div>
 
-          <div className="flex">
-            <MainCol>
-              <H2 className="mb-4">Today</H2>
-              <div className="flex flex-col w-full">
-                {projects.map(project => <ProjectWidget project={project}/>)}
+                <div className="flex items-center m-2 p-1">
+                  <img src={profileSample.avatar} alt="" className="profile-avatar"/>
+                  <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
+                </div>
+
+                <div className="flex items-center m-2 p-1">
+                  <img src={profileSample.avatar} alt="" className="profile-avatar"/>
+                  <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
+                </div>
               </div>
-            </MainCol>
-            <Sidebar>
-              <H2>Available To Help</H2>
-              
-              <InfoBlock>
-                <div className="flex flex-col">
-                  <div className="flex items-center m-2 p-1">
-                    <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                    <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                  </div>
+            </InfoBlock>
 
-                  <div className="flex items-center m-2 p-1">
-                    <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                    <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                  </div>
+            <H2 className="mt-6">Top Open Source</H2>
 
-                  <div className="flex items-center m-2 p-1">
-                    <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                    <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                  </div>
+            <InfoBlock>
+              <div className="flex flex-col">
+                <div className="flex items-center m-2 p-1">
+                  <img src={project.thumbnail} alt="" className="profile-avatar"/>
+                  <Link to="#" className="font-bold hover:underline">{project.title}</Link>
                 </div>
-              </InfoBlock>
-
-              <H2 className="mt-6">Top Open Source</H2>
-
-              <InfoBlock>
-                <div className="flex flex-col">
-                  <div className="flex items-center m-2 p-1">
-                    <img src={project.thumbnail} alt="" className="profile-avatar"/>
-                    <Link to="#" className="font-bold hover:underline">{project.title}</Link>
-                  </div>
-                </div>
-              </InfoBlock>
-            </Sidebar>
-          </div>
-        </main>
-      </div>
-    </div>
+              </div>
+            </InfoBlock>
+          </Sidebar>
+        </div>
+      </main>
+    </DisplayWrapper>
   )
 }
 

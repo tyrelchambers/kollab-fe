@@ -19,6 +19,7 @@ import Login from './pages/Login/Login';
 import stores from './stores/index'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NewProject from './pages/NewProject/NewProject';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
               <Route exact path="/setup/projects" component={Projects} />
               <Route exact path="/setup/complete" component={Complete} />
               <Route exact path="/dashboard" component={DashHome} />
+              <Route exact path="/dashboard/project/new" component={NewProject} />
             </Switch>
           </Router>
         </AuthProvider>
