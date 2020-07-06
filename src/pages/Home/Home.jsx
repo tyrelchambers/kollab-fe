@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Home.css'
 import Header from '../../layouts/Header/Header'
 import { H2, H3 } from '../../components/Headings/Headings'
@@ -8,6 +8,7 @@ import MainCol from '../../layouts/MainCol/MainCol'
 import Sidebar from '../../layouts/Sidebar/Sidebar'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
 import { Link } from 'react-router-dom'
+import getApi from '../../api/getApi'
 
 const project = {
   thumbnail: 'https://images.unsplash.com/photo-1593291619462-e4240344ea21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80',
@@ -45,6 +46,18 @@ const profileSample = {
 }
 
 function Home() {
+  const [ projects, setProjects ] = useState([])
+
+  useEffect(() => {
+    getApi({
+      url: '/projects/all'
+    }).then(res => {
+      if (res) {
+        setProjects([...res])
+      }
+    })
+  }, [])
+
   return (
     <div className="w-full">
       <Header/>
@@ -63,17 +76,7 @@ function Home() {
             <MainCol>
               <H2 className="mb-4">Today</H2>
               <div className="flex flex-col w-full">
-                <ProjectWidget
-                  project={sample}
-                />
-
-                <ProjectWidget
-                  project={sample}
-                />
-
-                <ProjectWidget
-                  project={sample}
-                />
+                {projects.map(project => <ProjectWidget project={project}/>)}
               </div>
             </MainCol>
             <Sidebar>

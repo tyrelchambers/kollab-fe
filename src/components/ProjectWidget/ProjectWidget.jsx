@@ -6,7 +6,7 @@ function ProjectWidget({project}) {
   return (
     <div className="flex widget-wrapper">
       <div className="widget-thumbnail-wrapper">
-        <img src={project.thumbnail} alt="" className="widget-thumbnail"/>
+        <img src={project.thumbnailUrl} alt="" className="widget-thumbnail"/>
       </div>
 
       <div className="widget-body flex flex-1 justify-between ">
@@ -15,19 +15,19 @@ function ProjectWidget({project}) {
             <H2>{project.title}</H2>
             
             <div className="flex">
-              {project.openPositions.map((x, id) => <p key={id} className="text-sm text-blue-700 mt-1 mr-2">{x}</p>)}
+              <p className="text-sm text-blue-700 mt-1 mr-2">{project.description}</p>
             </div>
           </div>
 
           <div className="flex items-center">
             <div className="flex items-center mr-4">
               <i className="fas fa-user-astronaut mr-2 text-gray-700 text-sm"></i>
-              <p className="text-gray-600">{project.collaborators}</p>
+              <p className="text-gray-600">25</p>
             </div>
 
             <div className="flex items-center">
               <i className="fas fa-comment-alt mr-2 text-gray-700 text-sm"></i>
-              <p className="text-gray-600">{project.comments}</p>
+              <p className="text-gray-600">25</p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@ function ProjectWidget({project}) {
             <i className="fas fa-handshake text-2xl mr-8 text-gray-700"></i>
           }
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center" style={{width:'50px'}}>
             <i className="fas fa-fire text-2xl text-red-500"></i>
             <p className="text-red-500 mt-2">{project.likes}</p>
           </div>
