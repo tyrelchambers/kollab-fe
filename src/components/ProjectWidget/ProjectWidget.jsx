@@ -15,7 +15,7 @@ function ProjectWidget({project}) {
             <H2>{project.title}</H2>
             
             <div className="flex">
-              <p className="text-sm text-blue-700 mt-1 mr-2">{project.description}</p>
+              <p className="text-sm text-blue-700 mt-1 mr-2 ellipses">{project.description}</p>
             </div>
           </div>
 

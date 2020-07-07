@@ -1,0 +1,6 @@
+.autocomplete-item {
+  margin: 0.5em 0;
+  background-color: var(--white-20);
+  padding: 0.7em;
+  border-radius: var(--border-radius-sm);
+}

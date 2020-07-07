@@ -101,3 +101,8 @@ hr {
   color: var(--white);
   background: var(--redGradient) !important;
 }
+
+.ellipses {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

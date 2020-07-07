@@ -21,6 +21,7 @@
   background-color: var(--white);
   border-radius: var(--border-radius-lg);
   padding: 0.6em 1.2em;
+  max-width: 760px;
 }
 
 .widget-wrapper {

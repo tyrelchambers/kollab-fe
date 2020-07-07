@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import Header from '../../../layouts/Header/Header'
+import React, { useEffect, useState } from 'react'
 import { H1, H3 } from '../../../components/Headings/Headings'
 import ProjectWidget from '../../../components/ProjectWidget/ProjectWidget'
 import './DashHome.css'
@@ -7,7 +6,6 @@ import DashProfileInfo from '../../../layouts/DashProfileInfo/DashProfileInfo'
 import MainCol from '../../../layouts/MainCol/MainCol'
 import Sidebar from '../../../layouts/Sidebar/Sidebar'
 import getApi from '../../../api/getApi'
-import { useAuthState } from '../../../Providers/AuthProvider'
 import DisplayWrapper from '../../../layouts/DisplayWrapper/DisplayWrapper'
 
 const sample = {
@@ -41,7 +39,18 @@ const profileSample = {
 
 }
 
-function DashHome() {  
+function DashHome() { 
+  const [myProjects, setMyProjects] = useState([])
+  useEffect(() => {
+    getApi({
+      url: '/user/projects'
+    }).then(res => {
+      if (res) {
+        setMyProjects([...res])
+      }
+    })
+  }, []) 
+
   return (
     <DisplayWrapper>
       <H1>Dashboard</H1>
@@ -49,13 +58,9 @@ function DashHome() {
       <div className="flex">
         <MainCol>
           <H3 className="mb-4">Your Projects</H3>
-          <ProjectWidget
-            project={sample}
-          />
-
-          <ProjectWidget
-            project={sample}
-          />
+          {myProjects.map((project, id) => (
+            <ProjectWidget project={project} key={id}/>
+          ))}
 
           <hr/>
 
