@@ -1,6 +1,7 @@
 import React from 'react'
 import { H2 } from '../Headings/Headings'
 import './ProjectWidget.css'
+import concatString from '../../helpers/concatString'
 
 function ProjectWidget({project}) {
   return (
@@ -14,9 +15,8 @@ function ProjectWidget({project}) {
           <div className="widget-body-header">
             <H2>{project.title}</H2>
             
-            <div className="flex">
-              <p className="text-sm text-blue-700 mt-1 mr-2 ellipses">{project.description}</p>
-            </div>
+            <p className="text-sm text-blue-700 mt-1 mr-2 break-all">{concatString(project.description, 100)}</p>
+
           </div>
 
           <div className="flex items-center">
