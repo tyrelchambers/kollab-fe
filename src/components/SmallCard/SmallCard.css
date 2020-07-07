@@ -1,0 +1,22 @@
+.small-card-wrapper {
+  padding: 1em;
+  border-radius: var(--border-radius-sm);
+  background: var(--darkGradient);
+  margin: 0.5em 0;
+}
+
+.small-card-wrapper p {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.small-card-wrapper i {
+  width: 25px;
+  height: 25px;
+  background-color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}

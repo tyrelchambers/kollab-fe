@@ -15,6 +15,7 @@
   border-radius: var(--border-radius-sm);
   border: 2px solid var(--purple-0);
   color: var(--purple-0);
+  height: 100%;
 }
 
 .btn.secondary:hover {

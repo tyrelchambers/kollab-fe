@@ -84,7 +84,7 @@ function SetupProjectForm() {
           </div>
         </div>
       </div>
-      <div className="collaborator-list mt-2">
+      <div className="collaborator-list mt-2 mb-8">
         {sampleCollab.map(person => (
           <span className="flex justify-between items-center">
           <p className="italic">{person.email}</p>
