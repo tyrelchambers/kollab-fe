@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import './forms.css'
 import { MainButton } from '../Buttons/Buttons'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import getApi from '../../api/getApi'
 import { useForm } from 'react-hook-form'
 import FormError from '../FormError/FormError'
 import isEmpty from '../../helpers/objIsEmpty'
+import { inject, observer } from 'mobx-react'
+import { toast } from 'react-toastify'
 
-function SignupForm() {
+function SignupForm({UserStore}) {
+  const history = useHistory()
   const [ state, setState ] = useState({
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    rememberMe: false
   })
 
   const { handleSubmit, register, errors } = useForm({
@@ -25,7 +29,21 @@ function SignupForm() {
       url: "/auth/register",
       data: state,
       method: "post"
-    }).then(console.log)
+    }).then(res => {
+      if (res) {
+        UserStore.setUser(res.user)
+
+        if(state.rememberMe) {
+          window.localStorage.setItem('token', res.token)
+        } else {
+          window.sessionStorage.setItem("token", res.token)
+        }
+        
+        toast.success(res.message)
+        history.push('/')
+        
+      }
+    })
   }
 
   const inputHandler = (e) => {
@@ -96,6 +114,14 @@ function SignupForm() {
         {state.confirmPassword !== state.password && <FormError error="Passwords must match"/>}
       </div>
 
+      <div className="mt-2 mb-4 flex flex-col ">
+        <p className="text-xs text-gray-600 italic mt-2 mb-2">Clicking the "Remember me" checkbox will save a cookie in your browser in order for our server to know who you are  so we can keep you logged in. Thus, you agree to saving cookies by clicking the aforementioned checkbox. </p>
+        <div className="flex items-center">
+          <input type="checkbox" name="rememberMe" id="rememberMe" className="mr-2" value={state.rememberMe} onChange={e => setState({...state, rememberMe: e.target.checked})}/>
+          <p>Remember me</p>
+        </div>
+      </div>
+
       <MainButton
         text="Create account"
         type="submit"
@@ -109,4 +135,4 @@ function SignupForm() {
   )
 }
 
-export default SignupForm
+export default inject("UserStore")(observer(SignupForm))

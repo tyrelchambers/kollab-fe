@@ -36,7 +36,7 @@ function UserWidget() {
         </details>
         <Link to="#" className="dropdown-item">Profile</Link>
         <Link to="#" className="dropdown-item">Account</Link>
-        <Link to="#" className="dropdown-item">Sign Out</Link>
+        <Link to="/signout" className="dropdown-item">Sign Out</Link>
       </div>
     </div>
   )

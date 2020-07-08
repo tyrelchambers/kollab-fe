@@ -38,6 +38,11 @@ const App = () => {
               <Route exact path="/setup/complete" component={Complete} />
               <Route exact path="/dashboard" component={DashHome} />
               <Route exact path="/dashboard/project/new" component={NewProject} />
+              <Route exact path="/signout" render={() => {
+                window.localStorage.removeItem('token')
+                window.sessionStorage.removeItem('token')
+                window.location.pathname = "/"
+              }} />
             </Switch>
           </Router>
         </AuthProvider>
