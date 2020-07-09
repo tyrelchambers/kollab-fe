@@ -78,19 +78,18 @@ const EditProjectForm = () => {
       collaborators: [...collaborators]
     }
     
-    const projectId = await getApi({
+    await getApi({
       url: `/projects/${state.uuid}/edit`,
       method: 'put',
       data: payload
     }).then(res => {
       if( res ) {
         toast.success(res.message)
-        return res.project.uuid
       }
     })
 
     getApi({
-      url: '/projectLinks/new',
+      url: '/projectLinks/',
       method: "post",
       data: {
         projectId,

@@ -43,22 +43,33 @@ function NewProjectForm() {
     }
   }, [state.collaborators])
 
-  const submitHandler = e => {
+  const submitHandler = async e => {
     const payload = {
       ...state,
       collaborators: [...collaborators]
     }
     
-    getApi({
+    const projectId = await getApi({
       url: '/projects/new',
       method: 'post',
       data: payload
     }).then(res => {
       if( res ) {
         toast.success(res.message)
-        history.push('/dashboard')
+        return res.project.uuid
       }
     })
+
+    getApi({
+      url: '/projectLinks/',
+      method: 'post',
+      data: {
+        projectLinks,
+        projectId
+      }
+    }).then(console.log)
+    // history.push('/dashboard')
+
   }
 
   const inputHandler = (e) => {
