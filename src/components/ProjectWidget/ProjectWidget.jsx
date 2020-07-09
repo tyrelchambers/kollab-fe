@@ -14,9 +14,8 @@ function ProjectWidget({project}) {
       <div className="widget-body flex flex-1 justify-between ">
         <div className="flex flex-col justify-between">
           <div className="widget-body-header">
-            {console.log(project)}
             <H2>
-              <Link to={`/dashboard/project/${project.uuid}/edit`}>{project.title}</Link>
+              <Link to={`/project/${project.uuid}`}>{project.title}</Link>
             </H2>
             
             <p className="text-sm text-blue-700 mt-1 mr-2 break-all">{concatString(project.description, 100)}</p>
