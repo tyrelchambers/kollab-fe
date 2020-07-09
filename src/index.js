@@ -20,6 +20,7 @@ import stores from './stores/index'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NewProject from './pages/NewProject/NewProject';
+import EditProject from './pages/EditProject/EditProject';
 
 const App = () => {
   return (
@@ -38,6 +39,8 @@ const App = () => {
               <Route exact path="/setup/complete" component={Complete} />
               <Route exact path="/dashboard" component={DashHome} />
               <Route exact path="/dashboard/project/new" component={NewProject} />
+              <Route exact path="/dashboard/project/:projectId/edit" component={EditProject} />
+
               <Route exact path="/signout" render={() => {
                 window.localStorage.removeItem('token')
                 window.sessionStorage.removeItem('token')
