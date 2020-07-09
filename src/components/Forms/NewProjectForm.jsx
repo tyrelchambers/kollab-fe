@@ -18,9 +18,9 @@ function NewProjectForm() {
     supportingImgs: [],
     topics: "",
     collaborators: "",
-    githubLinks: ""
+    projectLinks: ""
   })
-  const [ githubLinks, setGithubLinks ] = useState([])
+  const [ projectLinks, setProjectLinks ] = useState([])
   const [ collaborators, setCollaborators ] = useState([])
   const [ autocomplete, setAutocomplete] = useState([])
 
@@ -46,7 +46,6 @@ function NewProjectForm() {
   const submitHandler = e => {
     const payload = {
       ...state,
-      githubLinks: [...githubLinks],
       collaborators: [...collaborators]
     }
     
@@ -66,12 +65,12 @@ function NewProjectForm() {
     setState({...state, [e.target.name]: e.target.value})
   }
 
-  const addGithubLink = (e) => {
+  const addProjectLink = (e) => {
     e.preventDefault()
-    if (!state.githubLinks) return false;
+    if (!state.projectLinks) return false;
 
-    setGithubLinks([...githubLinks, state.githubLinks])
-    setState({...state, githubLinks: ""})
+    setProjectLinks([...projectLinks, state.projectLinks])
+    setState({...state, projectLinks: ""})
 
   }
 
@@ -85,10 +84,10 @@ function NewProjectForm() {
   }
 
   const removeItemHandler = id => {
-    const clone = githubLinks
+    const clone = projectLinks
     clone.splice(id, 1)
 
-    setGithubLinks([...clone])
+    setProjectLinks([...clone])
   }
 
   const removeContributorHandler = id => {
@@ -191,34 +190,33 @@ function NewProjectForm() {
       </div>
 
       <div className="field-group">
-        <label htmlFor="githubLinks" className="form-label">Github Links</label>
+        <label htmlFor="projectLinks" className="form-label">Project Links</label>
 
         <div className="flex">
           <input 
             type="text" 
-            name="githubLinks" 
+            name="projectLinks" 
             className="form-input flex-auto" 
-            id="addGithubLinkInput" 
-            placeholder="add a github url" 
-            value={state.githubLinks}
+            placeholder="Add a project link" 
+            value={state.projectLinks}
             onChange={e => inputHandler(e)}
             onKeyPress={(e) => {
               if (e.which === 13) {
-                addGithubLink(e)
+                addProjectLink(e)
               }
             }}
           />
           <div className="w-20 ml-4">
             <SecondaryButton
               text="Add"
-              onClick={(e) => addGithubLink(e)}
+              onClick={(e) => addProjectLink(e)}
             />
           </div>
         </div>
       </div>
 
       <div className="collaborator-list mt-2">
-        {githubLinks.map((link, id) => (
+        {projectLinks.map((link, id) => (
           <SmallCard key={id} text={link} removeItem={() => removeItemHandler(id)}/>
         ))}
       </div>

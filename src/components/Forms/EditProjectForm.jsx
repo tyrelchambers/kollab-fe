@@ -18,9 +18,9 @@ const EditProjectForm = () => {
     supportingImgs: [],
     topics: "",
     collaborators: "",
-    githubLinks: ""
+    projectLinks: ""
   })
-  const [ githubLinks, setGithubLinks ] = useState([])
+  const [ projectLinks, setProjectLinks ] = useState([])
   const [ collaborators, setCollaborators ] = useState([])
   const [ autocomplete, setAutocomplete] = useState([])
 
@@ -52,14 +52,14 @@ const EditProjectForm = () => {
         if (res) {
           const {
             Users,
-            GithubLinks,
+            ProjectLinks,
             ...rest
           } = res
           console.log(res)
           setState({...state, ...rest})
           
-          if (GithubLinks) {
-            setGithubLinks([...GithubLinks])
+          if (ProjectLinks) {
+            setProjectLinks([...ProjectLinks])
           }
 
           if (Users) {
@@ -72,35 +72,46 @@ const EditProjectForm = () => {
     fn()
   }, [])
 
-  const submitHandler = e => {
+  const submitHandler = async e => {
     const payload = {
       ...state,
-      githubLinks: [...githubLinks],
       collaborators: [...collaborators]
     }
     
-    getApi({
+    const projectId = await getApi({
       url: `/projects/${state.uuid}/edit`,
       method: 'put',
       data: payload
     }).then(res => {
       if( res ) {
         toast.success(res.message)
-        //history.push('/dashboard')
+        return res.project.uuid
       }
     })
+
+    getApi({
+      url: '/projectLinks/new',
+      method: "post",
+      data: {
+        projectId,
+        projectLinks: [...projectLinks]
+      }
+    })
+
+            //history.push('/dashboard')
+
   }
 
   const inputHandler = (e) => {
     setState({...state, [e.target.name]: e.target.value})
   }
 
-  const addGithubLink = (e) => {
+  const addProjectLink = (e) => {
     e.preventDefault()
-    if (!state.githubLinks) return false;
+    if (!state.projectLinks) return false;
 
-    setGithubLinks([...githubLinks, state.githubLinks])
-    setState({...state, githubLinks: ""})
+    setProjectLinks([...projectLinks, {link: state.projectLinks}])
+    setState({...state, projectLinks: ""})
 
   }
 
@@ -114,10 +125,12 @@ const EditProjectForm = () => {
   }
 
   const removeItemHandler = id => {
-    const clone = githubLinks
+    const clone = projectLinks
     clone.splice(id, 1)
 
-    setGithubLinks([...clone])
+    
+
+    setProjectLinks([...clone])
   }
 
   const removeContributorHandler = id => {
@@ -218,34 +231,33 @@ const EditProjectForm = () => {
       </div>
 
       <div className="field-group">
-        <label htmlFor="githubLinks" className="form-label">Github Links</label>
+        <label htmlFor="projectLinks" className="form-label">Project Links</label>
 
         <div className="flex mb-2">
           <input 
             type="text" 
-            name="githubLinks" 
+            name="projectLinks" 
             className="form-input flex-auto" 
-            id="addGithubLinkInput" 
-            placeholder="add a github url" 
-            value={state.githubLinks}
+            placeholder="Add a project link" 
+            value={state.projectLinks}
             onChange={e => inputHandler(e)}
             onKeyPress={(e) => {
               if (e.which === 13) {
-                addGithubLink(e)
+                addProjectLink(e)
               }
             }}
           />
           <div className="w-20 ml-4">
             <SecondaryButton
               text="Add"
-              onClick={(e) => addGithubLink(e)}
+              onClick={(e) => addProjectLink(e)}
             />
           </div>
         </div>
       </div>
 
       <div className="mt-2">
-        {githubLinks.map((item, id) => (
+        {projectLinks.map((item, id) => (
           <SmallCard key={id} text={item.link} removeItem={() => removeItemHandler(id)}/>
         ))}
       </div>
