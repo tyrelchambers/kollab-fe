@@ -40,7 +40,7 @@ const Project = ({UserStore}) => {
         </div>
       </div>
 
-      <div className="w-full project-share-bar mt-4">
+      <div className="w-full project-share-bar mt-8 mb-8">
 
       </div>
 
@@ -49,7 +49,7 @@ const Project = ({UserStore}) => {
           <div className="flex flex-col mt-4">
             <H2>Introduction</H2>
             <InfoBlock>
-              <p>{project.description}</p>
+              <p className="break-all">{project.description}</p>
             </InfoBlock>
           </div>
         </div>
@@ -57,7 +57,7 @@ const Project = ({UserStore}) => {
         <div className="w-2/5 mt-4">
           <div className="flex flex-col">
             <H2>Helpful Links</H2>
-            {project.GithubLinks && project.GithubLinks.map((link, id) => (
+            {project.ProjectLinks && project.ProjectLinks.map((link, id) => (
               <InfoBlock key={id}>
                 <div className="flex items-center">
                   <i className="fas fa-hashtag text-2xl text-blue-600 mr-4"></i>
@@ -65,6 +65,18 @@ const Project = ({UserStore}) => {
                 </div>
               </InfoBlock>
             ))}
+          </div>
+
+          <div className="flex flex-col mt-4">
+            <H2>The Creator</H2>
+
+            <InfoBlock>
+              <div className="flex items-center">
+                {project.User.avatar && <img src={project.User.avatar} />}
+
+                <p className="font-bold">{project.User.username}</p>
+              </div>
+            </InfoBlock>
           </div>
         </div>
       </div>

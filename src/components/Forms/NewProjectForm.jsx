@@ -80,7 +80,7 @@ function NewProjectForm() {
     e.preventDefault()
     if (!state.projectLinks) return false;
 
-    setProjectLinks([...projectLinks, state.projectLinks])
+    setProjectLinks([...projectLinks, {link: state.projectLinks}])
     setState({...state, projectLinks: ""})
 
   }
@@ -228,7 +228,7 @@ function NewProjectForm() {
 
       <div className="collaborator-list mt-2">
         {projectLinks.map((link, id) => (
-          <SmallCard key={id} text={link} removeItem={() => removeItemHandler(id)}/>
+          <SmallCard key={id} text={link.link} removeItem={() => removeItemHandler(id)}/>
         ))}
       </div>
 
