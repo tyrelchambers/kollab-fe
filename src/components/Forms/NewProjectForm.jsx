@@ -9,20 +9,19 @@ import getApi from '../../api/getApi';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import { toast } from 'react-toastify';
 
-function NewProjectForm() {
-  const [ state, setState ] = useState({
-    title: "",
-    headline: "",
-    description: "",
-    thumbnail: "",
-    supportingImgs: [],
-    topics: "",
-    collaborators: "",
-    projectLinks: ""
-  })
-  const [ projectLinks, setProjectLinks ] = useState([])
-  const [ collaborators, setCollaborators ] = useState([])
-  const [ autocomplete, setAutocomplete] = useState([])
+function NewProjectForm({
+  autocomplete,
+  setAutocomplete,
+  state,
+  projectLinks,
+  collaborators,
+  inputHandler,
+  addProjectLink,
+  addContributorHandler,
+  removeItemHandler,
+  removeContributorHandler
+}) {
+
 
   const history = useHistory();
 
@@ -71,44 +70,6 @@ function NewProjectForm() {
     // history.push('/dashboard')
 
   }
-
-  const inputHandler = (e) => {
-    setState({...state, [e.target.name]: e.target.value})
-  }
-
-  const addProjectLink = (e) => {
-    e.preventDefault()
-    if (!state.projectLinks) return false;
-
-    setProjectLinks([...projectLinks, {link: state.projectLinks}])
-    setState({...state, projectLinks: ""})
-
-  }
-
-  const addContributorHandler = (e, user) => {
-    e.preventDefault()
-    if (!state.collaborators) return false;
-
-    setCollaborators([...collaborators, user || state.collaborators])
-    setState({...state, collaborators: ""})
-    setAutocomplete([])
-  }
-
-  const removeItemHandler = id => {
-    const clone = projectLinks
-    clone.splice(id, 1)
-
-    setProjectLinks([...clone])
-  }
-
-  const removeContributorHandler = id => {
-    const clone = collaborators
-    clone.splice(id, 1)
-
-    setCollaborators([...clone])
-  }
-
- 
 
   return (
     <form className="form shadow-lg " onSubmit={handleSubmit(submitHandler)}>

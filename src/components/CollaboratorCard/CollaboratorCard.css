@@ -1,0 +1,5 @@
+.collaborator-card {
+  background-color: var(--white-20);
+  padding: 1em;
+  border-radius: var(--border-radius-sm);
+}

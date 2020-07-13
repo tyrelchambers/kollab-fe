@@ -22,6 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NewProject from './pages/NewProject/NewProject';
 import EditProject from './pages/EditProject/EditProject';
 import Project from './pages/Project/Project';
+import ProjectController from './controllers/ProjectController/ProjectController';
 
 const App = () => {
   return (
@@ -39,8 +40,8 @@ const App = () => {
               <Route exact path="/setup/projects" component={Projects} />
               <Route exact path="/setup/complete" component={Complete} />
               <Route exact path="/dashboard" component={DashHome} />
-              <Route exact path="/dashboard/project/new" component={NewProject} />
-              <Route exact path="/dashboard/project/:projectId/edit" component={EditProject} />
+              <Route exact path="/dashboard/project/:action" component={ProjectController} />
+              <Route exact path="/dashboard/project/:projectId/:action" component={ProjectController} />
               <Route exact path="/project/:projectId" component={Project} />
               
               <Route exact path="/signout" render={() => {

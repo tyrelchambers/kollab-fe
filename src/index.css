@@ -3,7 +3,7 @@
 :root {
   --bg-0: rgb(95%, 95%, 96%);
   --text: rgb(25%, 25%, 25%);
-  --paragraph: rgb(35%, 35%, 35%);
+  --paragraph: rgb(50%, 50%, 50%);
   --input-light: rgb(93.3%, 93.3%, 93.3%);
   --border-light: rgb(88%, 88%, 88%);
   --border-radius-sm: 5px;
@@ -24,7 +24,7 @@
   --white-20: rgb(245, 247, 250);
   --white-40: rgb(228, 231, 235);
   --white-60: rgb(203, 210, 217);
-  --purple-0: #4348C2;
+  --purple-0: #8496F9;
   --hr: rgb(85%, 85%, 85%);
 }
 

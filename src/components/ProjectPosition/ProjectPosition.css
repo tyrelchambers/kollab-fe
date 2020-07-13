@@ -1,0 +1,10 @@
+.project-position {
+  background-color: var(--white-20);
+  padding: 1em;
+  border-radius: var(--border-radius-sm);
+  margin-top: 1em;
+}
+
+.project-position p {
+  line-height: 1.8em;
+}
