@@ -1,12 +1,11 @@
 .small-card-wrapper {
   padding: 1em;
   border-radius: var(--border-radius-sm);
-  background: var(--darkGradient);
+  background: var(--white-20);
   margin: 0.5em 0;
 }
 
 .small-card-wrapper p {
-  color: var(--white);
   font-weight: 700;
   word-break: break-all;
 }

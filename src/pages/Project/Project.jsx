@@ -72,9 +72,9 @@ const Project = ({UserStore}) => {
 
             <InfoBlock>
               <div className="flex items-center">
-                {project.User.avatar && <img src={project.User.avatar} />}
+                {project.owner.avatar && <img src={project.owner.avatar} />}
 
-                <p className="font-bold">{project.User.username}</p>
+                <p className="font-bold">{project.owner.username}</p>
               </div>
             </InfoBlock>
           </div>

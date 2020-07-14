@@ -11,7 +11,6 @@ import Autocomplete from '../Autocomplete/Autocomplete'
 import { H3 } from '../Headings/Headings'
 import ProjectPosition from '../ProjectPosition/ProjectPosition'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
-import CollaboratorCard from '../CollaboratorCard/CollaboratorCard'
 
 const EditProjectForm = ({
   autocomplete,
@@ -60,7 +59,7 @@ const EditProjectForm = ({
       }).then(res => {
         if (res) {
           const {
-            Users,
+            collaborators,
             ProjectLinks,
             ProjectRole,
             ...rest
@@ -72,8 +71,8 @@ const EditProjectForm = ({
             setProjectLinks([...ProjectLinks])
           }
 
-          if (Users) {
-            setCollaborators([...Users])
+          if (collaborators.length) {
+            setCollaborators([...collaborators])
           }
         }
       })
@@ -112,7 +111,16 @@ const EditProjectForm = ({
       method: 'post',
       data: {
         projectId,
-        roles: [...positions]
+        positions: [...positions]
+      }
+    })
+
+    getApi({
+      url: '/collaborators/',
+      method: 'post',
+      data:{
+        projectId,
+        collaborators: [...collaborators]
       }
     })
 
@@ -121,9 +129,9 @@ const EditProjectForm = ({
   }
   
   return (
-    <div className="flex flex-col container">
+    <form className="flex flex-col container" onSubmit={handleSubmit(submitHandler)}>
       <div className="flex">
-        <form className="form shadow-lg mr-2" onSubmit={handleSubmit(submitHandler)}>
+        <div className="form shadow-lg mr-2" >
           <H3 className="mb-4 mt-2">Basics</H3>
 
           <div className="field-group">
@@ -217,7 +225,7 @@ const EditProjectForm = ({
               <SmallCard key={id} text={item.link} removeItem={() => removeItemHandler(id)}/>
             ))}
           </div>
-        </form>
+        </div>
 
         <div className="flex flex-col">
           <InfoBlock>
@@ -275,7 +283,7 @@ const EditProjectForm = ({
               <H3 className="mb-4">Collaborators</H3>
               <p className="italic text-sm mt-2 mb-4">Collaborators are people who can help in more ways than one. Rather than adding someone to a position, add them as a collaborator in order to show them as a helper in more than just a singular role.</p>
 
-              <p className="italic text-sm mt-2 mb-4">You can set permissions for collaborators.</p>
+              <p className="italic text-sm mt-2 mb-4">Collaborators will be emailed to let them know they've been added to your project.</p>
 
               <div className="flex">
                 <input
@@ -298,7 +306,7 @@ const EditProjectForm = ({
             {collaborators.length > 0 &&
               <div className="mt-8">
                 {collaborators.map((person, id) => (
-                  <CollaboratorCard key={id} person={person} removeItem={e => removeContributorHandler(id)} />
+                  <SmallCard key={id} text={person.email} removeItem={e => removeContributorHandler(id)} />
                 ))}
               </div>
             }
@@ -312,7 +320,7 @@ const EditProjectForm = ({
           type="submit"
         />
       </div>
-    </div>
+    </form>
   )
 }
 
