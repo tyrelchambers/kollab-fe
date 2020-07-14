@@ -11,7 +11,7 @@ function SetupBasicForm() {
     history.push('/setup/socials')
   }
   return (
-    <form className="form shadow-lg">
+    <form className="form ">
       <H2>The Basics</H2>
       <H2Subtitle>Here we will setup up all the basics for your profile. Don't worry, you can add or change this information later.</H2Subtitle>
       <div className="field-group mt-16">

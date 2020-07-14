@@ -51,7 +51,7 @@ function SignupForm({UserStore}) {
   }
 
   return (
-    <form className="form shadow-lg" onSubmit={handleSubmit(submitHandler)}>
+    <form className="form " onSubmit={handleSubmit(submitHandler)}>
       <div className="field-group">
         <label htmlFor="email" className="form-label">Email</label>
         <input 

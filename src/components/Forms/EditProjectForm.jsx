@@ -136,7 +136,7 @@ const EditProjectForm = ({
   return (
     <form className="flex flex-col container" onSubmit={handleSubmit(submitHandler)}>
       <div className="flex">
-        <div className="form shadow-lg mr-2" >
+        <div className="form w-1/2 mr-2" >
           <H3 className="mb-4 mt-2">Basics</H3>
 
           <div className="field-group">
@@ -227,12 +227,12 @@ const EditProjectForm = ({
 
           <div className="mt-2">
             {projectLinks.map((item, id) => (
-              <SmallCard key={id} text={item.link} removeItem={() => removeItemHandler(id)}/>
+              <SmallCard key={id} text={item.link} removeItem={() => removeItemHandler(item, id)}/>
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex w-1/2 flex-col">
           <InfoBlock>
             <H3 className="mb-4">Open Positions</H3>
 

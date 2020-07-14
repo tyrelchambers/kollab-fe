@@ -6,7 +6,7 @@ import { Search } from '../../components/Inputs/Inputs'
 
 function Header() {
   return (
-    <div className="w-full justify-center flex p-3 header-wrapper items-center shadow-lg">
+    <div className="w-full justify-center flex p-3 header-wrapper items-center ">
       <div className="max-w-screen-xl w-full flex justify-between">
         <H3>Kollab</H3>
 

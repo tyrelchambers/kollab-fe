@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useHistory } from 'react-router'
 import getApi from '../../api/getApi'
 import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
 import isEmpty from '../../helpers/objIsEmpty'
@@ -8,8 +8,11 @@ import './Project.css'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
+import { ThirdButton } from '../../components/Buttons/Buttons'
+import { toast } from 'react-toastify'
 
 const Project = ({UserStore}) => {
+  const history = useHistory()
   const { projectId } = useParams()
   const [ project, setProject ] = useState({})
   useEffect(() => {
@@ -24,6 +27,22 @@ const Project = ({UserStore}) => {
 
   if (isEmpty(project)) return null;
 
+  const deleteHandler = () => {
+    const answer = window.confirm("Are you sure you want to delete this project?")
+
+    if (answer) {
+      getApi({
+        url: `/projects/${projectId}`,
+        method: 'delete'
+      }).then(res => {
+        if (res) {
+          toast.success(res.message)
+          history.push('/dashboard')
+        }
+      })
+    }
+  }
+  
   return (
     <DisplayWrapper>
       <div className="project-header flex">
@@ -35,7 +54,14 @@ const Project = ({UserStore}) => {
           <H1 className="mt-0 mb-2">{project.title}</H1>
           <p className="mt-2">{project.headline}</p>
           {(UserStore.user && project.userId === UserStore.user.uuid) && 
-            <Link to={`/dashboard/project/${project.uuid}/edit`} className="text-blue-500 font-thin underline mt-6">Edit project</Link>
+            <div className="flex items-center mt-6">
+              <Link to={`/dashboard/project/${project.uuid}/edit`} className="btn-third btn edit text-center mr-4">Edit project</Link>
+              <ThirdButton
+                text="Delete Project"
+                className="danger"
+                onClick={deleteHandler}
+              />
+            </div>
           }
         </div>
       </div>

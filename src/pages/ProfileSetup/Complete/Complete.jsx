@@ -18,7 +18,7 @@ function Complete() {
       <H1 className="text-center">Congrats! Your profile is now all setup!</H1>
       <SetupProgress progress={3} />
 
-      <div className="flex flex-col max-w-2xl bg justify-center shadow-lg mx-auto">
+      <div className="flex flex-col max-w-2xl bg justify-center  mx-auto">
         <MainButton
           text="Take me to my dashboard!"
           onClick={e => routeHandler(e, "/me")}

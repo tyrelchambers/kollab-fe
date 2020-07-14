@@ -11,7 +11,7 @@ function SetupSocialForm() {
     history.push('/setup/projects')
   }
   return (
-    <form className="form shadow-lg">
+    <form className="form ">
       <H2>The Socials</H2>
 
       <p className="mt-6">You can import your Github repositories to populate your profile with some of your projects.</p>

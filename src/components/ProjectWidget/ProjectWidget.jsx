@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 function ProjectWidget({project}) {
   return (
     <div className="flex widget-wrapper">
-      <div className="widget-thumbnail-wrapper">
+      <div className="widget-thumbnail-wrapper ">
         <img src={project.thumbnailUrl} alt="" className="widget-thumbnail"/>
       </div>
 

@@ -8,6 +8,7 @@
   border-radius: var(--border-radius-md);
   margin-top: 1em;
   margin-bottom: 1em;
+  height: fit-content;
 }
 
 .field-group {

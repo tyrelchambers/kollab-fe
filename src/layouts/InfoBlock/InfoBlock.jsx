@@ -3,7 +3,7 @@ import './InfoBlock.css'
 
 function InfoBlock(props) {
   return (
-    <div className="info-block-wrapper">
+    <div className="info-block-wrapper ">
       {props.children}
     </div>
   )

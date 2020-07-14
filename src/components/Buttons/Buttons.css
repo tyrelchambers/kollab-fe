@@ -22,3 +22,30 @@
   background-color: var(--purple-0);
   color: var(--white);
 }
+
+.btn-third {
+  background: var(--white-40);
+  color: var(--text);
+  max-width: 120px;
+  font-size: 0.8rem;
+  border-radius: var(--border-radius-sm);
+
+}
+
+.btn-third.danger {
+  color: var(--red);
+}
+
+.btn-third.danger:hover {
+  background: var(--redGradient);
+  color: var(--white);
+}
+
+.btn-third.edit {
+  color: var(--black-40);
+}
+
+.btn-third.edit:hover {
+  background: var(--greenGradient);
+  color: var(--white);
+}

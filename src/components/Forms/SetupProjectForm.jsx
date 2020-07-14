@@ -27,7 +27,7 @@ function SetupProjectForm() {
   }
 
   return (
-    <form className="form shadow-lg">
+    <form className="form ">
       <H2>Projects</H2>
       <H2Subtitle>Create your first project or wait until later.</H2Subtitle>
 

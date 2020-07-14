@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import NewProjectForm from '../../components/Forms/NewProjectForm'
 import EditProjectForm from '../../components/Forms/EditProjectForm.jsx'
 import { useParams } from 'react-router'
@@ -6,6 +6,24 @@ import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
 import { H1 } from '../../components/Headings/Headings'
 import getApi from '../../api/getApi'
 import { toast } from 'react-toastify'
+
+
+ const initialState = {
+   title: "",
+   headline: "",
+   description: "",
+   thumbnail: "",
+   supportingImgs: [],
+   topics: "",
+   collaborators: "",
+   projectLinks: ""
+ }
+
+ const initialPositionState = {
+   title: "",
+   description: "",
+   experience: ''
+ }
 
 const ProjectController = () => {
   const [ state, setState ] = useState({
@@ -30,6 +48,18 @@ const ProjectController = () => {
 
   const { action } = useParams()
 
+  useEffect(() => {
+    resetState()
+  }, [action])
+
+  const resetState = () => {
+    setState(initialState)
+    setPositionState(initialPositionState)
+    setProjectLinks([])
+    setCollaborators([])
+    setPositions([])
+  }
+
   const inputHandler = (e) => {
     setState({...state, [e.target.name]: e.target.value})
   }
@@ -52,11 +82,20 @@ const ProjectController = () => {
     setAutocomplete([])
   }
 
-  const removeItemHandler = id => {
+  const removeItemHandler = (link, id) => {
     const clone = projectLinks
     clone.splice(id, 1)
 
     setProjectLinks([...clone])
+
+    getApi({
+      url: `/projectLinks/${link.uuid}`,
+      method: 'delete'
+    }).then(res => {
+      if (res) {
+        toast.success(res.message)
+      }
+    })
   }
 
   const removeContributorHandler = id => {
@@ -120,7 +159,12 @@ const ProjectController = () => {
   return (
     <DisplayWrapper>
       <div className="flex flex-col items-center">
-        {action === "new" && <NewProjectForm {...props} /> }
+        {action === "new" && 
+          <>
+            <H1>Create Project</H1>
+            <NewProjectForm {...props} />
+          </>
+        }
 
         {action === "edit" &&  
           <>
