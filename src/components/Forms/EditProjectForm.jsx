@@ -27,6 +27,7 @@ const EditProjectForm = ({
   removeItemHandler,
   removeContributorHandler,
   positions,
+  setPositions,
   positionState,
   setPositionState,
   addPositionHandler,
@@ -61,7 +62,7 @@ const EditProjectForm = ({
           const {
             collaborators,
             ProjectLinks,
-            ProjectRole,
+            ProjectRoles,
             ...rest
           } = res
 
@@ -73,6 +74,10 @@ const EditProjectForm = ({
 
           if (collaborators.length) {
             setCollaborators([...collaborators])
+          }
+
+          if (ProjectRoles.length) {
+            setPositions([...ProjectRoles])
           }
         }
       })
@@ -244,14 +249,14 @@ const EditProjectForm = ({
             </div>
 
             <div className="field-group">
-              <label htmlFor="positionSummary" className="form-label">Position summary</label>
+              <label htmlFor="positionDescription" className="form-label">Position description</label>
               <textarea
                 type="text"
                 className="form-textarea"
-                name="prositionSummary"
+                name="positionDescription"
                 placeholder="Describe what this position would help you with..."
-                onChange={e => setPositionState({ ...positionState, summary: e.target.value })}
-                value={positionState.summary}
+                onChange={e => setPositionState({ ...positionState, description: e.target.value })}
+                value={positionState.description}
               />
             </div>
 
@@ -274,7 +279,7 @@ const EditProjectForm = ({
               />
             </div>
             {positions.length > 0 &&
-              positions.map((pos, id) => <ProjectPosition position={pos} key={id} id={id} removePositionHandler={removePositionHandler} />)
+              positions.map((pos, id) => <ProjectPosition position={pos} key={id} id={id} removePositionHandler={() => removePositionHandler(pos, id)} />)
             }
           </InfoBlock>
 

@@ -9,8 +9,8 @@ const ProjectPosition = ({position, removePositionHandler, id}) => {
         <h4>{position.title}</h4>
       </div>
 
-      <h4 className="mt-4">Summary</h4>
-      <p>{position.summary}</p>
+      <h4 className="mt-4">Description</h4>
+      <p>{position.description}</p>
 
       <h4 className="mt-4">Experience</h4>
       <p>{position.experience}</p>

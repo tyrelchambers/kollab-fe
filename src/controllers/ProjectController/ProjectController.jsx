@@ -4,6 +4,8 @@ import EditProjectForm from '../../components/Forms/EditProjectForm.jsx'
 import { useParams } from 'react-router'
 import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
 import { H1 } from '../../components/Headings/Headings'
+import getApi from '../../api/getApi'
+import { toast } from 'react-toastify'
 
 const ProjectController = () => {
   const [ state, setState ] = useState({
@@ -22,7 +24,7 @@ const ProjectController = () => {
   const [ positions, setPositions ] = useState([])
   const [positionState, setPositionState] = useState({
     title: "",
-    summary: "",
+    description: "",
     experience: ''
   })
 
@@ -70,17 +72,27 @@ const ProjectController = () => {
     setPositions([...positions, newPos])
     setPositionState({
       title: "",
-      summary: "",
+      description: "",
       experience: ""
     })
   }
 
-  const removePositionHandler = id => {
+  const removePositionHandler = (pos, id) => {
     const clone = positions
     clone.splice(id, 1)
 
     setPositions([...clone])
-    
+
+    if(pos.uuid) {
+      getApi({
+        url: `/projectRoles/${pos.uuid}`,
+        method: 'delete'
+      }).then(res => {
+        if (res) {
+          toast.success(res.message)
+        }
+      })
+    }
   }
 
   const props = {
