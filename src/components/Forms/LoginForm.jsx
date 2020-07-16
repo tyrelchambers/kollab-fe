@@ -38,7 +38,7 @@ function LoginForm({UserStore}) {
           window.sessionStorage.setItem("token", res.token)
         }
         
-        toast.success(res.message)
+        
         history.push('/')
       }
     })

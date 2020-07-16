@@ -13,27 +13,31 @@
 
 .btn.secondary {
   border-radius: var(--border-radius-sm);
-  border: 2px solid var(--purple-0);
-  color: var(--purple-0);
+  background: var(--purple-0);
+  color: var(--white);
   height: 100%;
+    border: 2px solid transparent;
+
 }
 
 .btn.secondary:hover {
-  background-color: var(--purple-0);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--purple-0);
+  border: 2px solid var(--purple-0);
 }
 
 .btn-third {
   background: var(--white-40);
   color: var(--text);
-  max-width: 120px;
+  width: fit-content;
+  padding: 0.5em 1em;
   font-size: 0.8rem;
   border-radius: var(--border-radius-sm);
 
 }
 
 .btn-third.danger {
-  color: var(--red);
+  color: var(--black-40);
 }
 
 .btn-third.danger:hover {
@@ -41,11 +45,11 @@
   color: var(--white);
 }
 
-.btn-third.edit {
+.btn-third.green {
   color: var(--black-40);
 }
 
-.btn-third.edit:hover {
+.btn-third.green:hover {
   background: var(--greenGradient);
   color: var(--white);
 }

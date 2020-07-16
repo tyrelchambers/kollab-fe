@@ -42,7 +42,7 @@ function ProjectWidget({project}) {
 
           <div className="flex flex-col items-center" style={{width:'50px'}}>
             <i className="fas fa-fire text-2xl text-red-500"></i>
-            <p className="text-red-500 mt-2">{project.likes}</p>
+            <p className="text-red-500 mt-2">{project.likers.length}</p>
           </div>
         </div>
       </div>

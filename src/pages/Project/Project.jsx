@@ -3,13 +3,14 @@ import { useParams, useHistory } from 'react-router'
 import getApi from '../../api/getApi'
 import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
 import isEmpty from '../../helpers/objIsEmpty'
-import { H1, H2 } from '../../components/Headings/Headings'
+import { H1, H3 } from '../../components/Headings/Headings'
 import './Project.css'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import { ThirdButton } from '../../components/Buttons/Buttons'
+import { ThirdButton, SecondaryButton } from '../../components/Buttons/Buttons'
 import { toast } from 'react-toastify'
+import ProfileMini from '../../components/ProfileMini/ProfileMini'
 
 const Project = ({UserStore}) => {
   const history = useHistory()
@@ -36,10 +37,36 @@ const Project = ({UserStore}) => {
         method: 'delete'
       }).then(res => {
         if (res) {
-          toast.success(res.message)
+          
           history.push('/dashboard')
         }
       })
+    }
+  }
+
+  const likeHandler = () => {
+    getApi({
+      url: `/projects/${projectId}/like`,
+      method: 'put'
+    })
+  }
+
+  const dislikeHandler = () => {
+    getApi({
+      url: `/projects/${projectId}/dislike`,
+      method: 'put'
+    })
+  }
+
+  const likeDislikeRatio = () => {
+    const likes = project.likers.length;
+    const dislikes = project.dislikers.length;
+    const ratio = (likes / (likes + dislikes) * 100).toFixed(2)
+
+    if (likes === 0 && dislikes === 0) {
+      return <p className="font-bold">No Ratings</p>
+    } else {
+      return <p className={`${ratio <= 30 ? "text-red-500" : (ratio >= 31 && ratio <= 49) ? "text-yellow-500" : "text-green-500"} font-bold`}>{ratio}%</p>
     }
   }
   
@@ -55,7 +82,7 @@ const Project = ({UserStore}) => {
           <p className="mt-2">{project.headline}</p>
           {(UserStore.user && project.userId === UserStore.user.uuid) && 
             <div className="flex items-center mt-6">
-              <Link to={`/dashboard/project/${project.uuid}/edit`} className="btn-third btn edit text-center mr-4">Edit project</Link>
+              <Link to={`/dashboard/project/${project.uuid}/edit`} className="btn-third btn green text-center mr-4">Edit project</Link>
               <ThirdButton
                 text="Delete Project"
                 className="danger"
@@ -66,23 +93,52 @@ const Project = ({UserStore}) => {
         </div>
       </div>
 
-      <div className="w-full project-share-bar mt-8 mb-8">
+      <div className="w-full project-share-bar mt-8 mb-8 flex items-center pl-4 pr-4 justify-between">
+        <div className="flex items-center">
+          <div className="fb-share-button mr-4" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large">
+            <a target="_blank" href={window.location.href} className="fb-xfbml-parse-ignore">Share</a>
+          </div>
 
+          <a className="twitter-share-button"
+            href="https://twitter.com/intent/tweet?text=Hello%20world"
+            data-size="large">
+            Tweet</a>
+        </div>
+        {likeDislikeRatio()}
       </div>
 
       <div className="flex">
         <div className="w-3/5 mr-4">
           <div className="flex flex-col mt-4">
-            <H2>Introduction</H2>
+            <H3>Introduction</H3>
             <InfoBlock>
               <p className="break-all">{project.description}</p>
+            </InfoBlock>
+          </div>
+          <hr/>
+          <div className="flex flex-col mt-4">
+            <InfoBlock>
+              <div className="flex">
+                <p className="font-bold mr-8">Does this project sound interesting?</p>
+                <ThirdButton
+                  text="Yes"
+                  className="green mr-2 ml-2"
+                  onClick={likeHandler}
+                />
+
+                <ThirdButton
+                  text="No"
+                  className="danger mr-2 ml-2"
+                  onClick={dislikeHandler}
+                />
+              </div>
             </InfoBlock>
           </div>
         </div>
 
         <div className="w-2/5 mt-4">
           <div className="flex flex-col">
-            <H2>Helpful Links</H2>
+            <H3>Helpful Links</H3>
             {project.ProjectLinks && project.ProjectLinks.map((link, id) => (
               <InfoBlock key={id}>
                 <div className="flex items-center">
@@ -91,17 +147,54 @@ const Project = ({UserStore}) => {
                 </div>
               </InfoBlock>
             ))}
+            {!project.ProjectLinks.length &&
+              <InfoBlock>
+                <p>No links provided</p>
+              </InfoBlock>
+            }
           </div>
 
           <div className="flex flex-col mt-4">
-            <H2>The Creator</H2>
+            <H3>The Creator</H3>
 
             <InfoBlock>
-              <div className="flex items-center">
-                {project.owner.avatar && <img src={project.owner.avatar} />}
+              <ProfileMini user={project.owner} />
+            </InfoBlock>
+          </div>
 
-                <p className="font-bold">{project.owner.username}</p>
-              </div>
+          <div className="flex flex-col mt-4">
+            <H3>Open Positions</H3>
+
+            <InfoBlock>
+              {project.ProjectRoles.length &&
+                <>
+                  {project.ProjectRoles.map((role, id) => (
+                    <p key={id} className="mt-2 mb-6 font-medium">{role.title}</p>
+                  ))}
+
+                  <SecondaryButton
+                    text="Contact creator"
+                  />
+                </>
+              }
+
+              {!project.ProjectRoles.length &&
+                <p>No open positions</p>
+              }
+            </InfoBlock>
+          </div>
+
+          <div className="flex flex-col mt-4">
+            <H3>Collaborators</H3>
+
+            <InfoBlock>
+              {project.collaborators.length > 0 &&
+                project.collaborators.map((person, id) => (
+                  <ProfileMini key={id} user={person}/>
+                ))
+              }
+
+              {!project.collaborators.length && <p>No collaborators on this project</p>}
             </InfoBlock>
           </div>
         </div>

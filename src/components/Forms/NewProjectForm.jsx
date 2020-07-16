@@ -62,7 +62,7 @@ function NewProjectForm({
       data: payload
     }).then(res => {
       if( res ) {
-        toast.success(res.message)
+        
         return res.project.uuid
       }
     })

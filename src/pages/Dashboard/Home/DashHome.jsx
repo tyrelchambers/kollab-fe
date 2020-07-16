@@ -8,20 +8,6 @@ import Sidebar from '../../../layouts/Sidebar/Sidebar'
 import getApi from '../../../api/getApi'
 import DisplayWrapper from '../../../layouts/DisplayWrapper/DisplayWrapper'
 
-const sample = {
-  title: "Super coool awesome idea",
-  likes: 500,
-  collaborators: 25,
-  comments: 25,
-  openPositions: [
-    "Front-end Developer",
-    "Back-end Developer",
-    "UI Designer"
-  ],
-  thumbnail: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-  isAccepting: true
-}
-
 const profileSample = {
   firstName: "Tyrel",
   lastName: "Chambers",
@@ -41,14 +27,18 @@ const profileSample = {
 
 function DashHome() { 
   const [myProjects, setMyProjects] = useState([])
+
   useEffect(() => {
-    getApi({
-      url: '/user/projects'
-    }).then(res => {
-      if (res) {
-        setMyProjects([...res])
-      }
-    })
+    const fn = async () => {
+      await getApi({
+        url: '/user/projects'
+      }).then(res => {
+        if (res) {
+          setMyProjects([...res])
+        }
+      })
+    }
+    fn()
   }, []) 
 
   return (
@@ -65,13 +55,7 @@ function DashHome() {
           <hr/>
 
           <H3 className="mb-4">Collaborations</H3>
-          <ProjectWidget
-            project={sample}
-          />
 
-          <ProjectWidget
-            project={sample}
-          />
         </MainCol>
 
         <Sidebar>

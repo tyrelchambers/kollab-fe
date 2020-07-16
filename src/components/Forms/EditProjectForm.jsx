@@ -98,7 +98,7 @@ const EditProjectForm = ({
       data: payload
     }).then(res => {
       if( res ) {
-        toast.success(res.message)
+        
       }
     })
 
@@ -311,7 +311,7 @@ const EditProjectForm = ({
             {collaborators.length > 0 &&
               <div className="mt-8">
                 {collaborators.map((person, id) => (
-                  <SmallCard key={id} text={person.email} removeItem={e => removeContributorHandler(id)} />
+                  <SmallCard key={id} text={person.email} removeItem={e => removeContributorHandler(person, id)} />
                 ))}
               </div>
             }

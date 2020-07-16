@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Home.css'
-import Header from '../../layouts/Header/Header'
-import { H2, H3 } from '../../components/Headings/Headings'
+import { H3 } from '../../components/Headings/Headings'
 import Featured from '../../components/Featured/Featured'
 import ProjectWidget from '../../components/ProjectWidget/ProjectWidget'
 import MainCol from '../../layouts/MainCol/MainCol'
@@ -14,20 +13,6 @@ import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
 const project = {
   thumbnail: 'https://images.unsplash.com/photo-1593291619462-e4240344ea21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80',
   title: 'Some awesome project I made'
-}
-
-const sample = {
-  title: "Super coool awesome idea",
-  likes: 500,
-  collaborators: 25,
-  comments: 25,
-  openPositions: [
-    "Front-end Developer",
-    "Back-end Developer",
-    "UI Designer"
-  ],
-  thumbnail: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-  isAccepting: true
 }
 
 const profileSample = {
@@ -62,7 +47,7 @@ function Home() {
   return (
     <DisplayWrapper>
       <section>
-        <H2>Project of the Week</H2>
+        <H3>Project of the Week</H3>
         <Featured
           project={project}
         />
@@ -72,13 +57,13 @@ function Home() {
 
         <div className="flex">
           <MainCol>
-            <H2 className="mb-4">Today</H2>
+            <H3 className="mb-4">Today</H3>
             <div className="flex flex-col w-full">
               {projects.map((project, id) => <ProjectWidget key={id} project={project}/>)}
             </div>
           </MainCol>
           <Sidebar>
-            <H2>Available To Help</H2>
+            <H3>Available To Help</H3>
             
             <InfoBlock>
               <div className="flex flex-col">
@@ -99,7 +84,7 @@ function Home() {
               </div>
             </InfoBlock>
 
-            <H2 className="mt-6">Top Open Source</H2>
+            <H3 className="mt-6">Top Open Source</H3>
 
             <InfoBlock>
               <div className="flex flex-col">

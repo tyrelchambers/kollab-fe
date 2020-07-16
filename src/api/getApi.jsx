@@ -19,6 +19,10 @@ const getApi = async ({
    })
    .then(res => {
      if (res) {
+        if (res.data.message) {
+          toast.success(res.data.message)
+        }
+
        return res.data
      } else {
        return Promise.reject(res.data)

@@ -46,7 +46,7 @@ const ProjectController = () => {
     experience: ''
   })
 
-  const { action } = useParams()
+  const { action, projectId } = useParams()
 
   useEffect(() => {
     resetState()
@@ -93,16 +93,27 @@ const ProjectController = () => {
       method: 'delete'
     }).then(res => {
       if (res) {
-        toast.success(res.message)
+        
       }
     })
   }
 
-  const removeContributorHandler = id => {
+  const removeContributorHandler = (user, id) => {
     const clone = collaborators
     clone.splice(id, 1)
 
     setCollaborators([...clone])
+
+    if (user.uuid) {
+      getApi({
+        url: '/collaborators/',
+        method: 'delete',
+        params: {
+          projectId,
+          userId: user.uuid
+        }
+      })
+    }
   }
 
   const addPositionHandler = () => {
@@ -128,7 +139,7 @@ const ProjectController = () => {
         method: 'delete'
       }).then(res => {
         if (res) {
-          toast.success(res.message)
+          
         }
       })
     }
