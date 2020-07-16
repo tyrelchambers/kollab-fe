@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 import { ThirdButton, SecondaryButton } from '../../components/Buttons/Buttons'
 import { toast } from 'react-toastify'
 import ProfileMini from '../../components/ProfileMini/ProfileMini'
+import CommentForm from '../../components/Forms/CommentForm'
 
 const Project = ({UserStore}) => {
   const history = useHistory()
@@ -132,6 +133,21 @@ const Project = ({UserStore}) => {
                   onClick={dislikeHandler}
                 />
               </div>
+            </InfoBlock>
+          </div>
+
+          <div className="flex flex-col mt-4">
+            <div className="flex items-center">
+              <H3>Comments</H3>
+              <span className="text-gray-500 text-sm" >
+                <i className="fas fa-circle text-xs ml-4 mr-4" style={{fontSize: '0.20rem'}}></i>
+                25 comments
+              </span>
+            </div>
+
+            <InfoBlock>
+              <ProfileMini user={UserStore.getUser()} />
+              <CommentForm/>
             </InfoBlock>
           </div>
         </div>

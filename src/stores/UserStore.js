@@ -8,6 +8,7 @@ class UserStore {
   }
 
   getUser() {
+    console.log(this.user)
     return this.user;
   }
 }
