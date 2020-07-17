@@ -62,7 +62,10 @@
   align-items: flex-start;
   border-radius: var(--border-radius-sm);
   color: var(--text);
-  
+}
+
+.form-textarea.slim {
+  min-height: 100% !important;
 }
 
 .form-textarea::placeholder {

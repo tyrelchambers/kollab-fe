@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../../layouts/Header/Header'
 import './Signup.css'
 import { H1 } from '../../components/Headings/Headings'
 import SignupForm from '../../components/Forms/SignupForm'

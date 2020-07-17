@@ -9,9 +9,10 @@ import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { ThirdButton, SecondaryButton } from '../../components/Buttons/Buttons'
-import { toast } from 'react-toastify'
 import ProfileMini from '../../components/ProfileMini/ProfileMini'
 import CommentForm from '../../components/Forms/CommentForm'
+import Comment from '../../components/Comment/Comment'
+import ProjectComments from '../../components/ProjectComments/ProjectComments'
 
 const Project = ({UserStore}) => {
   const history = useHistory()
@@ -147,7 +148,11 @@ const Project = ({UserStore}) => {
 
             <InfoBlock>
               <ProfileMini user={UserStore.getUser()} />
-              <CommentForm/>
+              <CommentForm projectId={projectId}/>
+
+              <hr />
+
+              <ProjectComments projectId={projectId} />
             </InfoBlock>
           </div>
         </div>
@@ -182,7 +187,7 @@ const Project = ({UserStore}) => {
             <H3>Open Positions</H3>
 
             <InfoBlock>
-              {project.ProjectRoles.length &&
+              {project.ProjectRoles.length > 0 &&
                 <>
                   {project.ProjectRoles.map((role, id) => (
                     <p key={id} className="mt-2 mb-6 font-medium">{role.title}</p>

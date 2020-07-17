@@ -14,10 +14,6 @@ const getUserOnLoad = async () => {
   })
 }
 
-const logout = () => {
-
-}
-
 function AuthProvider({children, UserStore}) {
   const [state, setState] = useState({
     status: 'pending',
@@ -44,10 +40,16 @@ function AuthProvider({children, UserStore}) {
         
         UserStore.setUser(user)
       }
+
+      setState({
+        status: 'success'
+      })
     }
 
     fn()
   }, [])
+
+  if(state.status === "pending") return null;
 
   return (
     <AuthContext.Provider value={state}>

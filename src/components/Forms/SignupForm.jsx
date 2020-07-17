@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import FormError from '../FormError/FormError'
 import isEmpty from '../../helpers/objIsEmpty'
 import { inject, observer } from 'mobx-react'
-import { toast } from 'react-toastify'
 
 function SignupForm({UserStore}) {
   const history = useHistory()
