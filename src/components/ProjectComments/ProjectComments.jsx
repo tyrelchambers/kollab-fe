@@ -17,7 +17,6 @@ const ProjectComments = ({projectId, UserStore}) => {
       }
     }).then(res => {
       if (res) {
-        console.log(res)
         setComments([...res])
       }
     })
@@ -35,13 +34,13 @@ const ProjectComments = ({projectId, UserStore}) => {
           <>
             <Comment 
               comment={comment} 
-              key={id} 
+              key={comment.uuid} 
               setStatus={setStatus}
             />
             {comment.Replies.map((reply, replyId) => (
               <Comment
                 comment={reply}
-                key={replyId}
+                key={reply.uuid + "_" + replyId}
                 isReply
                 parent={comment}
                 setStatus={setStatus}

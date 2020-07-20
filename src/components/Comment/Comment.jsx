@@ -3,8 +3,9 @@ import './Comment.css'
 import { ThirdButton, SecondaryButton } from '../Buttons/Buttons'
 import getApi from '../../api/getApi'
 import isEmpty from '../../helpers/objIsEmpty'
+import { inject, observer } from 'mobx-react'
 
-const Comment = ({comment, isReply, parent, setStatus}) => {
+const Comment = ({comment, isReply, parent, setStatus, UserStore}) => {
   const [state, setState] = useState({
     toReply: false
   })
@@ -56,6 +57,27 @@ const Comment = ({comment, isReply, parent, setStatus}) => {
     })
   }
 
+  const dislikeHandler = () => {
+    getApi({
+      url: `/comments/${comment.uuid}/dislike`,
+      method: 'delete'
+    }).then(res => {
+      if (res) {
+        setStatus("saved")
+      }
+    })
+  }
+
+  const isLiked = () => {
+    const isLiked = comment.likers.filter(liker => liker.uuid === UserStore.user.uuid)
+    
+    if (isLiked.length > 0) {
+      return (<i className="fas fa-heart text-sm text-red-600 mr-2" onClick={dislikeHandler}></i>)
+    } else {
+      return (<i className="far fa-heart text-sm mr-2" onClick={likeHandler}></i>)
+    }
+  }
+
   return (
     <div className={`comment flex ${reply ? "reply" : "parent"}`}>
       <img src={avatar ? avatar : require('../../assets/avatar.png')} alt="" className="avatar small mr-4"/>
@@ -65,10 +87,8 @@ const Comment = ({comment, isReply, parent, setStatus}) => {
         <hr/>
         <div className="flex">
           <div className="like-action mr-4 flex items-center">
-            {true === true ?
-              <i className="fas fa-heart text-sm text-red-600 mr-2" onClick={likeHandler}></i> :
-              <i className="far fa-heart text-sm mr-2"></i>
-            }
+
+            {isLiked()}
             <p>{comment.likers.length}</p>
           </div>
           <ThirdButton
@@ -102,4 +122,4 @@ const Comment = ({comment, isReply, parent, setStatus}) => {
   )
 }
 
-export default Comment
+export default inject("UserStore")(observer(Comment))
