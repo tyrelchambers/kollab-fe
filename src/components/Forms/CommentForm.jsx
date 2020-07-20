@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import getApi from '../../api/getApi'
 import TextareaAutosize from 'react-textarea-autosize'
 
-const CommentForm = ({projectId}) => {
+const CommentForm = ({projectId, setStatus}) => {
   const { handleSubmit } = useForm()
   const [state, setState] = useState({
     comment: ""
@@ -12,13 +12,16 @@ const CommentForm = ({projectId}) => {
 
   const submitHandler = () => {
     getApi({
-      url: '/comments/commentParent',
+      url: '/comments/new',
       method: 'post',
       data: {
         comment: state.comment,
-        projectId
+        projectId,
+        isParent: true
       }
     })
+    setStatus("saved")
+
   }
 
   return (

@@ -30,16 +30,28 @@ const Comment = ({comment, isReply, parent, setStatus}) => {
     const commentInput = document.querySelector("#commentReply").value;
 
     getApi({
-      url: '/comments/commentReply/',
+      url: '/comments/new',
       method: 'post',
       data: {
         comment: commentInput,
-        parentId: isReply ? comment.commentParentId : comment.uuid
+        parentId: isReply ? parent.uuid : comment.uuid
       }
     }).then(res => {
       if (res) {
         setState({toReply: false})
         setStatus("saved")
+      }
+    })
+  }
+
+  const likeHandler = () => {
+    getApi({
+      url: `/comments/${comment.uuid}/like`,
+      method: 'put'
+    }).then(res => {
+      if(res) {
+        setStatus("saved")
+
       }
     })
   }
@@ -52,6 +64,13 @@ const Comment = ({comment, isReply, parent, setStatus}) => {
         <p className="commentBody">{comment.comment}</p>
         <hr/>
         <div className="flex">
+          <div className="like-action mr-4 flex items-center">
+            {true === true ?
+              <i className="fas fa-heart text-sm text-red-600 mr-2" onClick={likeHandler}></i> :
+              <i className="far fa-heart text-sm mr-2"></i>
+            }
+            <p>{comment.likers.length}</p>
+          </div>
           <ThirdButton
             text="Reply"
             onClick={() => setState({toReply: !state.toReply})}
@@ -67,7 +86,7 @@ const Comment = ({comment, isReply, parent, setStatus}) => {
                 name="comment" 
                 className="form-input flex-2 mr-4" 
                 placeholder={`Replying to: ${comment.User.username}`} 
-                defaultValue={`@${comment.User.username}`}
+                defaultValue={`@${comment.User.username} `}
                 id="commentReply"
               />
               <SecondaryButton

@@ -89,6 +89,11 @@ hr {
 
 } 
 
+.Toastify {
+    top: 4em;
+
+}
+
 .Toastify__toast--success {
   color: var(--white);
   background: var(--greenGradient) !important;

@@ -10,8 +10,6 @@ import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { ThirdButton, SecondaryButton } from '../../components/Buttons/Buttons'
 import ProfileMini from '../../components/ProfileMini/ProfileMini'
-import CommentForm from '../../components/Forms/CommentForm'
-import Comment from '../../components/Comment/Comment'
 import ProjectComments from '../../components/ProjectComments/ProjectComments'
 
 const Project = ({UserStore}) => {
@@ -147,11 +145,6 @@ const Project = ({UserStore}) => {
             </div>
 
             <InfoBlock>
-              <ProfileMini user={UserStore.getUser()} />
-              <CommentForm projectId={projectId}/>
-
-              <hr />
-
               <ProjectComments projectId={projectId} />
             </InfoBlock>
           </div>
