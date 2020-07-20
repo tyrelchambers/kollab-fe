@@ -10,16 +10,22 @@ const ProjectComments = ({projectId, UserStore}) => {
   const [comments, setComments] = useState([])
 
   useEffect(() => {
-    getApi({
-      url: '/comments/all',
-      params: {
-        projectId
+    const fn = async () => {
+      if(status === "pending") {
+        await getApi({
+          url: '/comments/all',
+          params: {
+            projectId
+          }
+        }).then(res => {
+          if (res) {
+            setComments([...res])
+          }
+        })
       }
-    }).then(res => {
-      if (res) {
-        setComments([...res])
-      }
-    })
+    }
+
+    fn();
     setStatus("pending")
   }, [status])
 
