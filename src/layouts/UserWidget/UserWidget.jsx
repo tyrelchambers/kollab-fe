@@ -33,7 +33,7 @@ function UserWidget() {
             <Link to="/dashboard/project/new" className="dropdown-item">Create New</Link>
           </div>
         </details>
-        <Link to="#" className="dropdown-item">Profile</Link>
+        <Link to="/profile" className="dropdown-item">Profile</Link>
         <Link to="#" className="dropdown-item">Account</Link>
         <Link to="/signout" className="dropdown-item">Sign Out</Link>
       </div>

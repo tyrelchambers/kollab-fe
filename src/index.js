@@ -23,6 +23,7 @@ import NewProject from './pages/NewProject/NewProject';
 import EditProject from './pages/EditProject/EditProject';
 import Project from './pages/Project/Project';
 import ProjectController from './controllers/ProjectController/ProjectController';
+import Profile from './layouts/Profile/Profile';
 
 const App = () => {
   return (
@@ -43,7 +44,7 @@ const App = () => {
               <Route exact path="/dashboard/project/:action" component={ProjectController} />
               <Route exact path="/dashboard/project/:projectId/:action" component={ProjectController} />
               <Route exact path="/project/:projectId" component={Project} />
-              
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/signout" render={() => {
                 window.localStorage.removeItem('token')
                 window.sessionStorage.removeItem('token')
