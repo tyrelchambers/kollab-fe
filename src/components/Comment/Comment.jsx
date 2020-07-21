@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './Comment.css'
-import { ThirdButton, SecondaryButton } from '../Buttons/Buttons'
+import { ThirdButton, SecondaryButton, NoStyleButton } from '../Buttons/Buttons'
 import getApi from '../../api/getApi'
 import isEmpty from '../../helpers/objIsEmpty'
 import { inject, observer } from 'mobx-react'
+import { toast } from 'react-toastify'
 
 const Comment = ({comment, isReply, parent, setStatus, UserStore}) => {
   const [state, setState] = useState({
@@ -68,6 +69,21 @@ const Comment = ({comment, isReply, parent, setStatus, UserStore}) => {
     })
   }
 
+  const deleteHandler = () => {
+    const prompt = window.confirm("Are you sure you want to delete this comment?")
+
+    if (prompt) {
+      getApi({
+        url: `/comments/${comment.uuid}`,
+        method: 'delete'
+      }).then(res => {
+        if (res) {
+          setStatus("saved")
+        }
+      })
+    }
+  }
+
   const isLiked = () => {
     const isLiked = comment.likers.filter(liker => liker.uuid === UserStore.user.uuid)
     
@@ -95,6 +111,12 @@ const Comment = ({comment, isReply, parent, setStatus, UserStore}) => {
             text="Reply"
             onClick={() => setState({toReply: !state.toReply})}
           />
+          {comment.User.uuid === UserStore.user.uuid && 
+            <NoStyleButton
+              text="Delete"
+              onClick={deleteHandler}
+            />
+          }
         </div>
 
         {state.toReply &&

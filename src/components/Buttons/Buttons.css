@@ -53,3 +53,15 @@
   background: var(--greenGradient);
   color: var(--white);
 }
+
+.btn-no-style {
+  border: none;
+  background-color: transparent;
+  font-size: 0.9rem;
+  margin: 0 1em;
+  color: var(--paragraph);
+}
+
+.btn-no-style:hover {
+  text-decoration: underline;
+}
