@@ -1,54 +1,135 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { H3 } from '../Headings/Headings'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
-import { SecondaryButton, MainButton } from '../Buttons/Buttons'
+import { MainButton } from '../Buttons/Buttons'
+import { useState } from 'react'
+import getApi from '../../api/getApi'
+import { inject, observer } from 'mobx-react'
 
-const ProfileForm = () => {
+const ProfileForm = ({UserStore}) => {
+  const [profile, setProfile] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+    username: "",
+    useUsername: false,
+    twitter: "",
+    stackOverflow: "",
+    instagram: "",
+    github: "",
+    gitlab: ""
+  });
+  const [account, setAccount] = useState({
+    password: "",
+    newPassword: "",
+    confirmNewPassword: ""
+  })
+
   const { handleSubmit } = useForm()
+
+  useEffect(() => {
+    setProfile({ ...UserStore.user })
+  }, [])
+
+  const submitHandler = () => {
+    getApi({
+      url: '/user/me',
+      method: 'put',
+      data: profile
+    })
+
+    window.location.pathname = "/dashboard"
+  }
+
+  const inputHandler = e => {
+    setProfile({...profile, [e.target.name]: e.target.value})
+  }
+
+  const accountHandler = e => {
+    setAccount({ ...account, [e.target.name]: e.target.value })
+  }
 
   return (
     <div className="flex">
-      <form className="w-1/2 mr-4">
+      <form className="w-1/2 mr-4" onSubmit={handleSubmit(submitHandler)}>
         <H3>Profile</H3>
 
         <InfoBlock>
           <div className="field-group">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input
+              type="email"
+              className="form-input"
+              name="email"
+              placeholder="Your email"
+              value={profile.email}
+              onChange={e => inputHandler(e)}
+            />
+          </div>
+
+          <div className="field-group">
             <label htmlFor="firstName" className="form-label">First Name</label>
-            <input type="text" name="firstName" className="form-input" placeholder="First Name"/>
+            <input 
+              type="text" 
+              name="firstName" 
+              className="form-input" 
+              placeholder="First Name" 
+              value={profile.firstName}
+              onChange={e => inputHandler(e)}
+            />
           </div>
           
           <div className="field-group">
             <label htmlFor="lastName" className="form-label">Last Name</label>
-            <input type="text" name="lastName" className="form-input" placeholder="Last Name" />
+            <input 
+              type="text" 
+              name="lastName" 
+              className="form-input" 
+              placeholder="Last Name" 
+              value={profile.lastName}
+              onChange={e => inputHandler(e)}
+            />
           </div>
 
           <div className="field-group">
             <label htmlFor="username" className="form-label">Username</label>
             <p className="text-sm mb-2 italic">No spaces allowed</p>
-            <input type="text" className="form-input" placeholder="Username" />
+            <input 
+              type="text" 
+              className="form-input" 
+              placeholder="Username" 
+              value={profile.username}
+              onChange={e => inputHandler(e)}
+            />
           </div>
 
           <div className="field-group">
             <div className="flex items-center">
-              <input type="checkbox" name="useUsername" id="useUsername" className="mr-3"/>
+              <input 
+                type="checkbox" 
+                name="useUsername" 
+                id="useUsername" 
+                className="mr-3" 
+                checked={profile.useUsername}
+                onChange={e => setProfile({...profile, [e.target.name]: e.target.checked})}
+              />
               <label htmlFor="useUsername" className="form-label" style={{marginBottom: '0'}}>Use username instead of full name?</label>
             </div>
           </div>
 
-          <MainButton
-            text="Save profile"
-          />
-        </InfoBlock>
-
-        <H3>Socials</H3>
-        <InfoBlock>
           <div className="field-group ">
             <label htmlFor="Twitter" className="form-label">Twitter</label>
 
             <div className="flex items-center w-full">
               <i className="fab fa-twitter"></i>
-              <input type="text" className="form-input" placeholder="https://twitter.com/@someuser" />
+              <input 
+                type="text" 
+                className="form-input" 
+                placeholder="https://twitter.com/@someuser" 
+                value={profile.twitter}
+                onChange={e => inputHandler(e)}
+              />
             </div>
           </div>
 
@@ -57,7 +138,13 @@ const ProfileForm = () => {
 
             <div className="flex items-center w-full">
               <i className="fab fa-stack-overflow"></i>
-              <input type="text" className="form-input" placeholder="https://stackoverflow.com/users/####/username" />
+              <input 
+                type="text" 
+                className="form-input" 
+                placeholder="https://stackoverflow.com/users/####/username" 
+                value={profile.stackOverflow}
+                onChange={e => inputHandler(e)}
+              />
             </div>
           </div>
 
@@ -66,7 +153,13 @@ const ProfileForm = () => {
 
             <div className="flex items-center w-full">
               <i className="fab fa-instagram"></i>
-              <input type="text" className="form-input" placeholder="https://instagram.com/@someuser" />
+              <input 
+                type="text" 
+                className="form-input" 
+                placeholder="https://instagram.com/@someuser" 
+                value={profile.instagram}
+                onChange={e => inputHandler(e)}
+              />
             </div>
           </div>
 
@@ -75,7 +168,14 @@ const ProfileForm = () => {
 
             <div className="flex items-center w-full">
               <i className="fab fa-github"></i>
-              <input type="text" className="form-input" name="github" placeholder="https://github.com/username" />
+              <input 
+                type="text" 
+                className="form-input" 
+                name="github" 
+                placeholder="https://github.com/username" 
+                value={profile.github} 
+                onChange={e => inputHandler(e)}
+              />
             </div>
           </div>
 
@@ -84,37 +184,72 @@ const ProfileForm = () => {
 
             <div className="flex items-center w-full">
               <i className="fab fa-gitlab"></i>
-              <input type="text" className="form-input" name="gitlab" placeholder="https://gitlab.com/username" />
+              <input 
+                type="text" 
+                className="form-input" 
+                name="gitlab" 
+                placeholder="https://gitlab.com/username" 
+                value={profile.gitlab}
+                onChange={e => inputHandler(e)}
+              />
             </div>
           </div>
 
           <MainButton
-            text="Save socials"
+            text="Save profile"
+            type="submit"
+            className="mt-4"
           />
         </InfoBlock>
+
+        
       </form>
 
       <div className="w-1/2">
         <H3>Account</H3>
 
         <InfoBlock>
+
           <div className="field-group">
             <label htmlFor="currentPassword" className="form-label">Current Password</label>
-            <input type="password" className="form-input" name="currentPassword" placeholder="Your current password"/>
+            <input 
+              type="password" 
+              className="form-input" 
+              name="password" 
+              placeholder="Your current password"
+              value={account.password}
+              onChange={e => accountHandler(e)}
+              autoComplete="new-password"
+            />
           </div>
 
           <div className="field-group">
             <label htmlFor="newPassword" className="form-label">New Password</label>
-            <input type="password" className="form-input" name="newPassword" placeholder="New password"/>
+            <input 
+              type="password" 
+              className="form-input" 
+              name="newPassword" 
+              placeholder="New password"
+              value={account.newPassword}
+              onChange={e => accountHandler(e)}
+            />
           </div>
 
           <div className="field-group">
             <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password</label>
-            <input type="password" className="form-input" name="confirmNewPassword" placeholder="Confirm new password"/>
+            <input 
+              type="password" 
+              className="form-input" 
+              name="confirmNewPassword" 
+              placeholder="Confirm new password"
+              value={account.confirmNewPassword}
+              onChange={e => accountHandler(e)}
+            />
           </div>
 
           <MainButton
             text="Save passwords"
+            className="mt-4"
           />
         </InfoBlock>
       </div>
@@ -122,4 +257,4 @@ const ProfileForm = () => {
   )
 }
 
-export default ProfileForm
+export default inject("UserStore")(observer(ProfileForm))

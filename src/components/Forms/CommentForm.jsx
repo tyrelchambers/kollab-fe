@@ -25,7 +25,7 @@ const CommentForm = ({projectId, setStatus}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(submitHandler)}>
+    <form onSubmit={handleSubmit(submitHandler)} className="mt-4">
       <div className="field-group">
         <label htmlFor="comment" className="form-label">Comment</label>
         <div className="flex min-h-12">

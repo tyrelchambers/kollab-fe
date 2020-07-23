@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import ImageUploader from '../ImageUploader/ImageUploader';
 import { SecondaryButton, MainButton } from '../Buttons/Buttons';
@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form';
 import FormError from '../FormError/FormError';
 import getApi from '../../api/getApi';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import { toast } from 'react-toastify';
 import { H3 } from '../Headings/Headings';
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock';
 import ProjectPosition from '../ProjectPosition/ProjectPosition';

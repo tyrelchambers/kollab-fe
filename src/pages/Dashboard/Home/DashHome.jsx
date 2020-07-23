@@ -7,25 +7,11 @@ import MainCol from '../../../layouts/MainCol/MainCol'
 import Sidebar from '../../../layouts/Sidebar/Sidebar'
 import getApi from '../../../api/getApi'
 import DisplayWrapper from '../../../layouts/DisplayWrapper/DisplayWrapper'
+import { inject, observer } from 'mobx-react'
+import InfoBlock from '../../../layouts/InfoBlock/InfoBlock'
+import { Link } from 'react-router-dom'
 
-const profileSample = {
-  firstName: "Tyrel",
-  lastName: "Chambers",
-  get fullName() {
-    return this.firstName + " " + this.lastName
-  },
-  followers: 25,
-  following: 25,
-  twitter: "@handle",
-  instagram: "@handle",
-  stackOverflow: "@handle",
-  github: "@handle",
-  gitlab: "@handle",
-  avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-
-}
-
-function DashHome() { 
+function DashHome({UserStore}) { 
   const [myProjects, setMyProjects] = useState([])
 
   useEffect(() => {
@@ -48,9 +34,22 @@ function DashHome() {
       <div className="flex">
         <MainCol>
           <H3 className="mb-4">Your Projects</H3>
-          {myProjects.map((project, id) => (
+          {myProjects.length > 0 && myProjects.map((project, id) => (
             <ProjectWidget project={project} key={id}/>
           ))}
+
+          {myProjects.length === 0 && 
+            <InfoBlock>
+              <div className="flex h-10 items-center w-full">
+                <p className="mr-6 font-bold">Created or add your first project!</p>
+                <div className="max-w-md">
+                  <Link to="/dashboard/project/new" className="btn secondary">
+                    Create
+                  </Link>
+                </div>
+              </div>
+            </InfoBlock>
+          }
 
           <hr/>
 
@@ -61,7 +60,7 @@ function DashHome() {
         <Sidebar>
           <div className="profile">
             <DashProfileInfo
-              profile={profileSample}
+              profile={UserStore}
             />
           </div>
         </Sidebar>
@@ -70,4 +69,4 @@ function DashHome() {
   )
 }
 
-export default DashHome
+export default inject("UserStore")(observer(DashHome))

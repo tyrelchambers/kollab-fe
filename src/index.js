@@ -11,7 +11,6 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import Signup from './pages/Signup/Signup';
 import Basic from './pages/ProfileSetup/Basic/Basic';
 import Social from './pages/ProfileSetup/Social/Social';
-import Projects from './pages/ProfileSetup/Projects/Projects';
 import Complete from './pages/ProfileSetup/Complete/Complete';
 import DashHome from './pages/Dashboard/Home/DashHome'
 import AuthProvider from './Providers/AuthProvider';
@@ -19,8 +18,6 @@ import Login from './pages/Login/Login';
 import stores from './stores/index'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import NewProject from './pages/NewProject/NewProject';
-import EditProject from './pages/EditProject/EditProject';
 import Project from './pages/Project/Project';
 import ProjectController from './controllers/ProjectController/ProjectController';
 import Profile from './layouts/Profile/Profile';
@@ -38,13 +35,12 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/setup/basics" component={Basic}/>
               <Route exact path="/setup/socials" component={Social} />
-              <Route exact path="/setup/projects" component={Projects} />
               <Route exact path="/setup/complete" component={Complete} />
               <Route exact path="/dashboard" component={DashHome} />
               <Route exact path="/dashboard/project/:action" component={ProjectController} />
               <Route exact path="/dashboard/project/:projectId/:action" component={ProjectController} />
               <Route exact path="/project/:projectId" component={Project} />
-              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile/edit" component={Profile} />
               <Route exact path="/signout" render={() => {
                 window.localStorage.removeItem('token')
                 window.sessionStorage.removeItem('token')

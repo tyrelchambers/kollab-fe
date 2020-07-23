@@ -4,7 +4,6 @@ import { ThirdButton, SecondaryButton, NoStyleButton } from '../Buttons/Buttons'
 import getApi from '../../api/getApi'
 import isEmpty from '../../helpers/objIsEmpty'
 import { inject, observer } from 'mobx-react'
-import { toast } from 'react-toastify'
 
 const Comment = ({comment, isReply, parent, setStatus, UserStore}) => {
   const [state, setState] = useState({

@@ -5,8 +5,6 @@ import { useParams } from 'react-router'
 import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
 import { H1 } from '../../components/Headings/Headings'
 import getApi from '../../api/getApi'
-import { toast } from 'react-toastify'
-
 
  const initialState = {
    title: "",

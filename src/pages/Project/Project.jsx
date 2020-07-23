@@ -96,7 +96,7 @@ const Project = ({UserStore}) => {
       <div className="w-full project-share-bar mt-8 mb-8 flex items-center pl-4 pr-4 justify-between">
         <div className="flex items-center">
           <div className="fb-share-button mr-4" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large">
-            <a target="_blank" href={window.location.href} className="fb-xfbml-parse-ignore">Share</a>
+            <a target="_blank" href={window.location.href} rel="noopener noreferrer" className="fb-xfbml-parse-ignore">Share</a>
           </div>
 
           <a className="twitter-share-button"

@@ -6,7 +6,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { MainButton } from '../Buttons/Buttons';
 import isEmpty from '../../helpers/objIsEmpty';
 import { inject, observer } from 'mobx-react';
-import { toast } from 'react-toastify';
 
 function LoginForm({UserStore}) {
   const [ state, setState ] = useState({
