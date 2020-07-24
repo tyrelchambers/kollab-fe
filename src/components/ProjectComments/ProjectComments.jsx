@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react'
 import ProfileMini from '../ProfileMini/ProfileMini'
 import CommentForm from '../Forms/CommentForm'
 
-const ProjectComments = ({projectId, UserStore}) => {
+const ProjectComments = ({projectId, UserStore }) => {
   const [status, setStatus] = useState("pending")
   const [comments, setComments] = useState([])
 

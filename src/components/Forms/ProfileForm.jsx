@@ -10,8 +10,7 @@ import { inject, observer } from 'mobx-react'
 const ProfileForm = ({UserStore}) => {
   const [profile, setProfile] = useState({
     email: "",
-    firstName: "",
-    lastName: "",
+    name: "",
     username: "",
     useUsername: false,
     twitter: "",
@@ -69,25 +68,13 @@ const ProfileForm = ({UserStore}) => {
           </div>
 
           <div className="field-group">
-            <label htmlFor="firstName" className="form-label">First Name</label>
+            <label htmlFor="name" className="form-label">Your Name</label>
             <input 
               type="text" 
-              name="firstName" 
+              name="name" 
               className="form-input" 
-              placeholder="First Name" 
-              value={profile.firstName}
-              onChange={e => inputHandler(e)}
-            />
-          </div>
-          
-          <div className="field-group">
-            <label htmlFor="lastName" className="form-label">Last Name</label>
-            <input 
-              type="text" 
-              name="lastName" 
-              className="form-input" 
-              placeholder="Last Name" 
-              value={profile.lastName}
+              placeholder="Your name" 
+              value={profile.name}
               onChange={e => inputHandler(e)}
             />
           </div>
@@ -98,24 +85,10 @@ const ProfileForm = ({UserStore}) => {
             <input 
               type="text" 
               className="form-input" 
-              placeholder="Username" 
+              placeholder="@Username" 
               value={profile.username}
               onChange={e => inputHandler(e)}
             />
-          </div>
-
-          <div className="field-group">
-            <div className="flex items-center">
-              <input 
-                type="checkbox" 
-                name="useUsername" 
-                id="useUsername" 
-                className="mr-3" 
-                checked={profile.useUsername}
-                onChange={e => setProfile({...profile, [e.target.name]: e.target.checked})}
-              />
-              <label htmlFor="useUsername" className="form-label" style={{marginBottom: '0'}}>Use username instead of full name?</label>
-            </div>
           </div>
 
           <div className="field-group ">

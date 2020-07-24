@@ -60,7 +60,7 @@ function DashHome({UserStore}) {
         <Sidebar>
           <div className="profile">
             <DashProfileInfo
-              profile={UserStore}
+              profile={UserStore.user}
             />
           </div>
         </Sidebar>

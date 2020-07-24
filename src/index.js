@@ -41,6 +41,9 @@ const App = () => {
               <Route exact path="/dashboard/project/:projectId/:action" component={ProjectController} />
               <Route exact path="/project/:projectId" component={Project} />
               <Route exact path="/profile/edit" component={Profile} />
+              <Route exact path="/callbacl" render={() => {
+                console.log('hey')
+              }} />
               <Route exact path="/signout" render={() => {
                 window.localStorage.removeItem('token')
                 window.sessionStorage.removeItem('token')

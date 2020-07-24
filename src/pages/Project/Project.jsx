@@ -44,16 +44,9 @@ const Project = ({UserStore}) => {
     }
   }
 
-  const likeHandler = () => {
+  const likeHandler = (approval) => {
     getApi({
-      url: `/projects/${projectId}/like`,
-      method: 'put'
-    })
-  }
-
-  const dislikeHandler = () => {
-    getApi({
-      url: `/projects/${projectId}/dislike`,
+      url: `/projects/${projectId}/${approval}`,
       method: 'put'
     })
   }
@@ -69,6 +62,7 @@ const Project = ({UserStore}) => {
       return <p className={`${ratio <= 30 ? "text-red-500" : (ratio >= 31 && ratio <= 49) ? "text-yellow-500" : "text-green-500"} font-bold`}>{ratio}%</p>
     }
   }
+
   
   return (
     <DisplayWrapper>
@@ -123,13 +117,13 @@ const Project = ({UserStore}) => {
                 <ThirdButton
                   text="Yes"
                   className="green mr-2 ml-2"
-                  onClick={likeHandler}
+                  onClick={() => likeHandler("like")}
                 />
 
                 <ThirdButton
                   text="No"
                   className="danger mr-2 ml-2"
-                  onClick={dislikeHandler}
+                  onClick={() => likeHandler("dislike")}
                 />
               </div>
             </InfoBlock>
@@ -138,10 +132,6 @@ const Project = ({UserStore}) => {
           <div className="flex flex-col mt-4">
             <div className="flex items-center">
               <H3>Comments</H3>
-              <span className="text-gray-500 text-sm" >
-                <i className="fas fa-circle text-xs ml-4 mr-4" style={{fontSize: '0.20rem'}}></i>
-                25 comments
-              </span>
             </div>
 
             <InfoBlock>

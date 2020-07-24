@@ -5,7 +5,7 @@ const ProfileMini = ({user}) => {
   return (
     <div className="flex items-center">
       <img src={user.avatar ? user.avatar : require('../../assets/avatar.png')} alt="User" className="avatar small mr-4"/>
-      <p className="font-medium">{user.firstName} {user.lastName}</p>
+      <p className="font-medium">{user.name}</p>
     </div>
   )
 }
