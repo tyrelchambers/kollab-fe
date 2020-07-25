@@ -2,14 +2,12 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { H3 } from '../Headings/Headings'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
-import { MainButton, SecondaryButton } from '../Buttons/Buttons'
+import { MainButton } from '../Buttons/Buttons'
 import { useState } from 'react'
 import getApi from '../../api/getApi'
 import { inject, observer } from 'mobx-react'
-import Axios from 'axios'
-import constants from '../../constants/index'
 
-const ProfileForm = ({UserStore}) => {
+const ProfileForm = ({UserStore, ModalStore}) => {
   const [profile, setProfile] = useState({
     email: "",
     name: "",
@@ -26,6 +24,7 @@ const ProfileForm = ({UserStore}) => {
     newPassword: "",
     confirmNewPassword: ""
   })
+
 
   const { handleSubmit } = useForm()
 
@@ -49,18 +48,6 @@ const ProfileForm = ({UserStore}) => {
 
   const accountHandler = e => {
     setAccount({ ...account, [e.target.name]: e.target.value })
-  }
-
-  const listReposHandler = () => {
-    Axios.get(`${constants.GITHUB_API}/user/repos`, {
-      headers: {
-        'Accept': 'application/vnd.github.v3+json',
-        'Authorization': `token ${UserStore.user.githubAccessToken}`
-      },
-      params: {
-        'affilitian': "owner"
-      }
-    })
   }
 
   return (
@@ -239,20 +226,9 @@ const ProfileForm = ({UserStore}) => {
             className="mt-4"
           />
         </InfoBlock>
-
-        <div className="mt-4">
-          <H3>Connected Github</H3>
-
-          <InfoBlock>
-            <SecondaryButton
-              text="List repositories"
-              onClick={listReposHandler}
-            />
-          </InfoBlock>
-        </div>
       </div>
     </div>
   )
 }
 
-export default inject("UserStore")(observer(ProfileForm))
+export default inject("UserStore", "ModalStore")(observer(ProfileForm))

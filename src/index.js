@@ -21,15 +21,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import Project from './pages/Project/Project';
 import ProjectController from './controllers/ProjectController/ProjectController';
 import Profile from './layouts/Profile/Profile';
-import Auth, { auth } from './libs/github';
+import ModalContainer from './layouts/ModalContainer/ModalContainer';
 
 const App = () => {
   return (
     <React.StrictMode>
+      {console.log(stores)}
       <Provider {...stores}>
         <AuthProvider>
           <Router>
             <ToastContainer/>
+            <ModalContainer />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" component={Signup} />
@@ -42,7 +44,6 @@ const App = () => {
               <Route exact path="/dashboard/project/:projectId/:action" component={ProjectController} />
               <Route exact path="/project/:projectId" component={Project} />
               <Route exact path="/profile/edit" component={Profile} />
-              <Route exact path="/callback/github" component={Auth} />
 
               <Route exact path="/signout" render={() => {
                 window.localStorage.removeItem('token')
