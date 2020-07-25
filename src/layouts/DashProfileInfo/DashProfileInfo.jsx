@@ -2,6 +2,8 @@ import React from 'react'
 import { H3 } from '../../components/Headings/Headings'
 import './DashProfileInfo.css'
 import { Link } from 'react-router-dom'
+import GithubAuth from '../../components/GithubAuth/GithubAuth'
+
 function DashProfileInfo({profile}) {
   return (
     <div className="dash-profile-info flex flex-col w-full">
@@ -67,6 +69,9 @@ function DashProfileInfo({profile}) {
           Edit Profile
         </Link>
       </div>
+      <hr/>
+
+      <GithubAuth />
     </div>
   )
 }

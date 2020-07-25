@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Project from './pages/Project/Project';
 import ProjectController from './controllers/ProjectController/ProjectController';
 import Profile from './layouts/Profile/Profile';
+import Auth, { auth } from './libs/github';
 
 const App = () => {
   return (
@@ -41,9 +42,8 @@ const App = () => {
               <Route exact path="/dashboard/project/:projectId/:action" component={ProjectController} />
               <Route exact path="/project/:projectId" component={Project} />
               <Route exact path="/profile/edit" component={Profile} />
-              <Route exact path="/callbacl" render={() => {
-                console.log('hey')
-              }} />
+              <Route exact path="/callback/github" component={Auth} />
+
               <Route exact path="/signout" render={() => {
                 window.localStorage.removeItem('token')
                 window.sessionStorage.removeItem('token')

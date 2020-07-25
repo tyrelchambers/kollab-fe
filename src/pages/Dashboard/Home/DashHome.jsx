@@ -63,6 +63,14 @@ function DashHome({UserStore}) {
               profile={UserStore.user}
             />
           </div>
+
+          <div className="mt-4">
+            <H3>Imported Github Repos</H3>
+
+            <InfoBlock>
+              
+            </InfoBlock>
+          </div>
         </Sidebar>
       </div>
     </DisplayWrapper>

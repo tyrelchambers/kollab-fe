@@ -7,6 +7,10 @@ class UserStore {
     this.user = user;
   }
 
+  addAccessToken(token) {
+    this.user = {...this.user, token}
+  }
+
   getUser() {
     return this.user;
   }
