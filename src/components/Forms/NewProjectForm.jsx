@@ -10,6 +10,7 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 import { H3 } from '../Headings/Headings';
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock';
 import ProjectPosition from '../ProjectPosition/ProjectPosition';
+import { concatElem } from '../../helpers/concatString';
 
 function NewProjectForm({
   autocomplete,
@@ -92,7 +93,7 @@ function NewProjectForm({
         collaborators: [...collaborators]
       }
     })
-    // history.push('/dashboard')
+    history.push('/dashboard')
 
   }
 
@@ -106,21 +107,33 @@ function NewProjectForm({
             <label htmlFor="title" className="form-label">Title - <span className="italic text-sm text-gray-500">Required</span></label>
             <input type="text" className="form-input" placeholder="Super Cool Project" name="title" value={state.title} onChange={e => inputHandler(e)} ref={
               register({
-                required: true
+                required: true,
+                maxLength: 100
               })
             } />
-            {errors.title && <FormError error="Title is required" />}
+            {(errors.title && errors.title.type === "required") && <FormError error="Title is required" />}
+            {(errors.title && errors.title.type === "maxLength") && <FormError error="Title is too long" />}
+
+          </div>
+          <div className="flex justify-end">
+            {concatElem(state.title, 100)}
           </div>
 
           <div className="field-group">
             <label htmlFor="headline" className="form-label">Headline - <span className="italic text-sm text-gray-500">Required</span></label>
             <input type="text" className="form-input" placeholder="The Elon Musk of projects" name="headline" value={state.headline} onChange={e => inputHandler(e)} ref={
               register({
-                required: true
+                required: true,
+                maxLength: 100
               })
             } />
-            {errors.headline && <FormError error="Headline is required" />}
+            {(errors.headline && errors.headline.type === "required") && <FormError error="Headline is required" />}
+            {(errors.headline && errors.headline.type === "maxLength") && <FormError error="Headline is too long" />}
 
+          </div>
+
+          <div className="flex justify-end">
+            {concatElem(state.headline, 100)}
           </div>
 
           <div className="field-group">
@@ -136,7 +149,7 @@ function NewProjectForm({
 
           </div>
           <div className="flex justify-end">
-            <p className="text-gray-500">{state.description.length}/500 <span className={`${state.description.length > 500 ? "text-red-500" : ""}`}>{state.description.length > 500 ? `+${state.description.length - 500}` : ""}</span></p>
+            {concatElem(state.description, 500)}
           </div>
 
           <div className="field-group">

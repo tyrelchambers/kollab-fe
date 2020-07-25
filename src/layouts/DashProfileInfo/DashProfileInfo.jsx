@@ -2,7 +2,7 @@ import React from 'react'
 import { H3 } from '../../components/Headings/Headings'
 import './DashProfileInfo.css'
 import { Link } from 'react-router-dom'
-import GithubAuth from '../../components/GithubAuth/GithubAuth'
+import StatusWrapper from '../../components/StatusWrapper/StatusWrapper'
 
 function DashProfileInfo({profile}) {
   return (
@@ -27,39 +27,44 @@ function DashProfileInfo({profile}) {
         </div>
       </div>
 
-      <div className="flex flex-col mt-6 ">
+      <div className="flex  mt-6 ">
         {profile.twitter &&
           <div className="flex items-center mb-2 mt-2 text-gray-700">
-            <i className="fab w-8 text-xl fa-twitter text-blue-500"></i>
-            {profile.twitter}
+            <a href={`https://twitter.com/@${profile.twitter}`}>
+              <i className="fab w-8 text-xl fa-twitter text-blue-500"></i>
+            </a>
           </div>
         }
 
         {profile.instagram &&
           <div className="flex items-center mb-2 mt-2 text-gray-700">
-            <i className="fab w-8 text-xl fa-instagram text-purple-600"></i>
-            {profile.instagram}
+            <a href={`https://instagram.com/@${profile.instagram}`}>
+              <i className="fab w-8 text-xl fa-instagram text-purple-600"></i>
+            </a>
           </div>
         }
 
         {profile.stackOverflow &&
           <div className="flex items-center mb-2 mt-2 text-gray-700">
-            <i className="fab w-8 text-xl fa-stack-overflow text-orange-500"></i>
-            {profile.stackOverflow} 
+            <a href={profile.stackOverflow}>
+              <i className="fab w-8 text-xl fa-stack-overflow text-orange-500"></i>
+            </a>
           </div>
         }
 
         {profile.github &&
           <div className="flex items-center mb-2 mt-2 text-gray-700">
-            <i className="fab w-8 text-xl fa-github text-gray-700"></i>
-            {profile.github}
+            <a href={profile.github}>
+              <i className="fab w-8 text-xl fa-github text-gray-700"></i>
+            </a>
           </div>
         }
 
         {profile.gitlab &&
           <div className="flex items-center mb-2 mt-2 text-gray-700">
-            <i className="fab w-8 text-xl fa-gitlab text-red-600"></i>
-            {profile.gitlab}
+            <a href={profile.gitlab}>
+              <i className="fab w-8 text-xl fa-gitlab text-red-600"></i>
+            </a>
           </div>
         }
       </div>
@@ -71,7 +76,11 @@ function DashProfileInfo({profile}) {
       </div>
       <hr/>
 
-      <GithubAuth />
+      <StatusWrapper
+        bool={profile.availableToHelp}
+        ifTrueText="Available to help!"
+        ifFalseText="Not available to help"
+      />
     </div>
   )
 }

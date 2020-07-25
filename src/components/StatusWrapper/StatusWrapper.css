@@ -1,4 +1,4 @@
-.github-authenticate {
+.status-wrapper {
   display: flex;
   align-items: center;
   background-color: var(--black);
@@ -7,11 +7,11 @@
   border-radius: var(--border-radius-sm);
 }
 
-.github-authenticate p {
+.status-wrapper p {
   color: var(--white);
   font-weight: 500;
 }
 
-.github-authenticate i {
+.status-wrapper i {
   margin-right: 1em;
 }

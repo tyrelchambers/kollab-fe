@@ -1,7 +1,7 @@
 import React from 'react'
 import { H2 } from '../Headings/Headings'
 import './ProjectWidget.css'
-import concatString from '../../helpers/concatString'
+import {concat} from '../../helpers/concatString'
 import { Link } from 'react-router-dom'
 
 function ProjectWidget({project}) {
@@ -18,7 +18,7 @@ function ProjectWidget({project}) {
               <Link to={`/project/${project.uuid}`}>{project.title}</Link>
             </H2>
             
-            <p className="text-sm text-blue-700 mt-1 mr-2 break-all">{concatString(project.description, 100)}</p>
+            <p className="text-sm text-blue-700 mt-1 mr-2 break-all">{concat(project.description, 100)}</p>
 
           </div>
 

@@ -17,7 +17,8 @@ const ProfileForm = ({UserStore, ModalStore}) => {
     stackOverflow: "",
     instagram: "",
     github: "",
-    gitlab: ""
+    gitlab: "",
+    availableToHelp: false
   });
   const [account, setAccount] = useState({
     password: "",
@@ -89,6 +90,7 @@ const ProfileForm = ({UserStore, ModalStore}) => {
               placeholder="@Username" 
               value={profile.username}
               onChange={e => inputHandler(e)}
+              name="username"
             />
           </div>
 
@@ -103,6 +105,7 @@ const ProfileForm = ({UserStore, ModalStore}) => {
                 placeholder="https://twitter.com/@someuser" 
                 value={profile.twitter}
                 onChange={e => inputHandler(e)}
+                name="twitter"
               />
             </div>
           </div>
@@ -117,6 +120,7 @@ const ProfileForm = ({UserStore, ModalStore}) => {
                 className="form-input" 
                 placeholder="https://stackoverflow.com/users/####/username" 
                 value={profile.stackOverflow}
+                name="stackOverflow"
                 onChange={e => inputHandler(e)}
               />
             </div>
@@ -133,6 +137,7 @@ const ProfileForm = ({UserStore, ModalStore}) => {
                 placeholder="https://instagram.com/@someuser" 
                 value={profile.instagram}
                 onChange={e => inputHandler(e)}
+                name="instagra,"
               />
             </div>
           </div>
@@ -167,6 +172,12 @@ const ProfileForm = ({UserStore, ModalStore}) => {
                 onChange={e => inputHandler(e)}
               />
             </div>
+          </div>
+
+          <div className="flex mt-8">
+            <input type="checkbox" name="availableToHelp" id="availableToHelp" className="mr-4" checked={profile.availableToHelp} onChange={e => setProfile({ ...profile, availableToHelp: e.target.checked })}/>
+
+            <label htmlFor="availableToHelp" className="form-label" >Available to help</label>
           </div>
 
           <MainButton
