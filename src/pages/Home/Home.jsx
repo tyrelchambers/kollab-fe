@@ -33,6 +33,7 @@ const profileSample = {
 
 function Home() {
   const [ projects, setProjects ] = useState([])
+  const [ users, setUsers ] = useState([])
 
   useEffect(() => {
     getApi({
@@ -42,6 +43,13 @@ function Home() {
         setProjects([...res])
       }
     })
+
+    getApi({
+      url: `/user/all`,
+      params: {
+        availableToHelp: true
+      }
+    }).then(res => setUsers([...res]))
   }, [])
 
   return (
@@ -67,20 +75,12 @@ function Home() {
             
             <InfoBlock>
               <div className="flex flex-col">
-                <div className="flex items-center m-2 p-1">
-                  <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                  <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                </div>
-
-                <div className="flex items-center m-2 p-1">
-                  <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                  <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                </div>
-
-                <div className="flex items-center m-2 p-1">
-                  <img src={profileSample.avatar} alt="" className="profile-avatar"/>
-                  <Link to="#" className="font-bold hover:underline">{profileSample.fullName}</Link>
-                </div>
+                {users.map(user => (
+                  <div className="flex items-center" key={user.uuid}>
+                    <img src={user.avatar} alt="" className="profile-avatar" />
+                    <Link to="#" className="font-bold hover:underline">{user.name}</Link>
+                  </div>
+                ))}
               </div>
             </InfoBlock>
 
@@ -88,7 +88,7 @@ function Home() {
 
             <InfoBlock>
               <div className="flex flex-col">
-                <div className="flex items-center m-2 p-1">
+                <div className="flex items-center">
                   <img src={project.thumbnail} alt="" className="profile-avatar"/>
                   <Link to="#" className="font-bold hover:underline">{project.title}</Link>
                 </div>

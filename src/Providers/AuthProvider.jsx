@@ -4,16 +4,6 @@ import { inject, observer } from 'mobx-react';
 
 const AuthContext = React.createContext();
 
-const getUserOnLoad = async () => {
-  return await getApi({
-    url:'/user/me'
-  }).then(res => {
-   if (res) {
-     return res
-   }
-  })
-}
-
 function AuthProvider({children, UserStore}) {
   const [state, setState] = useState({
     status: 'pending',
@@ -36,7 +26,13 @@ function AuthProvider({children, UserStore}) {
   useEffect(() => {
     const fn = async () => {
       if (token) {
-        const user = await getUserOnLoad()
+        const user = await getApi({
+          url: '/user/me'
+        }).then(res => {
+          if (res) {
+            return res
+          }
+        })
         
         UserStore.setUser(user)
       }

@@ -11,6 +11,7 @@ import { H3 } from '../Headings/Headings';
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock';
 import ProjectPosition from '../ProjectPosition/ProjectPosition';
 import { concatElem } from '../../helpers/concatString';
+import { inject, observer } from 'mobx-react';
 
 function NewProjectForm({
   autocomplete,
@@ -27,7 +28,8 @@ function NewProjectForm({
   positionState,
   setPositionState,
   addPositionHandler,
-  removePositionHandler
+  removePositionHandler,
+  UserStore
 }) {
 
 
@@ -93,7 +95,7 @@ function NewProjectForm({
         collaborators: [...collaborators]
       }
     })
-    history.push('/dashboard')
+    history.push(`/user/${UserStore.user.username}`)
 
   }
 
@@ -306,4 +308,4 @@ function NewProjectForm({
   )
 }
 
-export default NewProjectForm
+export default inject("UserStore")(observer(NewProjectForm))

@@ -4,7 +4,7 @@ import './DashProfileInfo.css'
 import { Link } from 'react-router-dom'
 import StatusWrapper from '../../components/StatusWrapper/StatusWrapper'
 
-function DashProfileInfo({profile}) {
+function DashProfileInfo({profile, owner}) {
   return (
     <div className="dash-profile-info flex flex-col w-full">
       <div className="flex">
@@ -69,11 +69,13 @@ function DashProfileInfo({profile}) {
         }
       </div>
 
-      <div className="mt-4 flex justify-center w-full">
-        <Link to="/profile/edit" className="btn primary text-center">
-          Edit Profile
-        </Link>
-      </div>
+      {owner &&
+        <div className="mt-4 flex justify-center w-full">
+          <Link to="/profile/edit" className="btn primary text-center">
+            Edit Profile
+          </Link>
+        </div>
+      }
       <hr/>
 
       <StatusWrapper

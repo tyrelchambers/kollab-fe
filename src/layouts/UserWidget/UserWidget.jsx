@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './UserWidget.css'
 import { Link } from 'react-router-dom'
+import { inject, observer } from 'mobx-react'
 
-function UserWidget() {  
+function UserWidget({UserStore}) {  
   const [ isOpen, setIsOpen ] = useState(false)
 
   useEffect(() => {
@@ -26,11 +27,11 @@ function UserWidget() {
       </div>
 
       <div className={`dropdown-menu  ${isOpen ? "visible" : ""}`}>
-        <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
+        <Link to={`/user/${UserStore.user.username}`} className="dropdown-item">Dashboard</Link>
         <details className="sub-list">
           <summary><i className="fas fa-long-arrow-alt-right mr-2"></i> Projects</summary>
           <div className="details-list">
-            <Link to="/dashboard/project/new" className="dropdown-item">Create New</Link>
+            <Link to={`/user/${UserStore.user.username}/project/new`} className="dropdown-item">Create New</Link>
           </div>
         </details>
         <Link to="/profile/edit" className="dropdown-item">Profile</Link>
@@ -40,4 +41,4 @@ function UserWidget() {
   )
 }
 
-export default UserWidget
+export default inject("UserStore")(observer(UserWidget))

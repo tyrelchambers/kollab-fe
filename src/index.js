@@ -26,7 +26,6 @@ import ModalContainer from './layouts/ModalContainer/ModalContainer';
 const App = () => {
   return (
     <React.StrictMode>
-      {console.log(stores)}
       <Provider {...stores}>
         <AuthProvider>
           <Router>
@@ -39,9 +38,9 @@ const App = () => {
               <Route exact path="/setup/basics" component={Basic}/>
               <Route exact path="/setup/socials" component={Social} />
               <Route exact path="/setup/complete" component={Complete} />
-              <Route exact path="/dashboard" component={DashHome} />
-              <Route exact path="/dashboard/project/:action" component={ProjectController} />
-              <Route exact path="/dashboard/project/:projectId/:action" component={ProjectController} />
+              <Route exact path="/user/:username" component={DashHome} />
+              <Route exact path="/user/:username/project/:action" component={ProjectController} />
+              <Route exact path="/user/:username/project/:projectId/:action" component={ProjectController} />
               <Route exact path="/project/:projectId" component={Project} />
               <Route exact path="/profile/edit" component={Profile} />
 

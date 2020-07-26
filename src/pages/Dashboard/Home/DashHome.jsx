@@ -9,18 +9,29 @@ import getApi from '../../../api/getApi'
 import DisplayWrapper from '../../../layouts/DisplayWrapper/DisplayWrapper'
 import { inject, observer } from 'mobx-react'
 import InfoBlock from '../../../layouts/InfoBlock/InfoBlock'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function DashHome({UserStore}) { 
   const [myProjects, setMyProjects] = useState([])
+  const [user, setUser] = useState({})
+  const { username } = useParams();
+  const owner = (username === UserStore.user.username)
 
   useEffect(() => {
     const fn = async () => {
-      await getApi({
+      getApi({
         url: '/user/projects'
       }).then(res => {
         if (res) {
           setMyProjects([...res])
+        }
+      })
+
+      await getApi({
+        url: `/user/username/${username}`
+      }).then(res => {
+        if (res) {
+          setUser(res)
         }
       })
     }
@@ -33,17 +44,17 @@ function DashHome({UserStore}) {
 
       <div className="flex">
         <MainCol>
-          <H3 className="mb-4">Your Projects</H3>
+          <H3 className="mb-4">{owner ? "Your Projects" : "Their Projects"}</H3>
           {myProjects.length > 0 && myProjects.map((project, id) => (
             <ProjectWidget project={project} key={id}/>
           ))}
 
-          {myProjects.length === 0 && 
+          {(myProjects.length === 0 && owner) && 
             <InfoBlock>
               <div className="flex h-10 items-center w-full">
                 <p className="mr-6 font-bold">Created or add your first project!</p>
                 <div className="max-w-md">
-                  <Link to="/dashboard/project/new" className="btn secondary">
+                  <Link to={`/user/${UserStore.user.username}/project/new`} className="btn secondary">
                     Create
                   </Link>
                 </div>
@@ -60,7 +71,8 @@ function DashHome({UserStore}) {
         <Sidebar>
           <div className="profile">
             <DashProfileInfo
-              profile={UserStore.user}
+              profile={user}
+              owner={owner}
             />
           </div>
         </Sidebar>
