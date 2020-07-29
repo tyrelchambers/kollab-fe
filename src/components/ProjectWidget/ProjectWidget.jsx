@@ -30,14 +30,14 @@ function ProjectWidget({project}) {
 
             <div className="flex items-center">
               <i className="fas fa-comment-alt mr-2 text-gray-700 text-sm"></i>
-              <p className="text-gray-600">25</p>
+              <p className="text-gray-600">{project.Comments.length}</p>
             </div>
           </div>
         </div>
 
         <div className="flex items-center">
-          {project.isAccepting &&
-            <i className="fas fa-handshake text-2xl mr-8 text-gray-700"></i>
+          {project.openPositions &&
+            <i className="fas fa-handshake text-2xl mr-2 ml-2 text-gray-700"></i>
           }
 
           <div className="flex flex-col items-center" style={{width:'50px'}}>

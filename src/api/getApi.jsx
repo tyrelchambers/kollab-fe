@@ -29,7 +29,7 @@ const getApi = async ({
      }
    })
    .catch(err => {
-     toast.error(err.response.data.error)
+     toast.error(err)
      return false;
    })
  }

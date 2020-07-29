@@ -10,6 +10,7 @@ import Autocomplete from '../Autocomplete/Autocomplete'
 import { H3 } from '../Headings/Headings'
 import ProjectPosition from '../ProjectPosition/ProjectPosition'
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
+import { inject, observer } from 'mobx-react'
 
 const EditProjectForm = ({
   autocomplete,
@@ -30,7 +31,8 @@ const EditProjectForm = ({
   positionState,
   setPositionState,
   addPositionHandler,
-  removePositionHandler
+  removePositionHandler,
+  UserStore
 }) => {
   const history = useHistory();
   const { projectId } = useParams()
@@ -87,18 +89,14 @@ const EditProjectForm = ({
 
   const submitHandler = async e => {
     const payload = {
-      ...state,
-      collaborators: [...collaborators]
+      ...state
     }
+    console.log(state)
     
     await getApi({
       url: `/projects/${state.uuid}/edit`,
       method: 'put',
       data: payload
-    }).then(res => {
-      if( res ) {
-        
-      }
     })
 
     getApi({
@@ -128,7 +126,7 @@ const EditProjectForm = ({
       }
     })
 
-            //history.push('/dashboard')
+    history.push(`/user/${UserStore.user.username}`)
 
   }
   
@@ -235,6 +233,14 @@ const EditProjectForm = ({
           <InfoBlock>
             <H3 className="mb-4">Open Positions</H3>
 
+
+            <div className="field-group">
+              <div className="flex items-center">
+                <input type="checkbox" name="openPositions" id="openPositionsCheck" className="mr-4" checked={state.openPositions} onChange={e => setState({...state, openPositions: e.target.checked})}/>
+                <label htmlFor="openPositions" className="form-label no-margin">Looking for help?</label>
+              </div>
+            </div>
+
             <div className="field-group">
               <label htmlFor="positionTitle" className="form-label">Position title</label>
               <input
@@ -328,4 +334,4 @@ const EditProjectForm = ({
   )
 }
 
-export default EditProjectForm
+export default inject("UserStore")(observer(EditProjectForm))

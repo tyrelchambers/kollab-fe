@@ -40,7 +40,7 @@ const ProfileForm = ({UserStore, ModalStore}) => {
       data: profile
     })
 
-    window.location.pathname = "/dashboard"
+    window.location.pathname = `/user/${UserStore.user.username}`
   }
 
   const inputHandler = e => {
@@ -137,7 +137,7 @@ const ProfileForm = ({UserStore, ModalStore}) => {
                 placeholder="https://instagram.com/@someuser" 
                 value={profile.instagram}
                 onChange={e => inputHandler(e)}
-                name="instagra,"
+                name="instagram"
               />
             </div>
           </div>

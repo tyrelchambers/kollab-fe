@@ -4,6 +4,7 @@ import { ThirdButton, SecondaryButton, NoStyleButton } from '../Buttons/Buttons'
 import getApi from '../../api/getApi'
 import isEmpty from '../../helpers/objIsEmpty'
 import { inject, observer } from 'mobx-react'
+import { Link } from 'react-router-dom'
 
 const Comment = ({comment, isReply, parent, setStatus, UserStore}) => {
   const [state, setState] = useState({
@@ -97,7 +98,7 @@ const Comment = ({comment, isReply, parent, setStatus, UserStore}) => {
     <div className={`comment flex ${reply ? "reply" : "parent"}`}>
       <img src={avatar ? avatar : require('../../assets/avatar.png')} alt="" className="avatar small mr-4"/>
       <div className="flex flex-col w-full">
-        <p className="font-bold mb-4">{comment.User.firstName} {comment.User.lastName}</p>
+        <Link to={`/user/${comment.User.username}`} className="font-bold mb-4">{comment.User.name}</Link>
         <p className="commentBody">{comment.comment}</p>
         <hr/>
         <div className="flex">

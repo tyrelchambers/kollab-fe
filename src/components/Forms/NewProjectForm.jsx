@@ -10,7 +10,6 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 import { H3 } from '../Headings/Headings';
 import InfoBlock from '../../layouts/InfoBlock/InfoBlock';
 import ProjectPosition from '../ProjectPosition/ProjectPosition';
-import { concatElem } from '../../helpers/concatString';
 import { inject, observer } from 'mobx-react';
 
 function NewProjectForm({
@@ -29,7 +28,8 @@ function NewProjectForm({
   setPositionState,
   addPositionHandler,
   removePositionHandler,
-  UserStore
+  UserStore,
+  setState
 }) {
 
 
@@ -109,33 +109,21 @@ function NewProjectForm({
             <label htmlFor="title" className="form-label">Title - <span className="italic text-sm text-gray-500">Required</span></label>
             <input type="text" className="form-input" placeholder="Super Cool Project" name="title" value={state.title} onChange={e => inputHandler(e)} ref={
               register({
-                required: true,
-                maxLength: 100
+                required: true
               })
             } />
-            {(errors.title && errors.title.type === "required") && <FormError error="Title is required" />}
-            {(errors.title && errors.title.type === "maxLength") && <FormError error="Title is too long" />}
-
-          </div>
-          <div className="flex justify-end">
-            {concatElem(state.title, 100)}
+            {errors.title && <FormError error="Title is required" />}
           </div>
 
           <div className="field-group">
             <label htmlFor="headline" className="form-label">Headline - <span className="italic text-sm text-gray-500">Required</span></label>
             <input type="text" className="form-input" placeholder="The Elon Musk of projects" name="headline" value={state.headline} onChange={e => inputHandler(e)} ref={
               register({
-                required: true,
-                maxLength: 100
+                required: true
               })
             } />
-            {(errors.headline && errors.headline.type === "required") && <FormError error="Headline is required" />}
-            {(errors.headline && errors.headline.type === "maxLength") && <FormError error="Headline is too long" />}
+            {errors.headline && <FormError error="Headline is required" />}
 
-          </div>
-
-          <div className="flex justify-end">
-            {concatElem(state.headline, 100)}
           </div>
 
           <div className="field-group">
@@ -151,7 +139,7 @@ function NewProjectForm({
 
           </div>
           <div className="flex justify-end">
-            {concatElem(state.description, 500)}
+            <p className="text-gray-500">{state.description.length}/500 <span className={`${state.description.length > 500 ? "text-red-500" : ""}`}>{state.description.length > 500 ? `+${state.description.length - 500}` : ""}</span></p>
           </div>
 
           <div className="field-group">
@@ -213,6 +201,14 @@ function NewProjectForm({
         <div className="flex w-1/2 flex-col">
           <InfoBlock>
             <H3 className="mb-4">Open Positions</H3>
+
+
+            <div className="field-group">
+              <div className="flex items-center">
+                <input type="checkbox" name="openPositions" id="openPositionsCheck" className="mr-4" checked={state.openPositions} onChange={e => setState({ ...state, openPositions: e.target.checked })} />
+                <label htmlFor="openPositions" className="form-label no-margin">Looking for help?</label>
+              </div>
+            </div>
 
             <div className="field-group">
               <label htmlFor="positionTitle" className="form-label">Position title</label>
@@ -289,7 +285,7 @@ function NewProjectForm({
             {collaborators.length > 0 &&
               <div className="mt-8">
                 {collaborators.map((person, id) => (
-                  <SmallCard key={id} text={person.email} removeItem={e => removeContributorHandler(id)} />
+                  <SmallCard key={id} text={person.email} removeItem={e => removeContributorHandler(person, id)} />
                 ))}
               </div>
             }
@@ -303,7 +299,7 @@ function NewProjectForm({
           type="submit"
         />
       </div>
-      </form>
+    </form>
 
   )
 }

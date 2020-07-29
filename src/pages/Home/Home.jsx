@@ -9,6 +9,8 @@ import InfoBlock from '../../layouts/InfoBlock/InfoBlock'
 import { Link } from 'react-router-dom'
 import getApi from '../../api/getApi'
 import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
+import groupByDay from '../../helpers/groupByDay'
+import { isToday, parseISO } from 'date-fns'
 
 const project = {
   thumbnail: 'https://images.unsplash.com/photo-1593291619462-e4240344ea21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80',
@@ -34,13 +36,14 @@ const profileSample = {
 function Home() {
   const [ projects, setProjects ] = useState([])
   const [ users, setUsers ] = useState([])
+  const [featuredProject, setFeaturedProject] = useState({})
 
   useEffect(() => {
     getApi({
       url: '/projects/all'
     }).then(res => {
       if (res) {
-        setProjects([...res])
+        setProjects(groupByDay(res))
       }
     })
 
@@ -50,14 +53,18 @@ function Home() {
         availableToHelp: true
       }
     }).then(res => setUsers([...res]))
+
+    getApi({
+      url:'/featured'
+    }).then(res => setFeaturedProject({...res.Project}))
   }, [])
 
   return (
     <DisplayWrapper>
       <section>
-        <H3>Project of the Week</H3>
+        <H3>Project of the Day</H3>
         <Featured
-          project={project}
+          project={featuredProject}
         />
       </section>
 
@@ -65,9 +72,18 @@ function Home() {
 
         <div className="flex">
           <MainCol>
-            <H3 className="mb-4">Today</H3>
             <div className="flex flex-col w-full">
-              {projects.map((project, id) => <ProjectWidget key={id} project={project}/>)}
+              {projects.length > 0 && projects.map((project, id) => {
+                return (
+                  <React.Fragment key={project.uuid}>
+                    <H3 className="mb-4">{isToday(parseISO(project.fullDate)) ? "Today" : project.date}</H3>
+                    
+                    {project.projects.map(proj => (
+                      <ProjectWidget project={proj} key={proj.uuid} />
+                    ))}
+                  </React.Fragment>
+                )
+              })}
             </div>
           </MainCol>
           <Sidebar>
@@ -75,12 +91,16 @@ function Home() {
             
             <InfoBlock>
               <div className="flex flex-col">
-                {users.map(user => (
+                {users.length > 0 && users.map(user => (
                   <div className="flex items-center" key={user.uuid}>
                     <img src={user.avatar} alt="" className="profile-avatar" />
                     <Link to="#" className="font-bold hover:underline">{user.name}</Link>
                   </div>
                 ))}
+
+                {users.length === 0 &&
+                  <p>No collaborators available, yet!</p>
+                }
               </div>
             </InfoBlock>
 

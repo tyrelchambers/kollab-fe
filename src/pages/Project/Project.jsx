@@ -38,7 +38,7 @@ const Project = ({UserStore}) => {
       }).then(res => {
         if (res) {
           
-          history.push('/dashboard')
+          history.push(`/user/${UserStore.user.username}`)
         }
       })
     }
@@ -76,7 +76,7 @@ const Project = ({UserStore}) => {
           <p className="mt-2">{project.headline}</p>
           {(UserStore.user && project.userId === UserStore.user.uuid) && 
             <div className="flex items-center mt-6">
-              <Link to={`/dashboard/project/${project.uuid}/edit`} className="btn-third btn green text-center mr-4">Edit project</Link>
+              <Link to={`/user/${UserStore.user.username}/project/${project.uuid}/edit`} className="btn-third btn green text-center mr-4">Edit project</Link>
               <ThirdButton
                 text="Delete Project"
                 className="danger"

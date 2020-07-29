@@ -14,7 +14,8 @@ import getApi from '../../api/getApi'
    supportingImgs: [],
    topics: "",
    collaborators: "",
-   projectLinks: ""
+   projectLinks: "",
+   openPositions: false
  }
 
  const initialPositionState = {
@@ -32,7 +33,8 @@ const ProjectController = () => {
     supportingImgs: [],
     topics: "",
     collaborators: "",
-    projectLinks: ""
+    projectLinks: "",
+    openPositions: false
   })
   const [ projectLinks, setProjectLinks ] = useState([])
   const [ collaborators, setCollaborators ] = useState([])

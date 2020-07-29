@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { H1, H3 } from '../../../components/Headings/Headings'
+import { H1, H3, H2 } from '../../../components/Headings/Headings'
 import ProjectWidget from '../../../components/ProjectWidget/ProjectWidget'
 import './DashHome.css'
 import DashProfileInfo from '../../../layouts/DashProfileInfo/DashProfileInfo'
@@ -10,6 +10,8 @@ import DisplayWrapper from '../../../layouts/DisplayWrapper/DisplayWrapper'
 import { inject, observer } from 'mobx-react'
 import InfoBlock from '../../../layouts/InfoBlock/InfoBlock'
 import { Link, useParams } from 'react-router-dom'
+import { isToday, parseISO } from 'date-fns'
+import groupByDay from '../../../helpers/groupByDay'
 
 function DashHome({UserStore}) { 
   const [myProjects, setMyProjects] = useState([])
@@ -23,7 +25,7 @@ function DashHome({UserStore}) {
         url: '/user/projects'
       }).then(res => {
         if (res) {
-          setMyProjects([...res])
+          setMyProjects(groupByDay(res))
         }
       })
 
@@ -44,10 +46,17 @@ function DashHome({UserStore}) {
 
       <div className="flex">
         <MainCol>
-          <H3 className="mb-4">{owner ? "Your Projects" : "Their Projects"}</H3>
-          {myProjects.length > 0 && myProjects.map((project, id) => (
-            <ProjectWidget project={project} key={id}/>
-          ))}
+          {myProjects.length > 0 && myProjects.map((project, id) => {
+            return (
+              <React.Fragment key={id}>
+                <H3 className="mb-4">{isToday(parseISO(project.fullDate)) ? "Today" : project.date}</H3>
+
+                {project.projects.map(proj => (
+                  <ProjectWidget project={proj} key={proj.uuid} />
+                ))}
+              </React.Fragment>
+            )
+          })}
 
           {(myProjects.length === 0 && owner) && 
             <InfoBlock>
