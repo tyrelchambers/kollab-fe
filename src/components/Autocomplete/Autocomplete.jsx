@@ -1,14 +1,19 @@
 import React from 'react'
 import './Autocomplete.css'
+import { inject, observer } from 'mobx-react'
+import { Link } from 'react-router-dom'
 
-const Autocomplete = ({list, clickHandler}) => {
+const Autocomplete = ({AutocompleteStore}) => {
   return (
-    <div className="autocomplete-wrapper">
-      {list.map(item => (
-        <p key={item.uuid} className="autocomplete-item" onClick={(e) => clickHandler(e, item)}>{item.email}</p>
+    <div className="autocomplete-wrapper shadow-lg">
+      {AutocompleteStore.list.map(item => (
+        <div className="flex autocomplete-item items-center" key={item.uuid} >
+          <img src={item.thumbnailUrl} className="avatar-xs mr-4"/>
+          <Link to={`/project/${item.uuid}`}>{item.title}</Link>
+        </div>
       ))}
     </div>
   )
 }
 
-export default Autocomplete
+export default inject("AutocompleteStore")(observer(Autocomplete))
