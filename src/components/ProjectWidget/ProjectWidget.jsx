@@ -25,7 +25,7 @@ function ProjectWidget({project}) {
           <div className="flex items-center">
             <div className="flex items-center mr-4">
               <i className="fas fa-user-astronaut mr-2 text-gray-700 text-sm"></i>
-              <p className="text-gray-600">25</p>
+              <p className="text-gray-600">{project.collaborators.length}</p>
             </div>
 
             <div className="flex items-center">

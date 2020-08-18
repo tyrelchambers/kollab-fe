@@ -10,20 +10,10 @@ function DashProfileInfo({profile, owner}) {
       <div className="flex">
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" className="profile-avatar"/>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center">
           <H3>{profile.name}</H3>
 
-          <div className="flex mt-2">
-            <span className="mr-2 flex">
-              <p className="mr-1 font-bold">20</p>
-              <p>followers</p>
-            </span>
 
-            <span className="flex">
-              <p className="mr-1 font-bold">25</p>
-              <p>following</p>
-            </span>
-          </div>
         </div>
       </div>
 

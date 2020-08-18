@@ -76,7 +76,7 @@ const ProjectController = () => {
   const addContributorHandler = (e, user) => {
     e.preventDefault()
     if (!state.collaborators) return false;
-
+console.log(user)
     setCollaborators([...collaborators, user || state.collaborators])
     setState({...state, collaborators: ""})
     setAutocomplete([])

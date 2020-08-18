@@ -308,11 +308,14 @@ const EditProjectForm = ({
               </div>
             </div>
             <div className=" mb-2">
-              <Autocomplete
-                list={autocomplete}
-                clickHandler={(e, user) => addContributorHandler(e, user)}
-              />
+              {autocomplete.length > 0 && autocomplete.map(user => (
+                <div className="flex items-center p-4 bg-gray-100 mt-4 mb-4" onClick={(e) => addContributorHandler(e, user)}>
+                  <i className="fas fa-user-circle mr-4 text-xl"></i>
+                  <p key={user.uuid} className="cursor-pointer hover:underline" >{user.email}</p>
+                </div>
+              ))}
             </div>
+
             {collaborators.length > 0 &&
               <div className="mt-8">
                 {collaborators.map((person, id) => (

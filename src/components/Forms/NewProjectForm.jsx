@@ -47,7 +47,9 @@ function NewProjectForm({
       getApi({
         url: `/user/${state.collaborators}`,
       }).then(res => {
-        setAutocomplete([...res])
+        if (res) {
+          setAutocomplete([...res])
+        }
       })
     }
   }, [state.collaborators])

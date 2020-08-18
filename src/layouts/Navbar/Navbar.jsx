@@ -9,7 +9,7 @@ function Navbar() {
   const {isAuthenticated} = useAuthState();
 
   return (
-    <nav>
+    <nav className="ml-4 mr-4">
       <ul className="flex items-center">
         <li>
           <Link to="/" className="nav-item" >Home</Link> 
@@ -17,14 +17,6 @@ function Navbar() {
 
         <li>
           <Link to="#" className="nav-item">Explore</Link>
-        </li>
-
-        <li>
-          <Link to="#" className="nav-item" >Open Source</Link> 
-        </li>
-
-        <li>
-          <Link to="#" className="nav-item" >Launch</Link> 
         </li>
 
         {isAuthenticated &&
