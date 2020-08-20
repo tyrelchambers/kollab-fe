@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import NewProjectForm from '../../components/Forms/NewProjectForm'
-import EditProjectForm from '../../components/Forms/EditProjectForm.jsx'
-import { useParams } from 'react-router'
-import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
-import { H1 } from '../../components/Headings/Headings'
-import getApi from '../../api/getApi'
+import React, { useState, useEffect } from "react";
+import NewProjectForm from "../../components/Forms/NewProjectForm";
+import EditProjectForm from "../../components/Forms/EditProjectForm.jsx";
+import { useParams } from "react-router";
+import DisplayWrapper from "../../layouts/DisplayWrapper/DisplayWrapper";
+import { H1 } from "../../components/Headings/Headings";
+import getApi from "../../api/getApi";
 
- const initialState = {
-   title: "",
-   headline: "",
-   description: "",
-   thumbnail: "",
-   supportingImgs: [],
-   topics: "",
-   collaborators: "",
-   projectLinks: "",
-   openPositions: false
- }
+const initialState = {
+  title: "",
+  headline: "",
+  description: "",
+  thumbnail: "",
+  supportingImgs: [],
+  topics: "",
+  collaborators: "",
+  projectLinks: "",
+  openPositions: false,
+};
 
- const initialPositionState = {
-   title: "",
-   description: "",
-   experience: ''
- }
+const initialPositionState = {
+  title: "",
+  description: "",
+  experience: "",
+};
 
 const ProjectController = () => {
-  const [ state, setState ] = useState({
+  const [state, setState] = useState({
     title: "",
     headline: "",
     description: "",
@@ -34,116 +34,112 @@ const ProjectController = () => {
     topics: "",
     collaborators: "",
     projectLinks: "",
-    openPositions: false
-  })
-  const [ projectLinks, setProjectLinks ] = useState([])
-  const [ collaborators, setCollaborators ] = useState([])
-  const [ autocomplete, setAutocomplete] = useState([])
-  const [ positions, setPositions ] = useState([])
+    openPositions: false,
+  });
+  const [projectLinks, setProjectLinks] = useState([]);
+  const [collaborators, setCollaborators] = useState([]);
+  const [autocomplete, setAutocomplete] = useState([]);
+  const [positions, setPositions] = useState([]);
   const [positionState, setPositionState] = useState({
     title: "",
     description: "",
-    experience: ''
-  })
+    experience: "",
+  });
 
-  const { action, projectId } = useParams()
+  const { action, projectId } = useParams();
 
   useEffect(() => {
-    resetState()
-  }, [action])
+    resetState();
+  }, [action]);
 
   const resetState = () => {
-    setState(initialState)
-    setPositionState(initialPositionState)
-    setProjectLinks([])
-    setCollaborators([])
-    setPositions([])
-  }
+    setState(initialState);
+    setPositionState(initialPositionState);
+    setProjectLinks([]);
+    setCollaborators([]);
+    setPositions([]);
+  };
 
   const inputHandler = (e) => {
-    setState({...state, [e.target.name]: e.target.value})
-  }
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
   const addProjectLink = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!state.projectLinks) return false;
 
-    setProjectLinks([...projectLinks, {link: state.projectLinks}])
-    setState({...state, projectLinks: ""})
-
-  }
+    setProjectLinks([...projectLinks, { link: state.projectLinks }]);
+    setState({ ...state, projectLinks: "" });
+  };
 
   const addContributorHandler = (e, user) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!state.collaborators) return false;
-console.log(user)
-    setCollaborators([...collaborators, user || state.collaborators])
-    setState({...state, collaborators: ""})
-    setAutocomplete([])
-  }
+    setCollaborators([...collaborators, user || state.collaborators]);
+    setState({ ...state, collaborators: "" });
+    setAutocomplete([]);
+  };
 
   const removeItemHandler = (link, id) => {
-    const clone = projectLinks
-    clone.splice(id, 1)
+    const clone = projectLinks;
+    clone.splice(id, 1);
 
-    setProjectLinks([...clone])
+    setProjectLinks([...clone]);
 
     getApi({
       url: `/projectLinks/${link.uuid}`,
-      method: 'delete'
-    }).then(res => {
+      method: "delete",
+    }).then((res) => {
       if (res) {
-        
       }
-    })
-  }
+    });
+  };
 
   const removeContributorHandler = (user, id) => {
-    const clone = collaborators
-    clone.splice(id, 1)
+    const clone = collaborators;
+    clone.splice(id, 1);
 
-    setCollaborators([...clone])
+    setCollaborators([...clone]);
 
     if (user.uuid) {
       getApi({
-        url: '/collaborators/',
-        method: 'delete',
+        url: "/collaborators/",
+        method: "delete",
         params: {
           projectId,
-          userId: user.uuid
-        }
-      })
+          userId: user.uuid,
+        },
+      });
     }
-  }
+  };
 
   const addPositionHandler = () => {
-    const newPos = positionState
+    const newPos = positionState;
 
-    setPositions([...positions, newPos])
+    setPositions([...positions, newPos]);
     setPositionState({
       title: "",
       description: "",
-      experience: ""
-    })
-  }
+      experience: "",
+    });
+  };
 
   const removePositionHandler = (pos, id) => {
-    const clone = positions
-    clone.splice(id, 1)
+    const clone = positions;
+    clone.splice(id, 1);
 
-    setPositions([...clone])
+    setPositions([...clone]);
 
-    if(pos.uuid) {
+    if (pos.uuid) {
       getApi({
         url: `/projectRoles/${pos.uuid}`,
-        method: 'delete'
-      }).then(res => {
+        method: "delete",
+      }).then((res) => {
         if (res) {
-          
         }
-      })
+      });
     }
-  }
+  };
 
   const props = {
     autocomplete,
@@ -164,28 +160,28 @@ console.log(user)
     positionState,
     setPositionState,
     addPositionHandler,
-    removePositionHandler
-  }
+    removePositionHandler,
+  };
 
   return (
     <DisplayWrapper>
       <div className="flex flex-col items-center">
-        {action === "new" && 
+        {action === "new" && (
           <>
             <H1>Create Project</H1>
             <NewProjectForm {...props} />
           </>
-        }
+        )}
 
-        {action === "edit" &&  
+        {action === "edit" && (
           <>
             <H1>Edit Project</H1>
             <EditProjectForm {...props} />
           </>
-        }
+        )}
       </div>
     </DisplayWrapper>
   );
-}
+};
 
-export default ProjectController
+export default ProjectController;
