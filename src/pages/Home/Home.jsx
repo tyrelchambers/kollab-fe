@@ -11,6 +11,7 @@ import getApi from "../../api/getApi";
 import DisplayWrapper from "../../layouts/DisplayWrapper/DisplayWrapper";
 import groupByDay from "../../helpers/groupByDay";
 import { isToday, parseISO } from "date-fns";
+import InfiniteScroll from "react-infinite-scroller";
 
 const project = {
   thumbnail:
@@ -21,15 +22,11 @@ function Home() {
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [featuredProject, setFeaturedProject] = useState({});
+  const [hasNextPage, setHasNextPage] = useState(false);
+  const [limit, setLimit] = useState(25);
 
   useEffect(() => {
-    getApi({
-      url: "/projects/all",
-    }).then((res) => {
-      if (res) {
-        setProjects(groupByDay(res));
-      }
-    });
+    getAllProjects();
 
     getApi({
       url: `/user/all`,
@@ -43,6 +40,17 @@ function Home() {
     }).then((res) => setFeaturedProject({ ...res.Project }));
   }, []);
 
+  const getAllProjects = () => {
+    getApi({
+      url: `/projects/all?limit=${limit}`,
+    }).then((res) => {
+      if (res) {
+        setProjects(groupByDay(res.projects));
+        setLimit(res.limit);
+        setHasNextPage(res.hasNextPage);
+      }
+    });
+  };
   return (
     <DisplayWrapper>
       <section>
@@ -54,21 +62,13 @@ function Home() {
         <div className="flex">
           <MainCol>
             <div className="flex flex-col w-full">
-              {/* <InfiniteScroll
-                dataLength={projects.length} //This is important field to render the next data
-                //next={fetchData}
-                hasMore={true}
+              <InfiniteScroll
+                pageStart={0} //This is important field to render the next data
+                loadMore={getAllProjects}
+                hasMore={hasNextPage}
                 loader={<h4>Loading...</h4>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                  </p>
-                }
               >
-                {items}
-              </InfiniteScroll> */}
-              {projects.length > 0 &&
-                projects.map((project, id) => {
+                {projects.map((project, id) => {
                   return (
                     <React.Fragment key={project.uuid}>
                       <H3 className="mb-4">
@@ -83,6 +83,7 @@ function Home() {
                     </React.Fragment>
                   );
                 })}
+              </InfiniteScroll>
             </div>
           </MainCol>
           <Sidebar>
