@@ -1,14 +1,14 @@
-import React from 'react'
-import { H2 } from '../Headings/Headings'
-import './ProjectWidget.css'
-import {concat} from '../../helpers/concatString'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { H2 } from "../Headings/Headings";
+import "./ProjectWidget.css";
+import { concat } from "../../helpers/concatString";
+import { Link } from "react-router-dom";
 
-function ProjectWidget({project}) {
+function ProjectWidget({ project }) {
   return (
     <div className="flex widget-wrapper">
       <div className="widget-thumbnail-wrapper ">
-        <img src={project.thumbnailUrl} alt="" className="widget-thumbnail"/>
+        <img src={project.thumbnailUrl} alt="" className="widget-thumbnail" />
       </div>
 
       <div className="widget-body flex flex-1 justify-between ">
@@ -17,9 +17,10 @@ function ProjectWidget({project}) {
             <H2>
               <Link to={`/project/${project.uuid}`}>{project.title}</Link>
             </H2>
-            
-            <p className="text-sm text-blue-700 mt-1 mr-2 break-all">{concat(project.description, 100)}</p>
 
+            <p className="text-sm text-blue-700 mt-1 mr-2 break-all">
+              {concat(project.description, 100)}
+            </p>
           </div>
 
           <div className="flex items-center">
@@ -32,22 +33,24 @@ function ProjectWidget({project}) {
               <i className="fas fa-comment-alt mr-2 text-gray-700 text-sm"></i>
               <p className="text-gray-600">{project.Comments.length}</p>
             </div>
+
+            {project.openPositions && (
+              <p className="pl-2 pr-2 pt-1 pb-1 rounded-full bg-green-500 text-white font-bold text-xs ml-4">
+                Help wanted
+              </p>
+            )}
           </div>
         </div>
 
         <div className="flex items-center">
-          {project.openPositions &&
-            <i className="fas fa-handshake text-2xl mr-2 ml-2 text-gray-700"></i>
-          }
-
-          <div className="flex flex-col items-center" style={{width:'50px'}}>
+          <div className="flex flex-col items-center" style={{ width: "50px" }}>
             <i className="fas fa-fire text-2xl text-red-500"></i>
             <p className="text-red-500 mt-2">{project.likers.length}</p>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProjectWidget
+export default ProjectWidget;
