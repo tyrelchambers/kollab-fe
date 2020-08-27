@@ -14,7 +14,7 @@
 .field-group {
   display: flex;
   flex-direction: column;
-  
+
 }
 
 .field-group:not(:first-child) {
@@ -46,8 +46,8 @@
 
 .form-input {
   padding: 1em;
-  background-color: var(--input-light);
-  border:none;
+  background-color: transparent;
+  border: none;
   border-radius: var(--border-radius-sm);
   width: 100%;
   font-weight: 300;

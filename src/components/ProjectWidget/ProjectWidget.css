@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 107px;
-  height: 107px;
+  width: 100%;
+  height: 100%;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   background: var(--white);
@@ -11,22 +11,29 @@
 }
 
 .widget-thumbnail {
-  width: 93%;
-  height: 93%;
-  border-radius: var(--border-radius-md);
-  
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .widget-body {
-  background-color: var(--white);
-  border-radius: var(--border-radius-lg);
-  padding: 0.6em 1.2em;
-  max-width: 760px;
+  padding: 1em;
+  width: 100%;
+  opacity: 0;
+  display: none;
+  transition: display 1ms linear,
+    opacity 200ms ease 2ms;
 }
 
 .widget-wrapper {
-  width: 100%;
-  height: 107px;
+  height: 270px;
+  max-width: 480px;
   margin-bottom: 1em;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
 }
 
+.widget-wrapper:hover .widget-body {
+  display: flex;
+  opacity: 1;
+}

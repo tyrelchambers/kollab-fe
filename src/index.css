@@ -1,17 +1,15 @@
-
-
 :root {
-  --bg-0: rgb(95%, 95%, 96%);
+  --bg-0: #3c366b;
   --text: rgb(25%, 25%, 25%);
   --paragraph: rgb(50%, 50%, 50%);
   --input-light: rgb(93.3%, 93.3%, 93.3%);
   --border-light: rgb(88%, 88%, 88%);
   --border-radius-sm: 5px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 10px;
-  --white: rgb(100%,100%,100%);
-  --blueGradient: linear-gradient(214deg, rgba(63,146,240,1) 0%, rgba(10,104,210,1) 100%);
-  --greenGradient: linear-gradient(31deg, rgba(62,189,147,1) 0%, rgba(31,214,154,1) 100%);
+  --border-radius-md: 10px;
+  --border-radius-lg: 20px;
+  --white: rgb(100%, 100%, 100%);
+  --blueGradient: linear-gradient(214deg, rgba(63, 146, 240, 1) 0%, rgba(10, 104, 210, 1) 100%);
+  --greenGradient: linear-gradient(31deg, rgba(62, 189, 147, 1) 0%, rgba(31, 214, 154, 1) 100%);
   --redGradient: linear-gradient(to right top, #de3a11, #e6491c, #ef5727, #f76431, #ff703b);
   --darkGradient: linear-gradient(to right, #051937, #0c2b56, #143d77, #1d519a, #2666bf);
   --blue: rgb(1, 51, 125);
@@ -37,12 +35,16 @@ h4,
 h5,
 h6 {
   color: var(--text);
-  font-family: 'Roboto', sans-serif;
 
 }
 
+.box-shadow {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+}
+
 body {
-  font-family: 'Muli', sans-serif;
+  font-family: 'Nunito',
+    sans-serif;
   background: var(--bg-0);
 }
 
@@ -87,10 +89,10 @@ hr {
   padding-left: 1em !important;
   padding-right: 1em !important;
 
-} 
+}
 
 .Toastify {
-    top: 4em;
+  top: 4em;
 
 }
 

@@ -8,39 +8,19 @@ function Navbar() {
   const { isAuthenticated } = useAuthState();
 
   return (
-    <nav className="ml-4 mr-4">
-      <ul className="flex items-center">
+    <nav>
+      <ul className="flex-col w-full navbar">
         <li>
-          <Link to="/" className="nav-item">
-            Home
+          <Link to="/" className="nav-item flex justify-center">
+            <i className="fas fa-home text-white text-xl"></i>
           </Link>
         </li>
 
         <li>
-          <Link to="/about" className="nav-item">
-            About
+          <Link to="/about" className="nav-item flex justify-center">
+            <i className="fas fa-question-circle text-white text-xl"></i>
           </Link>
         </li>
-
-        <li>
-          <Link to="#" className="nav-item">
-            Explore
-          </Link>
-        </li>
-
-        {isAuthenticated && (
-          <li className="ml-4">
-            <UserWidget />
-          </li>
-        )}
-
-        {!isAuthenticated && (
-          <li>
-            <Link to="/signup" className="nav-item">
-              Sign Up / Login
-            </Link>
-          </li>
-        )}
       </ul>
     </nav>
   );

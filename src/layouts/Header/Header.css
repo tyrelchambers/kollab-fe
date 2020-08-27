@@ -1,4 +1,6 @@
 .header-wrapper {
-  height: 70px;
-  background: var(--white);
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }

@@ -1,29 +1,17 @@
-import React from 'react'
-import './Header.css'
-import {H3} from '../../components/Headings/Headings'
-import Navbar from '../Navbar/Navbar'
-import { Search } from '../../components/Inputs/Inputs'
-import Autocomplete from '../../components/Autocomplete/Autocomplete'
+import React from "react";
+import "./Header.css";
+import { H3 } from "../../components/Headings/Headings";
+import Navbar from "../Navbar/Navbar";
+import { Search } from "../../components/Inputs/Inputs";
+import Autocomplete from "../../components/Autocomplete/Autocomplete";
 
 function Header() {
   return (
-    <div className="w-full justify-center flex p-3 header-wrapper items-center ">
-      <div className="max-w-screen-xl w-full flex justify-between">
-        <H3>Kollab</H3>
-
-        <div className="flex items-center flex-1 justify-end">
-          <div className="flex flex-col w-full max-w-lg relative">
-            <Search
-              withIcon
-            />
-
-            <Autocomplete />
-          </div>
-          <Navbar/>
-        </div>
-      </div>
+    <div className="flex-col items-center p-3 pt-6 pb-6 header-wrapper bg-indigo-900">
+      <i className="fas fa-bars text-white text-2xl"></i>
+      <Navbar />
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

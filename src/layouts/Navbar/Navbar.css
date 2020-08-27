@@ -3,6 +3,14 @@
   color: var(--text);
 }
 
+.navbar {
+  margin-top: 3em;
+}
+
 .nav-item:hover {
   text-decoration: underline;
+}
+
+.navbar li:not(:last-child) {
+  margin-bottom: 2em;
 }

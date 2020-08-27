@@ -2,13 +2,14 @@
   width: 100%;
   border-radius: var(--border-radius-lg);
   display: flex;
-  background: var(--white);
 }
 
 .featured-thumbnail {
   width: 100%;
-  max-width: 500px;
-  border-radius: var(--border-radius-sm);
+  max-width: 640px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: var(--border-radius-lg);
 }
 
 .featured-title {

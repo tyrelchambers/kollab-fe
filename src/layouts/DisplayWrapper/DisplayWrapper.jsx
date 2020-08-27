@@ -1,15 +1,16 @@
-import React from 'react'
-import Header from '../Header/Header'
+import React from "react";
+import Header from "../Header/Header";
+import "./DisplayWrapper.css";
 
-const DisplayWrapper = ({children}) => {
+const DisplayWrapper = ({ children }) => {
   return (
-    <div>
-      <Header/>
-      <div className="container mx-auto mt-16">
+    <div className="flex h-screen">
+      <Header />
+      <div className="w-full wrapper-main bg-white overflow-auto">
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DisplayWrapper
+export default DisplayWrapper;

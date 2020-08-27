@@ -28,7 +28,11 @@ export const Search = inject("AutocompleteStore")(
     }, [query]);
 
     return (
-      <div className={`input-wrapper w-full ${withIcon ? `with-icon` : ""}`}>
+      <div
+        className={`input-wrapper h-12 bg-gray-200 w-full ${
+          withIcon ? `with-icon` : ""
+        }`}
+      >
         <i className="fas fa-search"></i>
         <input
           type="search"
