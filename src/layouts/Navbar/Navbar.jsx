@@ -17,6 +17,12 @@ function Navbar() {
         </li>
 
         <li>
+          <Link to="/about" className="nav-item">
+            About
+          </Link>
+        </li>
+
+        <li>
           <Link to="#" className="nav-item">
             Explore
           </Link>
