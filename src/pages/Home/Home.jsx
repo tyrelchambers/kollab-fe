@@ -3,10 +3,6 @@ import "./Home.css";
 import { H2, H1 } from "../../components/Headings/Headings";
 import Featured from "../../components/Featured/Featured";
 import ProjectWidget from "../../components/ProjectWidget/ProjectWidget";
-import MainCol from "../../layouts/MainCol/MainCol";
-import Sidebar from "../../layouts/Sidebar/Sidebar";
-import InfoBlock from "../../layouts/InfoBlock/InfoBlock";
-import { Link } from "react-router-dom";
 import getApi from "../../api/getApi";
 import DisplayWrapper from "../../layouts/DisplayWrapper/DisplayWrapper";
 import groupByDay from "../../helpers/groupByDay";
@@ -16,7 +12,7 @@ import { Search } from "../../components/Inputs/Inputs";
 
 function Home() {
   const [projects, setProjects] = useState([]);
-  const [topProjects, setTopProjects] = useState([]);
+  const [, setTopProjects] = useState([]);
   const [featuredProject, setFeaturedProject] = useState({});
   const [hasNextPage, setHasNextPage] = useState(false);
   const [limit, setLimit] = useState(25);
@@ -46,7 +42,7 @@ function Home() {
   };
   return (
     <DisplayWrapper>
-      <section className="bg-gray-100 overflow-hidden p-10">
+      <section className="bg-gray-100 overflow-hidden">
         <div className="flex w-full justify-between">
           <H1 className="mt-0">Kollab</H1>
           <Search withIcon />
@@ -62,7 +58,7 @@ function Home() {
             hasMore={hasNextPage}
             loader={<h4>Loading...</h4>}
           >
-            {projects.map((project, id) => {
+            {projects.map((project) => {
               return (
                 <React.Fragment key={project.uuid}>
                   <H2 className="mb-4 mt-4">

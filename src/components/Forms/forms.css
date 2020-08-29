@@ -27,9 +27,9 @@
 }
 
 .form-label {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 0.6em;
-  color: var(--black-60);
+  color: var(--darkPurple);
   width: 100%;
   font-size: 1rem;
 }
@@ -55,13 +55,17 @@
   height: 100%;
 }
 
+.form-input.with-bg {
+  background-color: var(--white-20);
+}
+
 .form-input::placeholder {
   font-style: italic;
 }
 
 .form-textarea {
   width: 100%;
-  background-color: var(--input-light);
+  background-color: var(--white-20);
   padding: 0.5em;
   border: none;
   resize: vertical;

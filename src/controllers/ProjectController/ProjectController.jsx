@@ -165,7 +165,7 @@ const ProjectController = () => {
 
   return (
     <DisplayWrapper>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col">
         {action === "new" && (
           <>
             <H1>Create Project</H1>

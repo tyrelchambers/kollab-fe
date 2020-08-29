@@ -1,5 +1,5 @@
 import React from "react";
-import { H3 } from "../Headings/Headings";
+import { H2 } from "../Headings/Headings";
 import FormError from "../FormError/FormError";
 import ImageUploader from "../ImageUploader/ImageUploader";
 import { SecondaryButton, MainButton } from "../Buttons/Buttons";
@@ -37,7 +37,7 @@ function ProjectForm({
     >
       <div className="flex">
         <div className="form w-1/2 mr-2">
-          <H3 className="mb-4 mt-2">Basics</H3>
+          <H2 className="mb-4 mt-2">Basics</H2>
 
           <div className="field-group">
             <label htmlFor="title" className="form-label">
@@ -46,7 +46,7 @@ function ProjectForm({
             </label>
             <input
               type="text"
-              className="form-input"
+              className="form-input with-bg"
               placeholder="Super Cool Project"
               name="title"
               value={state.title}
@@ -65,7 +65,7 @@ function ProjectForm({
             </label>
             <input
               type="text"
-              className="form-input"
+              className="form-input with-bg"
               placeholder="The Elon Musk of projects"
               name="headline"
               value={state.headline}
@@ -141,7 +141,7 @@ function ProjectForm({
             </label>
             <input
               type="text"
-              className="form-input"
+              className="form-input with-bg"
               placeholder="comma separated topics (eg: productivity, health, awesome)"
               name="topics"
               value={state.topics}
@@ -158,7 +158,7 @@ function ProjectForm({
               <input
                 type="text"
                 name="projectLinks"
-                className="form-input flex-auto"
+                className="form-input with-bg flex-auto"
                 placeholder="Add a project link"
                 value={state.projectLinks}
                 onChange={(e) => inputHandler(e)}
@@ -190,7 +190,7 @@ function ProjectForm({
 
         <div className="flex w-1/2 flex-col">
           <InfoBlock>
-            <H3 className="mb-4">Open Positions</H3>
+            <H2 className="mb-4">Open Positions</H2>
 
             <div className="field-group">
               <div className="flex items-center">
@@ -216,7 +216,7 @@ function ProjectForm({
               </label>
               <input
                 type="text"
-                className="form-input"
+                className="form-input with-bg"
                 name="positionTitle"
                 placeholder="Chief Bagel Officer"
                 onChange={(e) =>
@@ -251,7 +251,7 @@ function ProjectForm({
               </label>
               <input
                 type="text"
-                className="form-input"
+                className="form-input with-bg"
                 name="positionExperience"
                 placeholder="Does this require any experience?"
                 onChange={(e) =>
@@ -283,7 +283,7 @@ function ProjectForm({
 
           <InfoBlock>
             <div className="field-group">
-              <H3 className="mb-4">Collaborators</H3>
+              <H2 className="mb-4">Collaborators</H2>
               <p className="italic text-sm mt-2 mb-4">
                 Collaborators are people who can help in more ways than one.
                 Rather than adding someone to a position, add them as a
@@ -300,7 +300,7 @@ function ProjectForm({
                 <input
                   type="text"
                   name="collaborators"
-                  className="form-input flex-auto"
+                  className="form-input with-bg flex-auto"
                   placeholder="Search for a user via email"
                   id="addContributorInput"
                   value={state.collaborators}

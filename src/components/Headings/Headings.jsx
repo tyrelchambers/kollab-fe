@@ -5,6 +5,7 @@ export const H1 = (props) => (
     className={`text-4xl font-black text-indigo-900 ${
       props.className ? props.className : ""
     }`}
+    style={props.style}
   >
     {props.children}
   </h1>
@@ -14,6 +15,7 @@ export const H2 = (props) => (
     className={`text-2xl font-bold text-indigo-900 ${
       props.className ? props.className : ""
     }`}
+    style={props.style}
   >
     {props.children}
   </h2>
@@ -23,6 +25,7 @@ export const H3 = (props) => (
     className={`text-lg font-bold flex items-center text-indigo-900 ${
       props.className ? props.className : ""
     }`}
+    style={props.style}
   >
     {props.children}
   </h3>
