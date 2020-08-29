@@ -1,7 +1,7 @@
-import React from 'react'
-import DisplayWrapper from '../../layouts/DisplayWrapper/DisplayWrapper'
-import { H1 } from '../../components/Headings/Headings'
-import EditProjectForm from '../../components/Forms/EditProjectForm'
+import React from "react";
+import DisplayWrapper from "../../layouts/DisplayWrapper/DisplayWrapper";
+import { H1 } from "../../components/Headings/Headings";
+import EditProjectForm from "../../components/Forms/EditProjectForm";
 
 const EditProject = () => {
   return (
@@ -9,10 +9,10 @@ const EditProject = () => {
       <H1 className="text-center">Edit Project</H1>
 
       <section className="flex justify-center">
-        <EditProjectForm/>
+        <EditProjectForm />
       </section>
     </DisplayWrapper>
-  )
-}
+  );
+};
 
-export default EditProject
+export default EditProject;

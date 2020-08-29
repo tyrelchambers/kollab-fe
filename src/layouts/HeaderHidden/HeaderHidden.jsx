@@ -23,9 +23,7 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
   }, []);
   return (
     <div
-      className={`header-hidden-wrapper ${
-        NavStore.isOpen ? "flex-col" : "hidden"
-      } pl-10 pr-10 overflow-hidden h-full`}
+      className={`header-hidden-wrapper  pl-10 pr-10 overflow-hidden h-full`}
     >
       <H1 style={{ color: "white" }}>Happy Thursday, Tyrel!</H1>
       <div className="flex mb-6">
@@ -40,7 +38,11 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
         </div>
       </div>
 
-      <Link to="/profile/edit" className="text-yellow-400">
+      <Link
+        to="/profile/edit"
+        className="text-yellow-400"
+        onClick={() => NavStore.setIsOpen(false)}
+      >
         Edit profile
       </Link>
 
@@ -53,6 +55,7 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
           <Link
             to={`/user/${UserStore.user.uuid}/project/new`}
             className="text-yellow-400"
+            onClick={() => NavStore.setIsOpen(false)}
           >
             Create project
           </Link>

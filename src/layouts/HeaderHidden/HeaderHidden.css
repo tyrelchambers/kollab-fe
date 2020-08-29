@@ -1,7 +1,6 @@
 .header-hidden-wrapper {
-  width: 740px;
+  min-width: 740px;
   background-color: var(--darkPurple);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-
 }

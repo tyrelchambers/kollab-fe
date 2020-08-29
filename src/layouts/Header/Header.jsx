@@ -6,7 +6,10 @@ import { inject, observer } from "mobx-react";
 import { useSpring, animated } from "react-spring";
 
 function Header({ NavStore }) {
-  const props = useSpring({ opacity: NavStore.isOpen ? 1 : 0 });
+  const props = useSpring({
+    width: NavStore.isOpen ? 740 : 0,
+    opacity: NavStore.isOpen ? 1 : 0,
+  });
 
   const toggleExtension = () => {
     NavStore.setIsOpen(!NavStore.isOpen);
@@ -20,7 +23,12 @@ function Header({ NavStore }) {
         ></i>
         <Navbar />
       </div>
-      <animated.div style={props}>
+      <animated.div
+        style={{
+          ...props,
+          overflow: "hidden",
+        }}
+      >
         <HeaderHidden />
       </animated.div>
     </div>

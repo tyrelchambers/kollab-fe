@@ -42,7 +42,7 @@ function Home() {
   };
   return (
     <DisplayWrapper>
-      <section className="bg-gray-100 overflow-hidden">
+      <section className="bg-gray-100 overflow-hidden p-8">
         <div className="flex w-full justify-between">
           <H1 className="mt-0">Kollab</H1>
           <Search withIcon />

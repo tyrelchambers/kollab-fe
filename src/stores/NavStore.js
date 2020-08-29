@@ -5,7 +5,7 @@ import {
 } from "mobx";
 
 class NavStore {
-  isOpen = true;
+  isOpen = false;
 
   setIsOpen(bool) {
     this.isOpen = bool;

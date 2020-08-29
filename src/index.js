@@ -20,12 +20,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Project from "./pages/Project/Project";
 import ProjectController from "./controllers/ProjectController/ProjectController";
-import Profile from "./layouts/Profile/Profile";
+import Profile from "./pages/Profile/Profile";
 import ModalContainer from "./layouts/ModalContainer/ModalContainer";
 import About from "./pages/About/About";
-
 const App = () => {
   return (
+    
     <React.StrictMode>
       <Provider {...stores}>
         <AuthProvider>
