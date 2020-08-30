@@ -21,7 +21,30 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
     };
     fn();
   }, []);
-  return (
+
+  const Unauthenticated = () => (
+    <div
+      className={`header-hidden-wrapper  pl-10 pr-10 overflow-hidden h-full`}
+    >
+      <H1 style={{ color: "white" }}>Happy Thursday!</H1>
+      <Link
+        to="/signup"
+        className="text-yellow-500 mr-4"
+        onClick={() => NavStore.setIsOpen(false)}
+      >
+        Sign Up
+      </Link>
+      <Link
+        to="/login"
+        className="text-yellow-500"
+        onClick={() => NavStore.setIsOpen(false)}
+      >
+        Login
+      </Link>
+    </div>
+  );
+
+  const Authenticated = () => (
     <div
       className={`header-hidden-wrapper  pl-10 pr-10 overflow-hidden h-full`}
     >
@@ -72,6 +95,14 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
       </div>
     </div>
   );
+  
+  if (UserStore.user) {
+    return <Authenticated />;
+  } else {
+    return <Unauthenticated />
+  }
 };
+
+
 
 export default inject("NavStore", "UserStore")(observer(HeaderHidden));

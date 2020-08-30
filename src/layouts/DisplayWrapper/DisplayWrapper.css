@@ -1,5 +1,5 @@
 .wrapper-main {
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-top-left-radius: var(--border-radius-lg);
+  border-bottom-left-radius: var(--border-radius-lg);
   min-width: 95vw;
 }

@@ -1,42 +1,69 @@
 :root {
-  --bg-0: #3c366b;
-  --text: rgb(25%, 25%, 25%);
-  --paragraph: rgb(50%, 50%, 50%);
-  --input-light: rgb(93.3%, 93.3%, 93.3%);
-  --border-light: rgb(88%, 88%, 88%);
+  --black: #000;
+  --white: #fff;
+  --gray-100: #f7fafc;
+  --gray-200: #edf2f7;
+  --gray-300: #e2e8f0;
+  --gray-400: #cbd5e0;
+  --gray-500: #a0aec0;
+  --gray-600: #718096;
+  --gray-700: #4a5568;
+  --gray-800: #2d3748;
+  --gray-900: #1a202c;
+
+  --red-500: #f56565;
+
+  --orange-500: #ed8936;
+
+  --yellow-400: #f6e05e;
+  --yellow-500: #ecc94b;
+  
+
+  --green-500: #48bb78;
+  --indigo-100: #ebf4ff;
+  --indigo-200: #c3dafe;
+  --indigo-300: #a3bffa;
+  --indigo-400: #7f9cf5;
+  --indigo-500: #667eea;
+  --indigo-600: #5a67d8;
+  --indigo-700: #4c51bf;
+  --indigo-800: #434190;
+  --indigo-900: #3c366b;
+  --darkPurple: rgb(47, 42, 86);
+
+  --paragraph: var(--black-800);
+
+  --blueGradient: linear-gradient(
+    214deg,
+    rgba(63, 146, 240, 1) 0%,
+    rgba(10, 104, 210, 1) 100%
+  );
+  --greenGradient: linear-gradient(
+    31deg,
+    rgba(62, 189, 147, 1) 0%,
+    rgba(31, 214, 154, 1) 100%
+  );
+  --redGradient: linear-gradient(
+    to right top,
+    #de3a11,
+    #e6491c,
+    #ef5727,
+    #f76431,
+    #ff703b
+  );
+  --darkGradient: linear-gradient(
+    to right,
+    #051937,
+    #0c2b56,
+    #143d77,
+    #1d519a,
+    #2666bf
+  );
+
   --border-radius-sm: 5px;
   --border-radius-md: 10px;
   --border-radius-lg: 20px;
-  --white: rgb(100%, 100%, 100%);
-  --blueGradient: linear-gradient(214deg, rgba(63, 146, 240, 1) 0%, rgba(10, 104, 210, 1) 100%);
-  --greenGradient: linear-gradient(31deg, rgba(62, 189, 147, 1) 0%, rgba(31, 214, 154, 1) 100%);
-  --redGradient: linear-gradient(to right top, #de3a11, #e6491c, #ef5727, #f76431, #ff703b);
-  --darkGradient: linear-gradient(to right, #051937, #0c2b56, #143d77, #1d519a, #2666bf);
-  --blue: rgb(1, 51, 125);
-  --blue-20: rgb(5, 82, 181);
-  --blue-40: rgb(71, 163, 243);
-  --black: rgb(31, 41, 51);
-  --black-20: rgb(51, 64, 77);
-  --black-40: rgb(82, 96, 109);
-  --black-60: rgb(97, 110, 124);
-  --white-20: rgb(245, 247, 250);
-  --white-40: rgb(228, 231, 235);
-  --white-60: rgb(203, 210, 217);
-  --purple-0: #8496F9;
   --hr: rgb(85%, 85%, 85%);
-  --red: rgb(100%, 30%, 30%);
-  --green: rgb(19.4%, 94.1%, 29%);
-  --darkPurple: rgb(47, 42, 86);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--text);
-
 }
 
 .box-shadow {
@@ -44,26 +71,14 @@ h6 {
 }
 
 body {
-  font-family: 'Nunito',
-    sans-serif;
-  background: var(--bg-0);
+  font-family: "Nunito", sans-serif;
+  background: var(--purple-900);
 }
 
 p {
   line-height: 1.3em;
   color: var(--paragraph);
   font-weight: 300;
-}
-
-.link {
-  color: var(--blue-20);
-  text-decoration: underline;
-}
-
-.bg {
-  background-color: var(--white);
-  padding: 0.5em;
-  border-radius: var(--border-radius-sm);
 }
 
 hr {
@@ -78,23 +93,19 @@ hr {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-right: 1em;
 }
-
 
 .Toastify__toast {
   width: 100%;
   max-width: 500px;
   border-radius: 5px !important;
-  background: var(--bgLight) !important;
+  background: var(--grey-100) !important;
   padding-left: 1em !important;
   padding-right: 1em !important;
-
 }
 
 .Toastify {
   top: 4em;
-
 }
 
 .Toastify__toast--success {

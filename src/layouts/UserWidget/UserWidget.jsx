@@ -26,7 +26,7 @@ function UserWidget({UserStore}) {
       <div className="profile-avatar" id="dropdown-trigger" onClick={() => setIsOpen(!isOpen)}>
       </div>
 
-      <div className={`dropdown-menu  ${isOpen ? "visible" : ""}`}>
+      <div className={`dropdown-menu box-shadow  ${isOpen ? "visible" : ""}`}>
         <Link to={`/user/${UserStore.user.username}`} className="dropdown-item">Dashboard</Link>
         <details className="sub-list">
           <summary><i className="fas fa-long-arrow-alt-right mr-2"></i> Projects</summary>

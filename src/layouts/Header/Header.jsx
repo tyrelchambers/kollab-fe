@@ -4,8 +4,9 @@ import Navbar from "../Navbar/Navbar";
 import HeaderHidden from "../../layouts/HeaderHidden/HeaderHidden";
 import { inject, observer } from "mobx-react";
 import { useSpring, animated } from "react-spring";
+import UserWidget from "../UserWidget/UserWidget";
 
-function Header({ NavStore }) {
+function Header({ NavStore, UserStore }) {
   const props = useSpring({
     width: NavStore.isOpen ? 740 : 0,
     opacity: NavStore.isOpen ? 1 : 0,
@@ -16,12 +17,16 @@ function Header({ NavStore }) {
   };
   return (
     <div className="flex bg-indigo-900">
-      <div className="flex-col items-center p-3 pt-6 pb-6 header-wrapper ">
-        <i
-          className="fas fa-bars text-white text-2xl"
-          onClick={toggleExtension}
-        ></i>
-        <Navbar />
+      <div className="flex-col items-center justify-between p-3 pt-6 pb-6 header-wrapper ">
+        <div className=" items-center header-wrapper">
+          <i
+            className="fas fa-bars text-white text-2xl"
+            onClick={toggleExtension}
+          ></i>
+          <Navbar />
+        </div>
+
+        {UserStore.user && <UserWidget />}
       </div>
       <animated.div
         style={{
@@ -35,4 +40,4 @@ function Header({ NavStore }) {
   );
 }
 
-export default inject("NavStore")(observer(Header));
+export default inject("NavStore", "UserStore")(observer(Header));
