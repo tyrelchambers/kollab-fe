@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Home.css";
+import "./Explore.css";
 import { H2, H1 } from "../../components/Headings/Headings";
 import Featured from "../../components/Featured/Featured";
 import ProjectWidget from "../../components/ProjectWidget/ProjectWidget";
@@ -10,10 +10,9 @@ import { isToday, parseISO } from "date-fns";
 import InfiniteScroll from "react-infinite-scroller";
 import { Search } from "../../components/Inputs/Inputs";
 
-function Home() {
+function Explore() {
   const [projects, setProjects] = useState([]);
   const [, setTopProjects] = useState([]);
-  const [featuredProject, setFeaturedProject] = useState({});
   const [hasNextPage, setHasNextPage] = useState(false);
   const [limit, setLimit] = useState(25);
 
@@ -23,10 +22,6 @@ function Home() {
     getApi({
       url: "/projects/top",
     }).then((res) => setTopProjects([...res]));
-
-    getApi({
-      url: "/featured",
-    }).then((res) => setFeaturedProject({ ...res.Project }));
   }, []);
 
   const getAllProjects = () => {
@@ -44,10 +39,10 @@ function Home() {
     <DisplayWrapper>
       <section className="bg-gray-100 overflow-hidden p-8">
         <div className="flex w-full justify-between">
-          <H1 className="mt-0">Kollab</H1>
+          <H1 className="mt-0">Explore</H1>
           <Search withIcon />
         </div>
-        <Featured project={featuredProject} />
+        <Featured classes="mt-10" />
       </section>
 
       <main className="p-8">
@@ -77,61 +72,9 @@ function Home() {
             })}
           </InfiniteScroll>
         </div>
-        {/* <div className="flex">
-          <MainCol>
-            <div className="flex flex-col w-full">
-              <InfiniteScroll
-                pageStart={0} //This is important field to render the next data
-                loadMore={getAllProjects}
-                hasMore={hasNextPage}
-                loader={<h4>Loading...</h4>}
-              >
-                {projects.map((project, id) => {
-                  return (
-                    <React.Fragment key={project.uuid}>
-                      <H3 className="mb-4">
-                        {isToday(parseISO(project.fullDate))
-                          ? "Today"
-                          : project.date}
-                      </H3>
-
-                      {project.projects.map((proj) => (
-                        <ProjectWidget project={proj} key={proj.uuid} />
-                      ))}
-                    </React.Fragment>
-                  );
-                })}
-              </InfiniteScroll>
-            </div>
-          </MainCol>
-          <Sidebar>
-            <H3>Top Projects</H3>
-
-            <InfoBlock>
-              <div className="flex flex-col">
-                {topProjects.length > 0 &&
-                  topProjects.map((project) => (
-                    <div className="flex items-center mb-4" key={project.uuid}>
-                      <img
-                        src={project.thumbnailUrl}
-                        alt=""
-                        className="profile-avatar"
-                      />
-                      <Link
-                        to={`/project/${project.uuid}`}
-                        className="font-bold hover:underline"
-                      >
-                        {project.title}
-                      </Link>
-                    </div>
-                  ))}
-              </div>
-            </InfoBlock>
-          </Sidebar>
-        </div> */}
       </main>
     </DisplayWrapper>
   );
 }
 
-export default Home;
+export default Explore;

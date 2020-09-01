@@ -17,6 +17,12 @@ function Navbar() {
         </li>
 
         <li>
+          <Link to="/explore" className="nav-item flex justify-center">
+            <i class="fas fa-compass text-white text-xl"></i>
+          </Link>
+        </li>
+
+        <li>
           <Link to="/about" className="nav-item flex justify-center">
             <i className="fas fa-question-circle text-white text-xl"></i>
           </Link>

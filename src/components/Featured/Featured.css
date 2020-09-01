@@ -1,18 +1,25 @@
 .featured-wrapper {
   width: 100%;
   border-radius: var(--border-radius-lg);
-  display: flex;
 }
 
 .featured-thumbnail {
   width: 100%;
-  max-width: 640px;
-  height: 360px;
   object-fit: cover;
   border-radius: var(--border-radius-lg);
 }
 
-.featured-title {
+.featured-thumbnail.large {
+  max-width: 640px;
+  height: 360px;
+}
+
+.featured-thumbnail.small {
+  max-width: 480px;
+  height: 270px;
+}
+
+.featured-title.large {
   flex: 1;
   margin-right: 3em;
 }
