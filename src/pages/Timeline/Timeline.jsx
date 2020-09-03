@@ -16,6 +16,10 @@ const Timeline = ({ UserStore }) => {
     getApi({
       url: "/projects/top",
     }).then((res) => setTopProjects([...res]));
+
+    getApi({
+      url: "/timeline",
+    }).then((res) => setFeed([...res]));
   }, []);
 
   return (
