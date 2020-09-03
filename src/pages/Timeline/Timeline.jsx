@@ -4,8 +4,11 @@ import { H1, H2 } from "../../components/Headings/Headings";
 import Featured from "../../components/Featured/Featured";
 import { Link } from "react-router-dom";
 import getApi from "../../api/getApi";
+import TimelinePostInput from "../../components/TimelinePostInput/TimelinePostInput";
+import { inject, observer } from "mobx-react";
+import "./Timeline.css";
 
-const Timeline = () => {
+const Timeline = ({ UserStore }) => {
   const [topProjects, setTopProjects] = useState([]);
   const [feed, setFeed] = useState([]);
 
@@ -20,8 +23,18 @@ const Timeline = () => {
       <H1>Timeline</H1>
 
       <main className="flex mt-10">
-        <section className="w-3/4">
-          {feed.length === 0 && <p>Nothing to show.</p>}
+        <section className="w-3/4 mr-4">
+          <TimelinePostInput />
+          {feed.length === 0 && (
+            <div className="flex-col flex items-center mt-10">
+              <img
+                src={require("../../assets/undraw_empty_xct9.svg")}
+                alt=""
+                className="nothing-to-show-img"
+              />
+              <H2 className="mt-8">Aww... nothing to show :(</H2>
+            </div>
+          )}
         </section>
 
         <aside className="w-1/4 flex-col">
@@ -58,4 +71,4 @@ const Timeline = () => {
   );
 };
 
-export default Timeline;
+export default inject("UserStore")(observer(Timeline));

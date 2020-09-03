@@ -14,13 +14,11 @@
 .field-group {
   display: flex;
   flex-direction: column;
-
 }
 
 .field-group:not(:first-child) {
   margin-top: 1.5em;
 }
-
 
 .field-group.no-margin {
   margin: 0;
@@ -53,6 +51,16 @@
   font-weight: 300;
   font-size: 0.9rem;
   height: 100%;
+}
+
+.form-input.for-dark {
+  background-color: var(--darkPurple);
+  color: var(--white);
+}
+
+.form-input.for-dark:focus {
+  background-color: var(--white);
+  color: var(--gray-800);
 }
 
 .form-input.with-bg {

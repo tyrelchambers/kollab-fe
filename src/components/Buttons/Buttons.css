@@ -3,6 +3,7 @@
   font-weight: 500;
   padding: 0.75em;
   transition: all 0.2s ease;
+  height: 100%;
 }
 
 .btn.primary {
@@ -11,13 +12,18 @@
   border-radius: var(--border-radius-sm);
 }
 
+.btn.primary.for-dark {
+  background: var(--white);
+  font-weight: bold;
+  color: var(--indigo-900);
+}
+
 .btn.secondary {
   border-radius: var(--border-radius-sm);
   background: var(--purple-0);
   color: var(--white);
   height: 100%;
-    border: 2px solid transparent;
-
+  border: 2px solid transparent;
 }
 
 .btn.secondary:hover {
@@ -33,7 +39,6 @@
   padding: 0.5em 1em;
   font-size: 0.8rem;
   border-radius: var(--border-radius-sm);
-
 }
 
 .btn-third.danger {
