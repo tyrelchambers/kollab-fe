@@ -5,19 +5,23 @@ import { H1, H3 } from "../../components/Headings/Headings";
 import { Link } from "react-router-dom";
 import getApi from "../../api/getApi";
 import ProjectWidget from "../../components/ProjectWidget/ProjectWidget";
+import { useToken } from "../../hooks/useToken";
 
 const HeaderHidden = ({ NavStore, UserStore }) => {
   const [myProjects, setMyProjects] = useState([]);
+  const { token } = useToken();
 
   useEffect(() => {
     const fn = async () => {
-      getApi({
-        url: "/user/projects",
-      }).then((res) => {
-        if (res) {
-          setMyProjects(res);
-        }
-      });
+      if (token) {
+        getApi({
+          url: "/user/projects",
+        }).then((res) => {
+          if (res) {
+            setMyProjects(res);
+          }
+        });
+      }
     };
     fn();
   }, []);
@@ -95,14 +99,12 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
       </div>
     </div>
   );
-  
+
   if (UserStore.user) {
     return <Authenticated />;
   } else {
-    return <Unauthenticated />
+    return <Unauthenticated />;
   }
 };
-
-
 
 export default inject("NavStore", "UserStore")(observer(HeaderHidden));

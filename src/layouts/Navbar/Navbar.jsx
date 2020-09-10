@@ -5,8 +5,6 @@ import UserWidget from "../UserWidget/UserWidget";
 import { useAuthState } from "../../Providers/AuthProvider";
 
 function Navbar() {
-  const { isAuthenticated } = useAuthState();
-
   return (
     <nav>
       <ul className="flex-col w-full navbar">
@@ -18,7 +16,7 @@ function Navbar() {
 
         <li>
           <Link to="/explore" className="nav-item flex justify-center">
-            <i class="fas fa-compass text-white text-xl"></i>
+            <i className="fas fa-compass text-white text-xl"></i>
           </Link>
         </li>
 

@@ -3,6 +3,7 @@ import { H1, H2 } from "../Headings/Headings";
 import "./Featured.css";
 import { Link } from "react-router-dom";
 import getApi from "../../api/getApi";
+import isEmpty from "../../helpers/objIsEmpty";
 
 function Featured({ small, classes }) {
   const [featuredProject, setFeaturedProject] = React.useState({});
@@ -12,6 +13,8 @@ function Featured({ small, classes }) {
       url: "/featured",
     }).then((res) => setFeaturedProject({ ...res.Project }));
   }, []);
+
+  if (isEmpty(featuredProject)) return null;
 
   const title = small ? (
     <H2 className="mt-8 mb-4">

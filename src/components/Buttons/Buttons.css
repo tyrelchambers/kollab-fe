@@ -7,7 +7,7 @@
 }
 
 .btn.primary {
-  background: var(--greenGradient);
+  background: var(--indigo-800);
   color: var(--white);
   border-radius: var(--border-radius-sm);
 }

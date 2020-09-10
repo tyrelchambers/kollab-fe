@@ -10,6 +10,9 @@ function Header({ NavStore, UserStore }) {
   const props = useSpring({
     width: NavStore.isOpen ? 740 : 0,
     opacity: NavStore.isOpen ? 1 : 0,
+    config: {
+      duration: 100,
+    },
   });
 
   const toggleExtension = () => {
