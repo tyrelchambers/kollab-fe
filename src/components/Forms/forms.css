@@ -26,7 +26,7 @@
 .form-label {
   font-weight: 600;
   margin-bottom: 0.6em;
-  color: var(--darkPurple);
+  color: var(--indigo-800);
   width: 100%;
   font-size: 1rem;
 }
@@ -63,7 +63,7 @@
 }
 
 .form-input.with-bg {
-  background-color: var(--white-20);
+  background-color: var(--gray-200);
 }
 
 .form-input::placeholder {

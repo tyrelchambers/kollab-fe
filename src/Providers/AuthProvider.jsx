@@ -115,7 +115,7 @@ function AuthProvider({ children, UserStore }) {
         <PrivateRoute exact path="/project/:projectId" component={Project} />
         <PrivateRoute exact path="/profile/edit" component={Profile} />
 
-        <PrivateRoute
+        <Route
           exact
           path="/signout"
           render={() => {

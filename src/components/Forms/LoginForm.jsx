@@ -54,7 +54,7 @@ function LoginForm({ UserStore }) {
         </label>
         <input
           type="text"
-          className="form-input"
+          className="form-input with-bg"
           placeholder="name@example.com"
           ref={register({
             required: true,
@@ -78,7 +78,7 @@ function LoginForm({ UserStore }) {
         </label>
         <input
           type="password"
-          className="form-input"
+          className="form-input with-bg"
           ref={register({
             min: 6,
             max: 99,

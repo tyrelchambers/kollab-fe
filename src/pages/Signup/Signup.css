@@ -1,0 +1,10 @@
+.signup-image {
+  width: 100%;
+  max-width: 600px;
+}
+
+@media screen and (max-width: 1024px) {
+  .signup-image {
+    display: none;
+  }
+}
