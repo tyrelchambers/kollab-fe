@@ -26,7 +26,9 @@ import {
 const AuthContext = React.createContext();
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  let token = window.localStorage.getItem("token");
+  let token =
+    window.localStorage.getItem("token") ||
+    window.sessionStorage.getItem("token");
   return (
     <Route
       {...rest}
@@ -112,7 +114,7 @@ function AuthProvider({ children, UserStore }) {
           path="/user/:username/project/:projectId/:action"
           component={ProjectController}
         />
-        <PrivateRoute exact path="/project/:projectId" component={Project} />
+        <Route exact path="/project/:projectId" component={Project} />
         <PrivateRoute exact path="/profile/edit" component={Profile} />
 
         <Route

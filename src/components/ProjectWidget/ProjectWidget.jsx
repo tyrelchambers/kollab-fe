@@ -1,11 +1,16 @@
 import React from "react";
 import "./ProjectWidget.css";
 import { Link } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
-function ProjectWidget({ project, tiny }) {
+function ProjectWidget({ project, tiny, NavStore }) {
   if (tiny) {
     return (
-      <div className="flex flex-col widget-wrapper-tiny bg-indigo-700 box-shadow m-4">
+      <Link
+        to={`/project/${project.uuid}`}
+        className=" flex flex-col widget-wrapper-tiny bg-indigo-700 box-shadow m-4"
+        onClick={() => NavStore.setIsOpen(false)}
+      >
         <div className="widget-thumbnail-wrapper " title={project.title}>
           <img
             src={project.thumbnailUrl}
@@ -13,7 +18,7 @@ function ProjectWidget({ project, tiny }) {
             className="widget-thumbnail tiny"
           />
         </div>
-      </div>
+      </Link>
     );
   }
 
@@ -21,6 +26,7 @@ function ProjectWidget({ project, tiny }) {
     <Link
       to={`/project/${project.uuid}`}
       className=" flex flex-col widget-wrapper bg-indigo-700 box-shadow m-4"
+      onClick={() => NavStore.setIsOpen(false)}
     >
       <div className="widget-thumbnail-wrapper ">
         <img src={project.thumbnailUrl} alt="" className="widget-thumbnail" />
@@ -38,4 +44,4 @@ function ProjectWidget({ project, tiny }) {
   );
 }
 
-export default ProjectWidget;
+export default inject("NavStore")(observer(ProjectWidget));

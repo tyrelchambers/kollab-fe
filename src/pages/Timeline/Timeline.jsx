@@ -7,6 +7,7 @@ import getApi from "../../api/getApi";
 import TimelinePostInput from "../../components/TimelinePostInput/TimelinePostInput";
 import { inject, observer } from "mobx-react";
 import "./Timeline.css";
+import TimelinePost from "../../components/TimelinePost/TimelinePost";
 
 const Timeline = ({ UserStore }) => {
   const [topProjects, setTopProjects] = useState([]);
@@ -39,6 +40,11 @@ const Timeline = ({ UserStore }) => {
               <H2 className="mt-8">Aww... nothing to show :(</H2>
             </div>
           )}
+
+          <div className="mt-10">
+            {feed.length > 0 &&
+              feed.map((post) => <TimelinePost key={post.uuid} post={post} />)}
+          </div>
         </section>
 
         <aside className="w-1/4 flex-col">

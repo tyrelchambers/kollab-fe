@@ -9,6 +9,7 @@ import groupByDay from "../../helpers/groupByDay";
 import { isToday, parseISO } from "date-fns";
 import InfiniteScroll from "react-infinite-scroller";
 import { Search } from "../../components/Inputs/Inputs";
+import Autocomplete from "../../components/Autocomplete/Autocomplete";
 
 function Explore() {
   const [projects, setProjects] = useState([]);
@@ -37,10 +38,13 @@ function Explore() {
   };
   return (
     <DisplayWrapper>
-      <section className="bg-gray-100 overflow-hidden p-8">
+      <section className="bg-gray-100 p-8">
         <div className="flex w-full justify-between">
           <H1 className="mt-0">Explore</H1>
-          <Search withIcon />
+          <div className="w-full max-w-lg relative z-10">
+            <Search withIcon />
+            <Autocomplete />
+          </div>
         </div>
         <Featured classes="mt-10" />
       </section>

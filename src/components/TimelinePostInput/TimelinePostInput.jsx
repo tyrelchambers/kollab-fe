@@ -5,7 +5,7 @@ import { MainButton } from "../Buttons/Buttons";
 import { toast } from "react-toastify";
 import getApi from "../../api/getApi";
 
-const TimelinePostInput = ({ UserStore }) => {
+const TimelinePostInput = () => {
   const [state, setstate] = useState({
     text: "",
   });
@@ -48,4 +48,4 @@ const TimelinePostInput = ({ UserStore }) => {
   );
 };
 
-export default inject("UserStore")(observer(TimelinePostInput));
+export default TimelinePostInput;

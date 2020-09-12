@@ -6,13 +6,16 @@ import { Link } from "react-router-dom";
 import getApi from "../../api/getApi";
 import ProjectWidget from "../../components/ProjectWidget/ProjectWidget";
 import { useToken } from "../../hooks/useToken";
+import { Search } from "../../components/Inputs/Inputs";
+import { format } from "date-fns";
 
 const HeaderHidden = ({ NavStore, UserStore }) => {
   const [myProjects, setMyProjects] = useState([]);
-  const { token } = useToken();
+  const [token] = useToken();
 
   useEffect(() => {
     const fn = async () => {
+      console.log(token);
       if (token) {
         getApi({
           url: "/user/projects",
@@ -30,7 +33,9 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
     <div
       className={`header-hidden-wrapper  pl-10 pr-10 overflow-hidden h-full`}
     >
-      <H1 style={{ color: "white" }}>Happy Thursday!</H1>
+      <H1 style={{ color: "white" }}>
+        Happy {format(Date.now(), "eeee")}, Tyrel!
+      </H1>{" "}
       <Link
         to="/signup"
         className="text-yellow-500 mr-4"
@@ -52,7 +57,9 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
     <div
       className={`header-hidden-wrapper  pl-10 pr-10 overflow-hidden h-full`}
     >
-      <H1 style={{ color: "white" }}>Happy Thursday, Tyrel!</H1>
+      <H1 style={{ color: "white" }}>
+        Happy {format(Date.now(), "eeee")}, Tyrel!
+      </H1>
       <div className="flex mb-6">
         <div className="flex items-center mr-6">
           <p className="font-bold text-white mr-2">200</p>
@@ -72,6 +79,10 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
       >
         Edit profile
       </Link>
+
+      <div className="mt-10">
+        <Search withIcon />
+      </div>
 
       <div className="mt-16">
         <div className="flex items-center mb-4">

@@ -1,0 +1,12 @@
+.timeline-post-body {
+  font-family: "Nunito", sans-serif;
+  white-space: pre-wrap;
+  line-height: 1.8em;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.timeline-post-wrapper {
+  margin-top: 3em;
+}
