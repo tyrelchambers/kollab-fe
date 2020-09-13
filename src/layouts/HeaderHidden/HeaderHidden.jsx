@@ -15,7 +15,6 @@ const HeaderHidden = ({ NavStore, UserStore }) => {
 
   useEffect(() => {
     const fn = async () => {
-      console.log(token);
       if (token) {
         getApi({
           url: "/user/projects",

@@ -10,12 +10,14 @@ import { isToday, parseISO } from "date-fns";
 import InfiniteScroll from "react-infinite-scroller";
 import { Search } from "../../components/Inputs/Inputs";
 import Autocomplete from "../../components/Autocomplete/Autocomplete";
+import { useRef } from "react";
 
 function Explore() {
   const [projects, setProjects] = useState([]);
   const [, setTopProjects] = useState([]);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [limit, setLimit] = useState(25);
+  const scrollParentRef = useRef(null);
 
   useEffect(() => {
     getAllProjects();
@@ -37,7 +39,7 @@ function Explore() {
     });
   };
   return (
-    <DisplayWrapper>
+    <DisplayWrapper onScrollCapture={console.log("sruuuuub")}>
       <section className="bg-gray-100 p-8">
         <div className="flex w-full justify-between">
           <H1 className="mt-0">Explore</H1>
@@ -50,12 +52,19 @@ function Explore() {
       </section>
 
       <main className="p-8">
-        <div className="flex flex-col w-full">
+        <div
+          className="flex flex-col w-full"
+          ref={(ref) => (scrollParentRef.current = ref)}
+          onScrollCapture={console.log("scorlled")}
+        >
+          {console.log(scrollParentRef)}
           <InfiniteScroll
             pageStart={0} //This is important field to render the next data
             loadMore={getAllProjects}
             hasMore={hasNextPage}
-            loader={<h4>Loading...</h4>}
+            getScrollParent={() => scrollParentRef.current}
+            useWindow={false}
+            threshold={0}
           >
             {projects.map((project) => {
               return (
