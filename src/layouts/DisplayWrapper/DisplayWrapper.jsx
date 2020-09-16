@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Header/Header";
 import "./DisplayWrapper.css";
 
-const DisplayWrapper = ({ children, classNames }) => {
+const DisplayWrapper = ({ children, classNames, customRef }) => {
   return (
     <div className="flex h-screen overflow-x-hidden">
       <Header />
@@ -10,6 +10,7 @@ const DisplayWrapper = ({ children, classNames }) => {
         className={`w-full wrapper-main bg-white overflow-auto ${
           classNames ? classNames : ""
         }`}
+        ref={customRef}
       >
         {children}
       </div>

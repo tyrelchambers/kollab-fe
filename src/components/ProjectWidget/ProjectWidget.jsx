@@ -25,15 +25,17 @@ function ProjectWidget({ project, tiny, NavStore }) {
   return (
     <Link
       to={`/project/${project.uuid}`}
-      className=" flex flex-col widget-wrapper bg-indigo-700 box-shadow m-4"
+      className=" flex flex-col widget-wrapper  box-shadow m-4 project-item"
       onClick={() => NavStore.setIsOpen(false)}
     >
       <div className="widget-thumbnail-wrapper ">
         <img src={project.thumbnailUrl} alt="" className="widget-thumbnail" />
       </div>
 
-      <div className="widget-body flex justify-between items-center ">
-        <p className="text-white text-xl font-bold m-0">{project.title}</p>
+      <div className="widget-body flex justify-between items-center bg-gray-800 ">
+        <p className="text-white text-xl font-bold m-0 ellipses">
+          {project.title}
+        </p>
 
         <div className="flex items-center" style={{ width: "50px" }}>
           <i className="fas fa-fire-alt text-2xl mr-2 text-white"></i>
